@@ -1,0 +1,7 @@
+*.aux
+*.bbl
+*.blg
+*.log
+*~
+/FEM
+/Chapter\ 1\ References

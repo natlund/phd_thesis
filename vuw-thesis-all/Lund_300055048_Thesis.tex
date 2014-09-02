@@ -1,0 +1,85 @@
+\documentclass[12pt, a4paper, twoside, openright]{book}
+
+\usepackage{vuwthesis} % sets up some local things, mostly the front page
+% And sets up 1.5 line spacing for 12 pt font.  To reset, use the following:
+%\renewcommand{\baselinestretch}{1.00}
+
+\setlength{\intextsep}{12pt} % set space above and below in-line float
+\setlength{\abovecaptionskip}{0pt} % set space between figure and caption.
+
+%\usepackage{palatino} % sets palatino as the default font
+
+\usepackage{url} % for typesetting urls
+
+\usepackage{docmute}  % Discards header of `included' files:  
+% Only content between \begin{document} and \end{document} of included file is used.
+% This allows `included' files to be compiled standalone.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    Maths and Diagrams
+\usepackage{amssymb, amsmath}
+\usepackage{tikz}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Formula abbreviations.
+
+\newcommand{\vens}{\ensuremath{v_{\mathrm{ens}}}}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\frontmatter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{An Effective Slip Length for Rough, Mixed-Slip Surfaces}
+
+\author{Nathaniel Joseph Lund}
+
+\subject{Physics}
+
+\abstract{An abstract of fewer than 500 words must be included.}
+% Books don't normally have abstracts, and this is a bit of a hack
+
+\phd
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+
+\include{thesis-acknowledge}
+
+\tableofcontents
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mainmatter
+% individual chapters included here
+
+
+\include{thesis-introduction}
+\include{thestyle}
+\include{library}
+\include{binding}
+
+\appendix
+\include{Lund_App_B_JRPhilip}
+
+\include{thesis-conclusion}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \backmatter caused problems with appendices :-(
+\backmatter  % Dunno, seems to be OK.
+
+%\bibliographystyle{ieeetr}
+\bibliographystyle{acm}
+\bibliography{myrefs}
+
+
+\end{document}

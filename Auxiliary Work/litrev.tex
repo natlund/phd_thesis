@@ -1,0 +1,491 @@
+\documentclass[twocolumn]{article}
+
+\title{Lit. Review}
+\author{Nat Lund}
+
+\begin{document}
+\maketitle
+
+So, it begins... The Literature Review of my PhD Thesis starts here.
+
+We begin by figuring out what kind of system to use in doing the lit. review.
+
+Various people use Mendeley, but it seems you have to sign up for it.  I have discovered Docear, a more powerful open-source analogue of Mendeley.  BUT, Docear is Beta software, bloated, confused and buggy.
+
+Jabref allows one to access PDFs directly from the bibtex file.
+
+Conclusion:  I'll try to just get on with it using Jabref only, and record my notes in this \TeX file here.
+
+I wondered whether to break my folder of Reference Papers into subfolders for various topics, such as:\\
+$\bullet$ Pure Slip\\
+$\bullet$ Mixed Slip\\
+$\bullet$ Molecular Dynamics work\\
+$\bullet$ Superhydrophobic Surfaces\\
+$\bullet$ Effective Slip Lengths\\
+
+
+After reading and summarizing a bunch of papers, I have now organized my folder of Reference Papers into the following subfolders:
+\begin{itemize}
+    \item Pure Slip --- Experimental
+    \item Pure Slip --- Theory, including MD
+    \item Mixed Slip Surfaces
+    \item Mixed Slip Flow
+    \item Effective Slip Lengths
+\end{itemize}
+
+This seems right. Essentially all Pure Slip Theory papers use MD. Mixed Slip Surfaces is their for completeness, not direct relevance.  Papers on Mixed Slip Flow are a messy bunch, with all kinds of different effects going on, many not accounted for.
+
+\section*{Contents}
+
+\begin{itemize}
+\item Pure Slip -- Theoretical
+
+Schnell 1956 \\
+! Churaev 1984 \\
+! Ruckenstein and Rajora JCIS 1983 \\
+! Blake 1990 \\
+Thompson and Robbins PRA 1990 \\
+Bocquet and Barrat PRE 1994 \\
+Vinogradova, Langmuir 1995 \\
+Thompson and Troian, Nature Letters 1997 \\
+Barrat and Bocquet PRL 1999 \\
+de Gennes, Langmuir 2002 \\
+Andrienko etal, JChemPhys 2003 \\
+! Bocquet and Barrat, Soft Matter 2007 \\
+
+\item Pure Slip -- Experimental
+
+Pit etal PRL 2000 \\
+Becker and Mugele PRL 2003 \\
+Vinogradova and Yakubov, Langmuir 2003 \\
+Cottin-Bizonne etal PRL 2005 \\
+Joly PRL 2006 \\
+Huang etal JFM 2006 \\
+Honig and Ducker PRL 2007 \\
+Vinogradova PRL 2009 \\
+Neto etal Langmuir 2011 \\
+
+\item Mixed Slip Flow
+
+Zhu and Granick PRL 2002 \\
+Cottin-Bizonne etal Nature Materials 2003 \\
+Bonaccurso Butt Craig PRL 2003 \\
+Lauga and Brenner PRE 2004 \\
+Cottin-Bizonne etal EurPhysJE 2004 \\
+Choi and Kim PRL 2006 \\
+Vinogradova and Yakubov PRE 2006 \\
+
+
+\item Effective Slip Length
+
+Philip ZAMP 1972 \\
+Einzel, Panzer and Liu PRL 1990 \\
+Lauga and Stone JFM 2003 \\
+Tretheway and Meinhart  PoF 2004 \\
+Sbragaglia and Prosperetti PoF 2007 \\
+Ybert etal PoF 2007 \\
+Hendy and Lund PRE 2007 \\
+Ng and Wang PoF 2009 \\
+Davis and Lauga PoF 2009a \\
+Davis and Lauga PoF 2009b \\
+Ng and Wang Microfluid nanofluid 2010 \\
+Davis and Lauga JFM 2010 \\
+
+\end{itemize}
+
+\section*{Pure Slip}
+
+\subsection*{Early Indications}
+
+\subsubsection*{Schnell 1956}
+In a series of careful experiments, Erhard Schnell treated glass capillaries with dimethyldichlorosilane to make them hydrophobic. The silicone layer decreased the capillary diameter by 0.01\% - 0.04\%. Nevertheless, at sub-turbulent velocities, the silicone-treated capillaries flowed 0\% - 5\% more water than the otherwise-identical untreated capillaries.  The excess flow was attributed to slip. "... this can only be explained by slippage of water over the non-wettable surface."
+
+Note that Schnell does not mention `slip length'.
+
+\subsubsection*{Churaev 1984}
+! Paywalled.
+I never did read this damn paper.  Apparently it replicates Schnell.  It's online but behind a paywall at Elsevier.
+
+\subsection*{Theoretical}
+
+\subsubsection*{Ruckenstein and Rajora JCIS 1983}
+! Paywalled.
+Say that for molecular slip to exist, required surface diffusion coefficients are orders of magnitude larger than observed. Instead propose a `gas gap' at surface.
+
+\subsubsection*{Blake, Terence D. 1990}
+! Paywalled.
+Reconsiders Tolstoi's 1952 theory on molecular slip. Uses it to predict slip in capillaries.
+
+\subsubsection*{Thompson and Robbins PRA 1990}
+* Indicates no slip on hydrophilic except at high shear.
+
+Content: MD studies of a Lennard-Jones fluid under Couette shear. Equivalent to a compressed fluid about 30\% above melting temperature. Shearing the fluid causes viscous dissipation which gradually heats the system. A constant temperature was maintained by adding damping and Langevin noise terms to the equations for $y$ velocity.
+
+Several regimes were observed, with the determining factors being the wall-fluid interaction, and surprisingly, the difference in density between wall and fluid. As the wall density asymptotes to infinity, the wall becomes flat.  In that regime, no momentum transfer is possible, since force on an impacting particle is always perpendicular to the wall. So perfect slip obtains, regardless of the size of wall/fluid interaction.
+
+As the density decreases, the wall gains some `texture', and now atoms can be given a sideways nudge by the peaks of the wall. When the density is equal to that of the fluid, the fluid atoms can attach epitaxially to the wall; if the interaction is strong enough, one or two layers of fluid atoms lock to the wall.  In this case, the slip length is \emph{negative.}
+
+At equal wall and fluid densities, the no-slip condition is observed.  However, if $epsilon_{wf}$ is made large enough, the fluid will lock epitaxially to the wall; at sufficiently high $epsilon_{wf}$, two layers are locked to the wall. In this case, the slip length is \emph{negative}.
+
+The fluid molecules can only stick to the wall in the sites generated by the packing of the wall atoms. If the density of the sites is below the density of the fluid, then at some densities the fluid will be under elastic strain if it sticks to the wall.
+
+At a wall density of 2.52 times the fluid density, Thompson and Robbins found that wall layering was reduced, and slip increased.  At higher $epsilon_{wf}$ however, layering increased, initially with a regular structure that was a harmonic of the wall crystal, or rather, as a \emph{different} crystal plane to the wall. The layer was only weakly pinned, and slipped relative to the solid.  At the hghest $epsilon{ef}$s, the layer density equalled the wall density, and became locked.
+
+It is unclear from the paper whether a single epitaxially locked fluid layer constitutes `no slip', or negative slip. (I think negative slip.)
+
+
+\subsubsection*{Bocquet and Barrat PRE 1994}
+A complicated theory + MD paper.
+
+B and B start by constructing a phenomenological model of the fluid, at the level of momentum of infinitesimal volumes of fluid.  The fluid momentum field is subject to (thermal) fluctuations, which quickly dissipate, obeying the diffusion equation. Further, any pressure gradient in the fluid is related to the gradient of the divergence of the momentum. (Divide through by the infinitesimal volume to get a momentum \emph{density} $\vec{j}(\vec{r},t) $ ) Thus, if $\vec{r}$ is in the bulk:
+\[ \partial_{t} \vec{j} +\nabla P - \frac{\xi + \eta /3}{\rho_{0}} \nabla [ \nabla \cdot \vec{j}]
+  - \frac{\eta}{\rho_{0}} \nabla^{2} \vec{j} = 0 \]
+and if $\vec{r}$ is on the boundary, the Navier slip condition holds:
+\[ \vec{j}_{\parallel} = b_{wall} \frac{\partial}{\partial \vec{n}} \vec{j}_{\parallel}, \;\;\; \vec{j}_{\perp} = 0 \]
+
+A great simplification is to introduce the transverse momentum density:
+\[ j_{\alpha}(z,t) = \frac{1}{L_{x}L_{y}} \int \int dx\;dy\; j_{\alpha}(\vec{r},t),   \;\;\;  \alpha = x,y \]
+
+It is easy to show (\emph{sic}) that this field obeys the diffusion equation:
+
+\[ \left[  \partial_{t} - \frac{\eta}{\rho_{0}} \partial^{2}_{z} \right] 
+  j_{\alpha}(z,t) = 0 \]
+
+with the two BCs:
+
+\[ j_{\alpha}(z,t)|_{z=z_{0}} = b_{0} \partial_{z} j_{\alpha} (z,t)|_{z=z_{0}} \]
+
+\[ j_{\alpha}(z,t)|_{z=z_{0}+h} = -b_{h} \partial_{z} j_{\alpha} (z,t)|_{z=z_{0}+h} \]
+
+
+Next B and B work with the time-dependent correlation function of $j_{\alpha}$, as defined by:
+
+\[ C(z,z',t) = \langle j_{\alpha}(z,t)j_{\alpha}(z',0) \rangle \]
+
+where angle brackets denote a thermodynamic average.
+
+Now, the assumptions imply that this equilibrium correlation function obeys the diffusion and Navier slip relations:
+
+\[ \left[  \partial_{t} - \frac{\eta}{\rho_{0}} \partial^{2}_{z} \right] 
+  C(z,z',t) = 0, \;\;\; z_){0} < z < z_{0}+h \]
+
+\[ C(z,z',t)|_{z=z_{0}} = b_{0} \partial_{z} C(z,z',t)|_{z=z_{0}} \]
+
+\[ C(z,z',t)|_{z=z_{0}+h} = -b_{h} \partial_{z} C(z,z',t)|_{z=z_{0}+h} \]
+
+The general solution is:
+
+\[ C(z,z',t) = f(b_{0},b_{h}, h) \]
+
+That is, the correlation function is a (hideous) function of two parameters: \emph{slip length} and \emph{channel width.} The channel width maps to the notion of the `effective position of the BC'. (Though the authors do not use this phrase.) B and B note that while in Couette flow these two parameters are coupled, in general they need not be.
+
+Their next trick is to do some equilibrium molecular dynamics simulations. ie, a fluid between two stationary solid planes just left to do its thing, without being driven by pressure or shear.  Then the correlation function $C_{observed}$ is computed from observations of the MD simulation.
+
+Finally, the parameters ($b$ and $h$) are tweaked in the theoretical correlation function $C$ until it best fits with $C_{observed}$.
+
+Thus, a slip length and effective boundary position are derived from MD without having to induce a velocity profile and measure velocity.  This eliminates any possible shear or velocity dependence from the slip effect.
+
+The first MD experiment had fluid/wall interaction that was was repulsive only -- a `soft sphere' model. In this regime, the perfectly flat wall yielded an infinite slip length, as expected. However, "the hydrodynamic boundaries are located inside the fluid and are separated from the physical walls by one layer of fluid atoms." This implies a \emph{negative} slip length.
+
+The same regime was used for walls with a corrugation of wavelength equal to one atom diameter $\sigma$. Results for corrugation amplitudes in $\sigma$ are: 
+
+\vspace*{0.5em}
+\begin{tabular}{l l l}
+Amplitude   & Slip Length      & BC Postion \\
+
+   0        & $\infty$         & 1.60 \\
+   0.01     & 40 $\pm$2.5      & 1.60 \\
+   0.02     & 7.20 $\pm$ 0.05  & 1.60 \\
+$>$0.03     & 0.00 $\pm$ 0.02  & 1.60 \\
+
+\end{tabular} 
+
+\vspace*{0.5em}
+The remarkable result is that a corrugation with even a tiny amplitude -- 0.03 atom diameters -- is enough to completely suppress slip.  The hydrodynamic BC is always located one atom width inside the fluid.
+
+The second MD simulation was done with a Lennard-Jones attractive wall-fluid interaction, and a corrugation of 0.2$\sigma$. In this case, fluid particles tend to lock epitaxially to the solid.  A slip length of zero was found, with a hydrodynamic BC placed about two atom layers into the fluid.  (! Not surprising, given that a purely repulsive wall had no slip at this corrugation amplitude!  Why didn't they use an amplitude at least ten times smaller, to at least have the possibility of slip?)
+
+As a final test, B and B do a conventional Couette flow MD simulation, with the same BCs as in the equilibrium regimes.  The extracted velocity profiles yield implied slip lengths and BC positions that are the same as calculated by the equilibrium methods above.
+
+Slip is only found with near-flat repulsive only walls.  The big findings of this paper are that almost any deviation from flatness suppresses slip, and that the hydrodynamic BC must be located about one atom width into the fluid.
+
+ 
+
+
+\subsubsection*{Vinogradova LANGMUIR 1995}
+"Drainage of a Thin Liquid Film Confined between Hydrophobic Surfaces". Starts with history: first molecular theory of slip by Tolstoi, 1952, linking molecule mobility with interfacial energy (or contact angle). Tolstoi's work reexamined by Blake 1990, who used it to predict slip effects in capillaries.  However, the implied surface diffusion coefficients are 1000's times too big, even for gases - said Ruckenstein and Rajora 1983. To better explain slip, they proposed a `gas gap' at the surface.
+
+Another model is `depletion layer' of thickness $ \delta $ of lower viscosity, appearing in Derjaguin1987 and Vinogradova JCIS 1995. It follows from `numerical simulation data' (no ref!) and blowoff method of Derjaguin1993.  For Navier slip, an order-of-magnitude estimate of $b$ is:
+
+ \[ b = \delta \left( \frac{\mu_{bulk}}{\mu_{slip}} - 1 \right) \]
+
+Note that one cannot know $ \mu_{slip} $ or $ \delta $, so $b$ is poorly defined.
+
+She says that the drop in viscosity is caused by both a change in fluid structure and an increase in gas-filled `submicrocavities' in the fluid near the hydrophobic wall, as shown experimentally in Vinogradova, Bunkin et al 1995.
+
+The bulk of the paper extends Reynolds formula to derive a relation for drainage force between two approaching spheres with slip.  THIS FORMULA IS USED IN SUBSEQUENT DRAINAGE STUDIES OF SLIP.
+
+\subsubsection*{Thompson and Troian NATURE 1997}
+Apparently shows that no slip is expected on hydrophilic surfaces, except at very high shear rates.
+
+Having now read it, I can confirm this. In fact, they show no slip even for mildly hydrophobic surfaces. eg when Lennard-Jones wall-fluid energy $\epsilon^{wf}$ = 0.6 of fluid-fluid energy $\epsilon$. And slip when $\epsilon^{wf}$ is smaller. An $\epsilon^{wf}$ smaller than the fluid energy means that the potential well between them is shallower, and the interatomic force (which goes as $24\epsilon$) is lower. Thus, any $\epsilon^{wf} < \epsilon$ means the fluid atoms are less attracted to the wall than to themselves -- to me this means hydrophobic. Therefore, T and T show no slip even for mildly hydrophobic surfaces. Results:
+\vspace*{1em}
+
+ \begin{tabular}{l l l l }
+$\epsilon^{wf}$ & $\sigma^{wf}$ & $\rho^{wf}$ & $b$ \\
+0.6                    & 1.0                  & 1                  & 0    \\
+0.1                    & 1.0                  & 1                  & 2    \\
+0.6                    & 0.75                & 4                  & 4    \\
+0.4                    & 0.75                & 4                  & 8    \\
+0.2                    & 0.75                & 4                  & 18   \\
+\end{tabular}
+
+\vspace*{1em}
+Note that a high density of wall atoms massively increases slip. When wall density is equal to fluid density, fluid atoms can lock epitaxially to the wall; this obviously increases momentum transfer and `stick'.
+
+But the real story is the shear dependence of the slip.  At low shear rates, the slip length is constant, but at some `critical' shear rate, the slip length diverges ie. goes berserk heading for infinity.  The critical shear rate depends on the regime. If shear rates are normalised to the critical rate, and slip lengths normalised to the plateau slip length, then the slip versus shear data for all regimes lie on \emph{a single curve}.
+
+T and T attempt to explain this "remarkable collapse of the data" with a single parameter $R$ describing the roughness of the potential surface. A test particle at a fixed height experiences a potential $\phi(x,y)$. Let $A$ be the two-dimensional arc length, and $A_{\infty}$ the area of the `footprint' of the arc. Then $R$ is the normalised arc length minus one.
+\[ R = A/A_{\infty} -1\]
+
+With a wall moving a velocity $v$, a test particle experiences perfect slip for $v > v_{c}$, some critical velocity. They find that $v_{c}$ scales as $R^{1/2}$ for a wide range of interfacial parameters.  In the real fluid (with hundreds of particles) they find the critical shear rate scales as a power of $R$ with an exponent close to 3/4.
+
+T and T think it is natural to assume that $v_{c}$ is set by the liquid-solid interaction timescale, so that increasing density should lead to larger critical shear rates.  They are surprised to find the reverse.
+
+I think this is nuts. Physical intuition says that increasing density reduces the depth of corrugations of the potential surface, reducing chances of giving a sideways kick to the fluid particle, so leading to earlier onset of perfect slip. Ie. higher density should \emph{reduce} critical velocities (or shear rates).  I think there are two obvious mechanisms at work:  A deeper corrugation has steeper slopes, so a particle gets more of a sideways kick than just glancing off the peak of the corrugation. A slower moving (or wider) corrugation gives an impacting particle more time to penetrate down to the steeper slopes. At sufficient wall speed, an approaching particle is exposed to the perpendicular potential of the peak rushing by \emph{many times} before it gets down into the trough. Thus, this averaging causes a particle to `see' a flat surface --- located at the top of the peaks, but with a weaker potential equal to the average potential at the top of the peaks.
+
+Hence, I hypothesize, the key parameter is the wall speed \emph{relative to} the average approach velocity of an incoming particle. 
+
+
+
+\subsubsection*{Barrat and Bocquet PRL 1999}
+A nice short paper giving standard uncontroversial results.  Though again, they use the wall position as an adjustable parameter, a clarification not figured out by the experimentalists for another 10 years! Also, a pressure dependence of slip is observed.
+
+B and B study flow in both Poiseuille and Couette regimes, using a Lennard-Jones fluid with an additional $c_{ij}$ parameter.
+
+\[ v_{ij} = 4 \epsilon \left[ \left( \frac{\sigma}{r}\right)^{12} -
+    c_{ij} \left( \frac{\sigma}{r} \right)^{6} \right] \]
+
+They use $c_{FF} = 1.2$ for fluid-fluid interactions, meaning the fluid is more cohesive than the usual LJ fluid.  They tweak the wetting properties via the $c_{FS}$ fluid-solid parameter. By one method, $c_{FS} \in \left[0.5, 0.9 \right] $ maps to $\theta \in \left[ 100^{\cdot} , 50^{\cdot} \right] $.
+
+A more accurate method of calculating surface tension gives $c_{FS} \in \left[0.5, 1.0 \right] $ maps to $\theta \in \left[ 140^{\cdot} , 90^{\cdot} \right] $. So a $90^{\cdot}$ contact angle results when FS interaction is slightly lower than FF interaction. (1.0 \emph{cf} 1.2). Hmmmmmmmm.
+
+Using a hydrophobic ($c_{FS} = 0.5$) liquid requires a pressure $P_{0}$ to jam it down the pipe. At high pressure $P/p_{0} = 16.4$, the fluid exhibited the same higher-density layering at the wall as seen in hydrophilic liquids. At lower pressure $P/P_{0} = 2.8$, the fluid had a strong density depletion near the wall.
+
+Slip lengths were extrapolated from the hydrodynamic boundary position $z_{w}$, which turned out to be located one atom width into the liquid.
+
+The fluid with $c_{FS} =0.5$, i.e. contact angle ~ 150 degrees, showed highly pressure dependent slip: from 8$\sigma$ for $P/P_{0}=16.4$ to over 40$\sigma$ for $P/P_{0} \sim 0$.
+
+Less hydrophobic fluids showed less slip, and less pressure dependence. A $c_{FS}$ of 0.7 or higher gave slip lengths of a couple of $\sigma$ only.
+
+\subsubsection*{de Gennes Langmuir 2002}
+A masterful, readable little paper, deriving the slip length expected of a hypothetical gas layer. De Gennes starts by defining slip length $b$ in the usual geometrical manner, then relates it to a surface friction coefficient $k$, `` defined as follows: The shear stress $\sigma$ induces at the wall a slip velocity $v_{s}$:
+
+\[ \sigma = k v_{s} \]
+
+Equating this to the viscous shear stress in the fluid (of viscosity $\eta$), we get
+
+\[ \sigma = k v_{s} = \eta \left| \frac{\mathrm{d} v(z)}{\mathrm{d} z} \right| \]
+
+where $v(z)$ is the fluid velocity, increasing linearly with the distance from the wall $z$." This gives:
+
+\[ b = \eta / k \]
+
+De Gennes finds recent very high experimental slip results ``unexpected and stimulating". (Note: these are now suspected of being contaminated with bubbles; de Gennes is thus prescient in his gas layer theory.) ``This led us to think about unusual processes which could take place near a wall. In this Letter, we discuss one (remote) possibility: the formation of a gaseous film at the solid/liquid interface."
+
+``The source of the film is unclear: when the contact angle is large ($\theta \rightarrow 180^{\circ}$), a type of flat bubble can form at the surface with a relatively low energy.  But this energy is still high compared to the thermal energy $k_{B}T  $."
+
+
+With these caveats stated, de Gennes then derives an expected slip length if a uniform gas layer \emph{were} to exist. Assume a bulk of fluid with viscosity $\eta$, sliding over a gas film of uniform thickness $h$, with $h$ larger than the molecule size $a$, but smaller than the mean free path $l$.
+Then:
+\[ b = -h + \frac{\eta}{\rho \bar{v}_{z}} \simeq \frac{\eta}{\rho \bar{v}_{z}} \]
+Note that I have corrected what I think are typographical errors.  Furthermore the somewhat nonstandard construction $\bar{v}_{z}$ is apparently defined as the average of \textbf{absolute value} $v_{z}$.  (The simple average is zero.)
+
+To investigate these oddities, in Appendix A, I have derived de Gennes' result from scratch, using the more standard quantity of average particle speed, $\bar{v}$.  The result is:
+\[ b = -h + \frac{4 \eta}{\rho \bar{v}} \simeq \frac{4 \eta}{\rho \bar{v}} \]
+The formulae are equivalent --- I show that $\bar{v}=4\bar{v}_{z}$.
+
+Note that $b=4\eta/\rho \bar{v}$ is slip length experienced in the boundary condition at the \textbf{bottom of the liquid.}  If $b$ is instead considered a property of the solid surface, then the gas layer width $h$ must be subtracted (in practice, negligible).
+
+Plugging in typical values, $\rho$ = 1 kg/m$^{3}$, $\bar{v}$ = 476 m/s, $\eta$ = 10$^{-3}$ kg/ms, we get $b$ = 8 $\mu$m. De Gennes: ``Thus, a gas film can indeed give a very large slip length.  Our calculation assumed complete thermalization at each particle/boundary collision.  If we had some nonzero reflectance (especially on the solid surface), this would increase $b$ even more."
+
+De Gennes notes that the amount of gas required is very small, but that a ``process which could generate such films remains obscure."  Serendipitously, the very next year, Andrienko \emph{et al} propose just such a hypothetical process.
+
+\subsubsection*{Andrienko et al J Chem Phys 2003}
+* Apparently, slip of ~ 100 nm expected on hydrophobic surfaces.
+
+Reality: No. They find a slip of up to 8 molecular diameters, but that is purely a result of arbitrary assumptions in their model. The purpose of their model is to show that a mixture of high and low viscosity fluids can spontaneously unmix, leaving a layer of low-viscosity fluid stuck to the surface, causing apparent slip. 
+
+A theoretical approach that isn't molecular dynamics. Andrienko et al discuss the possibility that a large slip length would be observed if there were a layer of \emph{lower viscosity} fluid at the surface.  Even if the no-slip condition held at the solid surface, the velocity profile in the bulk is steeper, yielding an extrapolated large apparent slip length. 
+
+The issues are what the layer might be, and how it might arise. And. et al take an agnostic approach, and assume a generic binary fluid with different viscosities in the ratio 1:3.  They use a `phase field' approach, in which an order parameter $\phi$ varies over space. Here, $\phi$ is the fraction of the low viscosity fluid in an infinitesimal volume of fluid. They first calculate viscosity profiles at equilibrium, i.e. ignoring velocity.
+
+The unmixing of the fluid is driven by energy (as always), specifically a free energy functional, the semigrand potential:
+
+\[ \Omega{\phi} = \frac{1}{a^{3}} \int dV 
+\left[ \frac{k}{2}a^{2} (\nabla \phi )^{2} + f(\phi) - \mu \phi \right] 
+  + \Psi_{s} \]
+  
+where $a$ is length scale on order of molecule size, $\mu$ is chemical potential, and $f(\phi)$ is Helmholtz free energy density of the mixture. Adopting the mean-field model for a regular (symmetric) mixture: $ f(\phi) =$
+
+\[ \frac{\chi}{4} (1-\phi^{2}) + k_{B} T \left[
+\frac{1+\phi}{2} \ln \frac{1+\phi}{2} +  \frac{1-\phi}{2} \ln \frac{1-\phi}{2}    \right] \]
+  
+This is one of the simplest models of mixing.
+
+The interaction with the walls is described with the quadratic approximation for the surface energy:
+
+\[ \Psi_{s} = \frac{1}{a^{2}} \int 
+\left[ -h \phi_{s} - \frac{1}{2}\gamma\phi^{2}_{s} \right] dS \]
+
+Parameter $h$ measures the attractiveness (or repulsiveness if negative) of the surface to the low-viscosity fluid  --- a proxy for contact angle. Surface coupling $\gamma$ captures the fact that a molecule on the surface has fewer neighbours than a molecule in the bulk.
+
+With this functional set up, they consider the physical case of Couette flow between two fairly close plates. Variation of the functional yields an Euler-Lagrange equation and boundary condition:
+
+\[ k^{2}\frac{\partial^{2}\phi}{\partial z^{2}} + \frac{1}{2}\phi 
+- \frac{1}{2} T \ln \frac{1+\phi}{1-\phi} + \mu = 0 \]
+
+\[ \pm k \frac{\partial \phi}{\partial z} + h + \gamma \phi |_{z=-L/2,L/2} = 0\] 
+
+These equations were solved numerically with Fortran using the relaxation method. With the $\phi$ field solution, the viscosity could be obtained by simply assuming that the viscosity is a linear combination of the pure viscosities. Finally, the Couette flow was solved with the viscosity field.
+
+The big result is that above a certain temperature, a layer of low-viscosity fluid on the surface suddenly forms. They call this a `prewetting transition'. This causes the sudden emergence of a significant slip length. As temperature increases further, more mixing of the low-viscosity fluid into the bulk occurs, lowering the bulk viscosity, thus reducing viscosity contrast. Hence, the slip length \emph{declines} with increasing temperature.
+
+They find a slip length of up to ~8 molecule sizes.  But that is purely dependent on their choice of the viscosity ration 1:3.
+
+In this toy model, the parameters are such that the system is close to bulk equilibrium -- whatever that means --- presumably complete mixing?
+
+For constant temperatures at the critical temperature, the contact angle proxy $h$ may be increased to cause the abrupt transition to slip.
+
+In this mean-field toy model of wetting, at sufficient energies, a boundary layer can abruptly form, causing the sudden onset of significant slip. The authors believe it to be valid for liquid-gas systems, binary mixtures and polymer mixtures in the long wavelength approximation. Thus, large boundary slip is predicted for those systems.
+
+
+\subsubsection*{Bocquet and Barrat, Soft Matter 2007}
+! Paywalled.
+Slip of ~ 100 nm expected on hydrophobic surfaces.
+
+Abstract: "The development of microfluidic devices has recently revived the interest in “old” problems associated with transport at, or across, interfaces. As the characteristic sizes are decreased, the use of pressure gradients to transport fluids becomes problematic, and new, interface driven, methods must be considered. This has lead to new investigations of flow near interfaces, and to the conception of interfaces engineered at various scales to reduce flow friction. In this review, we discuss the present theoretical understanding of flow past solid interfaces at different length scales. We also briefly discuss the corresponding phenomenon of heat transport, and the influence of surface slip on interface driven (e.g. electro-osmotic) flows."
+
+\subsection*{Experimental}
+
+\subsubsection*{Pit etal PRL 2000}
+
+\subsubsection*{Becker and Mugele PRL 2003}
+Lit Rev: In simple liquids confined between atomically smooth surfaces, molecules arrange themselves into layers parallel to the surfaces (Israelachvili INTERMOLECULAR AND SURFACE FORCES (Book?) 1992; Horn Israelachvili JChemPhys 1981; Chan Horn JChemPHys 1985; Klein Kumacheva, Science 1995, JChemPhys 1998, Kumacheva Klein JChemPhys 1998; Demirel Granick PRL 1996; Israelachvili etal Science 1988). At a thickness of only a few molecular diameters, drainage is not continuous, but is in discrete steps, called layering transitions (Chan Horn JChemPhys 1985). Shear friction increases with decreasing layer thickness (Klein Kumacheva, Science 1995, JChemPhys 1998, Kumacheva Klein JChemPhys 1998; Demirel Granick PRL 1996; Israelachvili etal Science 1988).
+
+CONTENT: Used octamethylcyclotetrasiloxane (OMCTS) rather than water. Used SFA to measure drainage forces, observing discrete jumps as indivivual molecular layers escaped. Calculated that momentum transfer (viscosity) between confined liquid layers was close to bulk equivalent, and that solid/liquid equivalent viscosity was 18 times higher.  No mention of `slip length'.
+
+\subsubsection*{Vinogradova and Yakubov, Lang, 2003}
+Lit Rev: The AFM is a new device (Binnig etal 1986). The AFM has been used in only a few drainage investigations (Butt etal JChemPhys 2000; Craig Neto Williams PRL 2001; Bonaccurso Kappl Butt PRL 2002). In contrast, various Surface Force Apparatus methods have been used successfully (Chan Horn JChemPhys 1985; Israelachvili JCIS 1986; Lodge Mason RProcRSoc 1982; George etal JChemPhys 1993; Horn etal JChemPhys 2000; Vinogradova Horn LANG 2001; Zhu Granick PRL 2001; Baudry etal LANG 2001).
+
+Content:  An AFM drainage force study, not as sophisticated as later ones.  Experiment with hydrophilic silicon surface and silicate glass sphere, both molecularly smooth: rms roughness of 0.3 nm. Showed no slip.  Second AFM experiment with polystyrene surface and polystyrene sphere. Surface also atomically smooth, but polystyrene sphere was ROUGH: rms roughness 2.2 - 2.8 nm, with maximum peak-valley difference of 15 nm.  This showed implied slip lengths of the order of the asperities. Don't know whether slip due to nanobubble formation or the roughness itself.
+
+\subsubsection*{Cottin-Bezonne etal PRL 2005}
+Lit Rev:
+Theoretically: " ...simple Lennard-Jones liquids wetting an atomically smooth surface do not slip on it except at very high shear rate... " according to (Thompson and Robbins PRA 1990; Barrat and Bocquet PRE 1994; Thompson and Troian Nature 1997). In non-wetting situations, slip lengths up to 10 -50 molecular diameters are possible, depending on the pressure (Barrat and Bocquet PRL 1999). For a rough surface in Wenzel state, roughness decreases slip (S. Richardson, JFM 1973). For fluid in Cassie state, large slip lengths are possible (de Gennes LANG 2002; Quere Nat. Mat. 2002; Cottin-Bizonne etal Nat. Mat. 2003), possibly shear-rate dependent (Lauga and Brenner PRE 2004).
+
+Experimentally: Results vary by two orders of magnitude for apparently similar systems (Cottin-Bizonne EPJE 2002). "Drastically different behaviours are reported for liquids wetting atomically smooth surfaces (Becker and Mugele PRL 2003; Chan and Horn JChemPhys 1985; Israelachvili JCIS 1986; Pit etal PRL 2000), for the influence of surface roughness (Bonaccurso Butt Craig PRL 2003; Zhu and Granick PRL 2001), or for the amplitude and rate dependence of boundary slip on hydrophobic surfaces (Zhu Granick PRL 2001; Craig Neto Williams PRL 2001; Baudry etal LANG 2001; Vinogradova Yakubov LANG 2003)."
+
+CONTENT: A Surface Force Apparatus was used to measure drainage force between a sphere and a plane. The sphere was hydrophilic (to eliminate hydrophobic attraction), while the plane was rendered hydrophobic by silanization with octadecyltrichlorosilane (OTS). Cunningly, the distance $D$ between plane and sphere was measured with a capacitive sensor, to a resolution of 1 Angstrom. The force on the plane was measured by deflection of the  cantilever on which it was mounted, with a resolution of 1 Angstrom. The plane was examined with an AFM, revealing a peak-to-peak roughness of 1 nm. Experiments were carried out in a clean and thermally isolated room.
+
+With this setup, an implied slip length of 19 $\pm$ 2 nm was measured.
+She emphasizes that the value "does not depend on any preestimated values of liquid properties (viscosity, diffusivity of optical tracers) or of the geometry of solid surfaces, unlike data analysis used in AFM experiments or fluorescence measurements."
+
+She says that Zhu and Granick's result of 2001 was probably due to nanobubbles from cavitation or contamination with platinum nanoparticles. She believes BeckerMugele2003, ChanHorn2005, Israelachvili1986 to be contaminant free.  Finally notes that changing the environment to a clean room changed the results drastically.
+
+
+\subsubsection*{Joly PRL 2006}
+Lit Rev: Large slip is now mostly sought on composite (superhydrophobic) surfaces. (Cottin-Bizonne etal EurPJE 2004; Ou Perot Rothstein PhysFluids 2004). A quantitative understanding of mixed slip requires knowledge of intrinsic slip (Cottin-Bizonne EurPJE). From a theoretical point of view, we expect no slip on wetting surfaces, and slip length of at most tens of nanometers with no shear dependence on hydrophobic surfaces (Barrat Bocquet PRL 1995; Thompson Robbins PRA 1990). Some experiments support this (Cottin-Bizonne etal PRL 2005; Vinogradova Yakubov LANG 2003), and some don't (see Lauga review chapter in Fluids book). Only a few proposals exist to explain the discrepancy: Difficulty with data analysis (Cottin-Bizonne etal PRL 2005; Vinogradova Yakubov in preparation (?Lang 2006?)), nanobubbles (de Gennes LANG 2002; Vingradova etal JCIS 1995; Tyrrell Attard PRL 2001) preventing access to solid-liquid interface (Cottin-Bizonne etal EurJPE 2004; deGennes LANG 2002; Lauga Stone JFM 2003)
+
+Content: The diffusion of tracer particles close to a surface was measured; the implied  diffusion coefficient was used to calculate slip length. Water containing fluorescent beads of typical diameter 200 nm was confined between two surfaces (roughness <1 nm peak-to-peak). There was no macro-scale flow, only thermal diffusion. Fluorescence correlation spectroscopy (FCS) was used to measure the residence time of the beads in a detection volume of width $w$ between the surfaces. Concentration was such that the average number of beads in the detection volume was ~1. Residence time is the reciprocal of diffusion coefficient: $\tau_{D} = w^{2} / D$, thus, $D$ is measured. If the surfaces are hydrophilic, the bead mobility should be strongly reduced by the proximity of the wall; A finite element (Femlab\copyright) solution to the Stokes equation gave a theoretical prediction for the mobility. For hydrophilic walls (no slip), theory and experiment agreed. For hydrophobic silanized walls, theory agreed with experiment if the predictions included a slip length of $18 \pm 5$ nm.
+
+These results are `zero-shear', no external forcing, ruling out flow-induced nucleation of nanobubbles. They rule out shear-dependent slip in these conditions.
+
+Further experiments on rough surfaces showed that roughness reduced slip, in the sense that flow was accounted for by an effective no-slip plane located just below the tops of the roughness.
+
+
+\subsubsection*{Huang etal JFM 2006}
+Lit Rev: Experimental studies have reported a wide range of slip lengths, ranging from micrometers (Schnell 1956; Watanabe, Yanuar, Mizunuma 1998; Zhu Granick 2001; Tretheway Meinhart 2002), to hundreds of nanometers (Pit etal 2000; Lumma etal 2003), to tens of nanometers (Zhu Granick 2002; Choi Westin Breuer 2003; Neto Craig Willliams 2003;Joseph Tabeling 2005; Cottin-Bizonne etal 2005b).
+
+Content: Total Internal Reflection Velocimetry was used.  200 nm diameter tracer particles. PDMS channels, silanized with octadecyltrimethylsilane (OTS). The hydrophilic surfaces had rms roughness of 0.47 nm; the hydrophobic surfaces rms roughness of 0.35 nm. The purified water was degassed by exposing to vacuum for 30 minutes prior to testing, to reduce formation of nanobubbles.
+
+Hydrophilic: Slip lengths of 26 to 57 nm obtained. Hydrophobic: Slip lengths of 37 to 96 nm obtained.  Extra slip due to hydrophobicity was about 20 nm for shear rates in range 300 - 1500 inverse seconds. At 1800 inverse seconds, extra slip length rose to 54 nm. At low shear rate, 200 inverse seconds, extra slip due to hydrophobicity was - 7 nm!
+With experimental uncertainty taken into account, an upper limit of 150 nm slip length is presented.
+
+\subsubsection*{Honig and Ducker PRL 2007}
+Lit Rev: No-slip BC fails in sufficiently sensitive experiments, summarized in review articles (NetoReview2005, LaugaBrennerStoneReview2005, VinogradovaReview1999). Slip length parameter defined in (BrocharddeGennes1992). Disagreement between no-slip theory and experiment could be due to various false assumptions eg: no slip at the interface, continuity of velocity in the fluid, or homogeneous viscosity (RavivLauratKlein, Nature 2001). Drainage force predicted by Reynolds lubrication theory (RLT). For wetting liquids,  RLT with NO SLIP works well to describe forces on macroscale ($R$ ~ 2 cm) sheets of mica for separations  down to a few molecular diameters. (Chan and Horn, JChemPhys 1985; Horn etal ChemPhysLett 1989; Israelachvili JCIS 1986; Cottin-Bizonne etal PRL 2005; Cottin-Bizonne etal EurPJE 2002).  For micron-sized particles, slip is reported for wetting liquids (BonaccursoKapplButt PRL 2002; BonaccursoButtCraig PRL 2003; NetoCraigWilliams EurPJE 2003; Pit etal 2000), semi-wetting liquids ($\theta \sim 50^{\circ} $) (CraigNetoWilliams PRL 2001; GranickZhuLee Nature 2003; Zhu Langmuir 2002) and non-wetting liquids ($\theta \sim 90^{\circ}$) (Cottin-Bizonne etal PRL 2005; Cottin-Bizonne etal EurPJE 2002; ZhuGranick PRL 2001; BaudryCharlaixTonk Langmuir 2001). There are also claims that shear rate and surface roughness influence the degree of slip (BonaccursoButtCraig PRL 2003; VinogradovaYakubov PRE 2006; ZhuGranick PRL 2002)
+
+CONTENT: "It is important to note that an error in determining the position of the solid-liquid interface (h = 0) directly translates into an error in determining the slip length. In traditional colloid probe measurements, the separation is not measured explicitly; the relative separation is determined from the sum of the displacement of a piezoelectric translation stage ("piezodisplacement") and the deflection of the cantilever. The zero of separation is inferred shape of deflection-piezodisplacement data (DuckerSendenPashley Langmuir 1992)." Problems include high force gradient near zero separation, thermal drift, and the fact that net separation is the small difference between the two large measured displacements.
+
+They remeasure drainage forces with an AFM, but with explicit measurement of the separation between particle and plate. "We obtain the separation from the intensity of scattering of an evanescent wave by the particle." The hydrophilic glass sphere had diameter of about 10 $\mu$m, an rms roughness of 0.7 nm, and a typical maximum peak-valley roughness of 4.5 nm. The hydrophilic glass plate had a rms roughness of 0.25nm, and a typical peak-valley roughness of 1.5 nm.  The highly-wetting sucrose solution had $\theta < 5^{\circ} $. 
+ 
+In six experiments, NO SLIP was found, even at shear rates of 250,000 sec$^{-1}$.
+
+\subsubsection*{Vinogradova PRL 2009}
+The best? experimental evidence of fluid slip.  Glass capillaries, with RMS roughness of 0.3 nanometers, and silanized capillaries with RMS roughness of 0.7 nm were tested. Fluorescent nanoparticles of diameter ~ 50 nm were dumped in the flow. Their trajectories were traced by a cunning double-focus fluorescence cross-correlation method.  Theoretical analysis predicted that the tracer particles were subject to Taylor dispersion, which seems to mean that near the wall, the particles move \emph{faster} than the fluid. When the predicted Taylor dispersion velocity was subtracted from the observed particle velocity, the resulting velocity showed no slip for hydrophilic capillaries, and a slip length of no more than 80 - 100 nm for the hydrophobic capillaries.  While the apparent slip length (exptrapolated from far field) depended on the shear rate, the true slip length remained constant.
+
+Lit Rev: No-slip does not always apply, see (Vinogradova 1999). Tensorial slip described in (Bazant and Vinogradova JFM 2008). 
+Theoretically, no slip on hydrophilic surface except at very high shear rate, say (Thompson and Troian, Nature 1997). However, a slip length of about 100 nm or less is expected for a hydrophobic surface (Vinogradova Langmuir 1995, Andrienko et al J Chem Phys 2003, Bocquet and Barrat, Soft Matter 2007). 
+
+Experimentally, some experiments agree with the theory, eg. For hydrophilic surfaces see (Vinogradova and Yakubov, Lang, 2003; Cottin-Bezonne etal PRL 2005; Joly etal PRL 2006; Vinogradova and Yakubov PRE 2006; Honig and Ducker PRL 2007.)
+For hydrophobic surfaces, (some overlap) see (Vinogradova and Yakubov 2003; Cottin-Bizonne PRL 2005; Joly PRL 2006; and Huang etal JFM 2006.)
+A review is Chapter 19 of \emph{Handbook of Experimental Fluid Dynamics}, 2005, by Lauga, Brenner, Stone.
+
+Other experiments (may not agree with theory?) include surface force apparatus work by (Horn etal JChemPhys 2000), and particle velocimetry by (Pit etal 2000; Tretheway and Meinhart Phys. Fluids 2002; Joseph and Tabeling PRE 2005.)
+
+Velocimetry is not expected to be capable of detecting slip of a few tens of nanometers.
+
+
+\subsubsection*{Neto etal Langmuir 2011}
+A `conventional' AFM study, which fixes various errors, offering a `best practice experimental protocol' for AFM slip studies.  In a conventional AFM device, a piezoelectric element drives small platform down towards the test surface.  To the platform are mounted a laser, a photodiode and a cantilever spring.  On the end of the cantilever is a small sphere --- a colloid; hence the apparatus is known as a colloidal probe.  When the colloid encounters hydrodynamic resistance, or hits the surface, it deflects.  This deflection is optically detected by the photodiode. Thus, the raw output of a typical AFM is the displacement of the piezo element and the photodiode voltage.
+
+Obviously, the colloid-surface distance is not directly measured, it is inferred from raw data.  This paper identifies two problems. First, the platform flexes, causing the optical detection elements to move relative to each other, causing a spurious deflection signal.  Second, when the colloid hits the surface, it scrapes sideways along the surface slightly.  The resulting friction skews the force/deflection calibration.  Neto etal quantify and correct for these effects in their processing of the raw data.
+
+Having done so, they study slip in di-$n$-octylphthalate, and find a reproducible slip length in the range 24 - 31 nm.  The occasional slip length of ~ 60 nm prompts them to inspect the surface, \emph{after} the slip experiments.  They find contamination by nanoparticles about 20 nm in diameter.  They note that this causes a false value for the zero of separation, which explains the anomalously high slip measurements. 
+
+
+\subsubsection*{TO DO: Add my old stuff, like Bonaccurso etc.}
+
+\section*{Mixed Slip Flow}
+
+\subsubsection*{Zhu and Granick PRL 2002}
+Experiment using a modified SFA with 5 different surfaces, from molecularly smooth to roughness of 6 nm. Slip length inferred from viscous drainage force as function of distance $D$. $D=0$ was set at adhesive contact in air. Thus, the $D=0$ level could be well below the tops of the peaks. No effort was made to account for this.
+
+Results: For molecularly smooth surface, a flow dependent slip length of up to 35 nm. Roughness suppresses slip, with 6 nm of roughness giving no slip at the flow rates studied.
+
+\subsubsection*{Cottin-Bizonne etal Nature Materials 2003}
+An MD study of a Lennard-Jones fluid. The first discovery of the fact that roughness could \emph{increase} slip. At low enough pressures, partial dewetting occurs: the fluid spontaneously goes into the Cassie state. Then the fluid `sees' a surface partly made of vapour. High slip results.
+
+They have a flat surface, giving slip lengths in the range 20-25$\sigma$. Then they add square `dots' --- they mean posts, bloody French. With the dots, slip length is reduced down to 2$\sigma$. At low pressure, the fluid enters the Cassie state, giving slip lengths up to 57$\sigma$. With very narrow posts --- 4.9$\sigma$ wide, slip lengths could reach 130$\sigma$.
+
+The slip length was calculated with zero plane at the bottom of the cavities.
+
+
+\subsubsection*{Bonaccurso Butt Craig PRL 2003}
+Demonstrate that in a completely wetting system (contact angle zero), roughness \emph{increases} slip. They use an AFM with a glass sphere approaching a flat silicon wafer. Clean silicon had a roungess of 0.7 nm rms. Etching with KOH roughened it to 4.0 and 12.2 nm rms.
+
+They discuss the importance of defining the zero distance. Sensibly they end up defining the zero at the tops of the peaks, as this is the first point of contact in an experiment.
+
+They fit data using Vinogradova's model. The best fit is when they fix the slip length on the (almost smooth) glass sphere at about 43 nm, and then the slip length on the substrate increases with roughness. They increase the viscosity and approach velocity separately to increase the effect. Data:
+
+\begin{tabular}{l l l l}
+
+Roughness rms (nm) & Normal & High $\mu$ & High $v$ \\
+0.7                & 0      & 0          & 0        \\
+4.0                & 1      & 20         & 135      \\
+12.2               & 3.5    & 225        & 900      \\
+
+\end{tabular}
+
+As you can see, with normal viscosity but high approach velocity, a slip length of almost a micron is seen!
+
+These guys understand that putting the zero in the wrong place totally affects the apparent slip lengths, but don't quite develop a full critique.
+
+\subsubsection*{Lauga and Brenner PRE 2004}
+
+
+
+\subsubsection*{Vinogradova and Yakubov PRE 2006}
+Got it. Yet to read again. Resolves issue of roughness increasing OR reducing slip by clarifying concept of nominal no-slip surface.
+
+\end{document}

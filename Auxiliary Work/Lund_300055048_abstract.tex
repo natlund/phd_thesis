@@ -1,0 +1,21 @@
+\documentclass{article}
+\newcommand{\beff}{\ensuremath{b_{\mathrm{eff}}}}
+\begin{document}
+
+In this thesis, homogenization and perturbation methods are used to derive analytic expressions for effective slip lengths for Stokes flow over rough, mixed-slip surfaces, where the roughness is periodic, and the variation in slip length has the same period.
+If the classical no-slip boundary condition of fluid mechanics is relaxed, the slip velocity of the fluid at the surface is non zero.  For simple shear flow, the slip velocity is proportional to the shear rate.  The constant of proportionality has dimensions of length and is known as the slip length.  Any variation in the slip length over the surface will cause a perturbation to the flow adjacent to the surface. Due to the diffusion of momentum, at sufficient height above the surface, the flow perturbations have diminished, and flow is smooth and uniform.  The velocity and shear rate at this height imply an effective slip length of the surface.  The purpose of this thesis is to predict that effective slip length.
+
+Homogenization is a technique for finding approximate solutions to partial differential equations.  The essence of homogenization is to construct a mathematical model of a physical problem featuring some periodic heterogeneity, then generate a sequence of models such that the period in question reduces with each increment in the sequence.  If the sequence is appropriately defined, it has a limit model in the limit of vanishing period, for which a solution can be found.  The solution to the limit system is an approximation to the solutions of systems with a finite period.
+
+We use homogenization to find the effective slip length of system of Stokes flow over a periodically rough surface, described by periodic function $h(x,y)$, with a local slip length $b(x,y)$ varying with the same period.  For systems where the period $L$ is smaller than the domain height $P$ and typical slip lengths, the effective slip length is well-approximated by the harmonic mean of local slip lengths, weighted by area of contact between liquid and surface:
+\begin{equation}
+\beff = \left<  \frac{ \sqrt{1 + |\nabla h|^2} }{b(x,y)} \right>^{-1}
+\end{equation}
+
+We further use a perturbation technique to verify the above expression in the special case of a flat surface.  For a flat surface with local slip lengths much smaller than the period and domain height, the effective slip length is well-approximated by the area-weighted average of local slip lengths:
+\begin{equation}
+\beff = \left< b(x,y) \right>
+\end{equation}
+
+
+\end{document}

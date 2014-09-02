@@ -1,0 +1,188 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {1.1}Background}{1}
+\contentsline {section}{\numberline {1.2}Slip Length}{2}
+\contentsline {section}{\numberline {1.3}Effective Slip Length}{6}
+\contentsline {section}{\numberline {1.4}Effective Slip Length of Rough Surface}{8}
+\contentsline {section}{\numberline {1.5}Purpose of Thesis}{10}
+\contentsline {section}{\numberline {1.6}Application of Thesis}{11}
+\contentsline {section}{\numberline {1.7}Structure of Thesis}{12}
+\contentsline {chapter}{\numberline {2}Does Slip Exist?}{15}
+\contentsline {section}{\numberline {2.1}Types of Slip}{15}
+\contentsline {subsection}{\numberline {2.1.1}Definitions in the Literature}{16}
+\contentsline {subsection}{\numberline {2.1.2}Measured Slip}{17}
+\contentsline {subsection}{\numberline {2.1.3}Intrinsic Slip}{17}
+\contentsline {subsection}{\numberline {2.1.4}Molecular Slip}{17}
+\contentsline {subsubsection}{Molecular Slip in Gases -- Knudsen Slip}{18}
+\contentsline {subsection}{\numberline {2.1.5}Apparent Slip}{19}
+\contentsline {subsection}{\numberline {2.1.6}Types of Slip Redux}{20}
+\contentsline {section}{\numberline {2.2}Experimental Intrinsic Slip}{21}
+\contentsline {subsubsection}{Capillary Flow}{21}
+\contentsline {subsubsection}{Drainage Force}{22}
+\contentsline {subsubsection}{Particle Velocimetry}{22}
+\contentsline {subsection}{\numberline {2.2.1}Recent Experimental Literature}{22}
+\contentsline {subsubsection}{No Slip}{23}
+\contentsline {subsubsection}{Apparent or Molecular Slip}{24}
+\contentsline {subsubsection}{Molecular Slip?}{27}
+\contentsline {subsection}{\numberline {2.2.2}Conclusions}{28}
+\contentsline {section}{\numberline {2.3}Theoretical Intrinsic Slip}{29}
+\contentsline {subsubsection}{Molecular Dynamics}{29}
+\contentsline {subsubsection}{Correlation Function Tuned by Molecular Dynamics}{34}
+\contentsline {subsubsection}{Depletion Layer and Drainage Force}{37}
+\contentsline {subsubsection}{Depletion Layer as a Gas Layer}{38}
+\contentsline {subsubsection}{Phase Separation causing a Depletion Layer}{40}
+\contentsline {section}{\numberline {2.4}Conclusions}{41}
+\contentsline {chapter}{\numberline {3}Mixed-Slip Flow}{43}
+\contentsline {section}{\numberline {3.1}Rough Surfaces}{44}
+\contentsline {subsection}{\numberline {3.1.1}Rough No-Slip Surfaces}{44}
+\contentsline {subsubsection}{ Surfaces with Slip}{48}
+\contentsline {section}{\numberline {3.2}Mixed-Slip Surfaces}{49}
+\contentsline {subsection}{\numberline {3.2.1}Superhydrophobic Surfaces}{49}
+\contentsline {subsection}{\numberline {3.2.2}Nanobubbles}{52}
+\contentsline {section}{\numberline {3.3}Rough Mixed-Slip Flow}{54}
+\contentsline {subsection}{\numberline {3.3.1}High Slip Over Solid-Gas Surfaces}{54}
+\contentsline {subsubsection}{Protruding Nanobubbles Reduce Slip}{56}
+\contentsline {section}{\numberline {3.4}Conclusion}{57}
+\contentsline {chapter}{\numberline {4}Effective Slip Length Expressions: Prior Work}{59}
+\contentsline {subsection}{\numberline {4.0.1}Categorizing Results by Regime of Applicability}{59}
+\contentsline {subsection}{\numberline {4.0.2}Categorizing Results by Mathematical Strength}{62}
+\contentsline {section}{\numberline {4.1}Derived Results}{66}
+\contentsline {subsection}{\numberline {4.1.1}Flat Surface, of No-Slip and Perfect-Slip \\ Parallel Strips}{66}
+\contentsline {subsection}{\numberline {4.1.2}Flat No-Slip and Curved Perfect-Slip Parallel Strips}{68}
+\contentsline {subsection}{\numberline {4.1.3}Flat Surface, with Slip Length $\ll \gg $ Period,\\ Otherwise Arbitrary}{70}
+\contentsline {subsection}{\numberline {4.1.4}Rough Surface, with Slip Length $ \gg $ Period,\\ Otherwise Arbitrary}{71}
+\contentsline {subsection}{\numberline {4.1.5}Rough Surface of Single Intrinsic Slip}{71}
+\contentsline {section}{\numberline {4.2}Simplified Models, Scaling Laws and\\ Numerics}{73}
+\contentsline {subsection}{\numberline {4.2.1}Models with Simplifying Assumptions}{73}
+\contentsline {subsection}{\numberline {4.2.2}The Scaling Laws of Ybert \emph {et al}}{77}
+\contentsline {subsection}{\numberline {4.2.3}Numerics}{82}
+\contentsline {subsection}{\numberline {4.2.4}Coefficients Evaluated for Ybert's Scaling Laws}{83}
+\contentsline {section}{\numberline {4.3}Conclusion}{85}
+\contentsline {chapter}{\numberline {5}The Mathematical Model}{87}
+\contentsline {subsection}{\numberline {5.0.1}Mathematical Preliminaries}{87}
+\contentsline {subsubsection}{The Fr\'{e}chet Derivative}{88}
+\contentsline {subsubsection}{The Velocity Gradient Tensor}{89}
+\contentsline {section}{\numberline {5.1}Modeling the Bulk Fluid: Navier Stokes}{91}
+\contentsline {subsubsection}{Density}{91}
+\contentsline {subsubsection}{Velocity}{91}
+\contentsline {subsection}{\numberline {5.1.1}Incompressible Liquid}{92}
+\contentsline {subsubsection}{Pressure}{92}
+\contentsline {subsection}{\numberline {5.1.2}Incompressible Viscous Newtonian Fluid}{93}
+\contentsline {section}{\numberline {5.2}Microfluidics: Stokes or `creeping' flow}{95}
+\contentsline {subsection}{\numberline {5.2.1}Non-dimensionalising and the Reynolds Number}{96}
+\contentsline {subsubsection}{Example for Analysis: 2-D Poiseuille Flow}{96}
+\contentsline {subsubsection}{Magnitudes of Velocity Terms}{98}
+\contentsline {subsubsection}{Magnitudes of Velocity Derivative Terms}{98}
+\contentsline {subsubsection}{Magnitudes of Advection Terms}{99}
+\contentsline {subsubsection}{Magnitudes of Second Derivatives of Velocity}{100}
+\contentsline {subsubsection}{Summary of Magnitudes of Terms}{100}
+\contentsline {subsubsection}{Reynolds number for microfluidic channels}{101}
+\contentsline {subsection}{\numberline {5.2.2}Redimensionalize back to Physical Units}{103}
+\contentsline {section}{\numberline {5.3}Modeling the Boundary: Generalized Slip}{104}
+\contentsline {subsection}{\numberline {5.3.1}Simple Shear with Navier Slip}{105}
+\contentsline {subsection}{\numberline {5.3.2}Oblique Shear and the Velocity Gradient Tensor}{106}
+\contentsline {subsection}{\numberline {5.3.3}Curved Surface and Deformation Rate Tensor}{107}
+\contentsline {subsection}{\numberline {5.3.4}Generalized Slip Condition}{111}
+\contentsline {subsection}{\numberline {5.3.5}Top Boundary Condition}{111}
+\contentsline {section}{\numberline {5.4}Complete Mathematical Model}{112}
+\contentsline {chapter}{\numberline {6}The Homogenized Effective Slip Length}{113}
+\contentsline {subsection}{\numberline {6.0.1}Homogenization}{115}
+\contentsline {subsubsection}{Homogenization Process Overview}{117}
+\contentsline {section}{\numberline {6.1}Variational Form}{118}
+\contentsline {subsection}{\numberline {6.1.1}Example: Energy Balance}{119}
+\contentsline {section}{\numberline {6.2}Alternative Route to Variational Form}{121}
+\contentsline {subsection}{\numberline {6.2.1}Variational Form of Poisson Equation inspired by Stokes Flow}{122}
+\contentsline {subsection}{\numberline {6.2.2}Variational Form of Poisson Equation inspired by Stokes Flow with Slip}{123}
+\contentsline {section}{\numberline {6.3}Variational Form of Stokes Flow with\\ Tensor Slip}{125}
+\contentsline {subsection}{\numberline {6.3.1}Tensor Identities}{125}
+\contentsline {subsubsection}{Tensor Double Dot Product}{125}
+\contentsline {subsubsection}{Tensor Identity with Deformation Rate Tensor}{125}
+\contentsline {subsection}{\numberline {6.3.2}Variational Form of Stokes Flow with Tensor Slip}{126}
+\contentsline {section}{\numberline {6.4}Weak Convergence}{128}
+\contentsline {subsection}{\numberline {6.4.1}Sequence of Functions}{128}
+\contentsline {subsection}{\numberline {6.4.2}Strong Convergence}{129}
+\contentsline {subsection}{\numberline {6.4.3}Weak Convergence}{130}
+\contentsline {subsection}{\numberline {6.4.4}Periodic Functions Weakly Converge to their Mean}{131}
+\contentsline {section}{\numberline {6.5}Homogenizing the Variational Form}{132}
+\contentsline {subsubsection}{Sequence of Boundaries}{133}
+\contentsline {subsubsection}{Sequence of Gradient Functions}{134}
+\contentsline {subsubsection}{Slip Integral}{134}
+\contentsline {subsubsection}{Sequence of Variational Formulations and its Limit}{135}
+\contentsline {subsection}{\numberline {6.5.1}Convert to Classical Formulation}{136}
+\contentsline {subsection}{\numberline {6.5.2}Interpretation}{137}
+\contentsline {subsection}{\numberline {6.5.3}Applicability}{138}
+\contentsline {chapter}{\numberline {7}Perturbative Effective Slip Lengths}{139}
+\contentsline {subsection}{\numberline {7.0.4}Model}{139}
+\contentsline {section}{\numberline {7.1}Perturbing Plug Flow}{141}
+\contentsline {subsection}{\numberline {7.1.1}Plug Flow}{141}
+\contentsline {subsection}{\numberline {7.1.2}Perturbed Plug Flow}{142}
+\contentsline {subsection}{\numberline {7.1.3}Requirement that $ L \ll P$}{144}
+\contentsline {subsection}{\numberline {7.1.4}Perturbed Navier Slip}{145}
+\contentsline {subsection}{\numberline {7.1.5}Perturbation Expansion}{145}
+\contentsline {subsection}{\numberline {7.1.6}Zeroth Order}{146}
+\contentsline {subsection}{\numberline {7.1.7}First Order}{146}
+\contentsline {subsubsection}{Eliminate Pressure with Vorticity}{147}
+\contentsline {subsubsection}{Fourier Series}{148}
+\contentsline {subsubsection}{Solving the DEs}{149}
+\contentsline {subsection}{\numberline {7.1.8}Bolt Together Velocity Solution}{153}
+\contentsline {subsection}{\numberline {7.1.9}Effective Slip Length}{153}
+\contentsline {section}{\numberline {7.2}Perturbed Couette Flow}{155}
+\contentsline {subsection}{\numberline {7.2.1}Zeroth Order}{156}
+\contentsline {subsection}{\numberline {7.2.2}First Order}{156}
+\contentsline {subsection}{\numberline {7.2.3}Bolt Together Velocity Solution}{157}
+\contentsline {subsection}{\numberline {7.2.4}Effective Slip Length}{157}
+\contentsline {section}{\numberline {7.3}Conclusion}{159}
+\contentsline {chapter}{\numberline {8}Numerical Testing}{161}
+\contentsline {section}{\numberline {8.1}Finite Element Modelling}{162}
+\contentsline {subsection}{\numberline {8.1.1}Flat Surface}{162}
+\contentsline {subsubsection}{Harmonic Mean Formula}{163}
+\contentsline {subsubsection}{Simple Mean Formula}{164}
+\contentsline {subsection}{\numberline {8.1.2}Rough Surface}{166}
+\contentsline {section}{\numberline {8.2}Finite Difference Numerics}{171}
+\contentsline {section}{\numberline {8.3}Conclusion}{174}
+\contentsline {chapter}{\numberline {9}Analogues of Effective Slip}{175}
+\contentsline {section}{\numberline {9.1}Thermal Insulation}{176}
+\contentsline {subsection}{\numberline {9.1.1}Mathematical Model}{176}
+\contentsline {subsubsection}{Dirichlet Condition}{177}
+\contentsline {subsubsection}{Bulk Condition}{177}
+\contentsline {subsubsection}{Conductive Heat Current}{177}
+\contentsline {subsubsection}{Convective Heat Current}{178}
+\contentsline {subsubsection}{Convective Boundary Condition}{179}
+\contentsline {subsection}{\numberline {9.1.2}Ready-Made Solution}{181}
+\contentsline {section}{\numberline {9.2}Catalysis}{183}
+\contentsline {subsection}{\numberline {9.2.1}Model}{184}
+\contentsline {subsubsection}{Bulk Condition: Laplace}{184}
+\contentsline {subsubsection}{Boundary Layer}{184}
+\contentsline {subsubsection}{Mass Balance}{185}
+\contentsline {subsubsection}{Incoming Flux}{186}
+\contentsline {subsubsection}{Catalyzed Flux}{186}
+\contentsline {subsubsection}{Catalyst Boundary Condition}{187}
+\contentsline {subsection}{\numberline {9.2.2}Solution}{188}
+\contentsline {chapter}{\numberline {10}Conclusion}{191}
+\contentsline {section}{\numberline {10.1}Summary}{191}
+\contentsline {section}{\numberline {10.2}Consequences}{193}
+\contentsline {section}{\numberline {10.3}Future Work}{194}
+\contentsline {chapter}{\numberline {A}De Gennes's Gas Kinetic Theory of Slip}{195}
+\contentsline {section}{\numberline {A.1}Particle Flux}{196}
+\contentsline {section}{\numberline {A.2}Lateral Momentum Transfer = Shear Stress}{199}
+\contentsline {section}{\numberline {A.3}Reconciling with de Gennes}{202}
+\contentsline {chapter}{\numberline {B}Replicating John Philip 1972}{205}
+\contentsline {section}{\numberline {B.1}Expand cosine term, dump negligible parts}{206}
+\contentsline {section}{\numberline {B.2}Inverse Cosine at Large $y$}{207}
+\contentsline {section}{\numberline {B.3}Put into J.\ R.\ Philip's Expression}{208}
+\contentsline {chapter}{\numberline {C}Dimensional Analysis of Perturbation Height}{209}
+\contentsline {section}{\numberline {C.1}Simple Analysis}{209}
+\contentsline {section}{\numberline {C.2}Formal Treatment - Buckingham $\pi $ \\ Theorem }{214}
+\contentsline {subsection}{\numberline {C.2.1}Basis of Nullspace from Column Echelon Form}{215}
+\contentsline {section}{\numberline {C.3}Conclusion}{217}
+\contentsline {chapter}{\numberline {D}The Variational Formulation}{219}
+\contentsline {section}{\numberline {D.1}Variational Form}{220}
+\contentsline {subsection}{\numberline {D.1.1}Example: Energy Balance}{221}
+\contentsline {section}{\numberline {D.2}Alternative Route to Variational Form}{226}
+\contentsline {chapter}{\numberline {E}Tensor Identities}{227}
+\contentsline {subsection}{\numberline {E.0.1}Tensor Double Dot Product}{227}
+\contentsline {subsection}{\numberline {E.0.2}Tensor Vector Divergence Identity}{228}
+\contentsline {subsection}{\numberline {E.0.3}Application to Velocity Gradient Tensor}{229}
+\contentsline {subsection}{\numberline {E.0.4}Deformation Rate Tensor Identity}{230}
+\contentsline {chapter}{\numberline {F}Periodic Functions Weakly Converge To Their Mean}{231}
+\contentsline {section}{\numberline {F.1}Weak Convergence}{232}
+\contentsline {subsection}{\numberline {F.1.1}Periodic Functions Weakly Converge to their Mean}{233}

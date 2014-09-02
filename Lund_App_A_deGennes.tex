@@ -1,0 +1,354 @@
+%\documentclass{paper}
+%\documentclass[a4paper]{report}
+
+\documentclass[12pt, a4paper, twoside, openright]{book}
+
+\usepackage{vuwthesis} % sets up some local things, mostly the front page
+
+\setlength{\intextsep}{12pt} % set space above and below in-line float
+\setlength{\abovecaptionskip}{0pt} % set space between figure and caption.
+
+
+\usepackage{amssymb, amsmath}
+\usepackage{tikz}
+
+\newcommand{\vens}{\ensuremath{v_{\mathrm{ens}}}}
+
+\usepackage{etoolbox}
+\newtoggle{compilealone}
+\toggletrue{compilealone}
+
+\title{De Gennes's gas kinetic theory of slip}
+\author{Nat Lund}
+
+\begin{document}
+
+\chapter{De Gennes's Gas Kinetic Theory of Slip}\label{C:degennes}
+
+We seek to replicate the work of de Gennes. In his elegant little paper in Langmuir from 2002, entitled simply ``On Fluid/Wall Slippage" \cite{deGennes2002}, he presented a gas kinetic expression for slip length.  However, the paper seems to contain a few typographical errors, and the result is stated in terms of the non-standard quantity $\bar{v}_z$, which is apparently defined as the average of the \emph{absolute value} of the $z$ component of velocity.
+
+As an exercise, we derive the expression from scratch using the more standard scalar quantity of particle \emph{speed}, $v$, with our final expression in terms of average speed $\bar{v}$.  We show that our results ultimately agree with those of de Gennes.% --- we show that $\bar{v} = 4 \bar{v}_{z}$.
+
+\vspace{1em}
+We start by figuring out the number of gas molecules hitting a surface per second, then calculate the momentum transferred per second, yielding a shear stress, from which a slip length follows.
+
+\clearpage
+\section{Particle Flux}
+
+Consider a gas of density $\rho$.  If the mass of each particle is $m$, then the \emph{number} density of the gas is $\rho / m$.  This has units of number per cubic meter, and is therefore a concentration, $C$.
+
+Each particle in the gas has a different velocity. The directions of motion will be uniformly distributed over all solid angles. In an ideal gas, the speeds come from the Maxwell-Boltzmann distribution.
+In general, the gas has some speed probability distribution $P(v)$, in the frequentist sense that fraction $P(v)$ of all atoms have speed $v$.
+% In general, each gas particle has speed $v$ with some probability $P(v)$.
+
+\vspace*{1em}
+Our strategy is to split the gas into separate ensembles of particles, each ensemble defined as a group of particles \textbf{all with the same speed} $\vens$.
+At the end of the derivation, we will sum over all ensembles -- for now we work with a single arbitrary ensemble, identified by its speed $\vens$.
+
+\vspace{1em}
+Consider a layer of gas over some area $A$ on the surface. Let the layer width be $l$, where $l$ is well under the \emph{mean free path} in the gas. So, particles within the layer are sparsely distributed, and we can assume they do not interact.
+
+There are $CAl$ molecules in the layer, and fraction $P(\vens)$ of them have speed $\vens$.
+Thus, the ensemble indexed by $\vens$ contributes
+\begin{equation}
+C A l P(\vens)
+\end{equation}
+atoms to the layer.
+
+\vspace{1em}
+We are interested in how many atoms \textbf{from the layer} hit the surface in some timeslice; during the time interval, we do not want outside atoms to enter the layer then hit the surface. To ensure this, we define an `isolation' time:
+
+First, define the layer to be the \emph{closed} interval $z \in [0,l]$; then an atom at distance $l$ from the wall is the \emph{outermost} atom in the layer.
+
+Such an atom, at distance $l$ from the wall, travelling via the shortest path to the wall, i.e. perpendicular to the wall, will hit the wall in time:
+
+\begin{equation}
+t_0 = \frac{l}{\vens}
+\end{equation}
+
+Therefore, any atom outside the layer -- further than $l$ from the wall -- cannot hit the wall in time $t_0$.  So $t_0$ is the isolation time we need.
+
+By construction, in time $t_0$, each ensemble atom travels distance $l$ (in a random direction).
+
+\vspace*{1em}
+Now, we want to know what fraction of the ensemble atoms in the layer hit the wall in time interval $t_0$.  
+
+Consider a sphere of radius $l$ centred on an atom. The surface of the $l$-sphere is the set of all possible positions of the atom after time $t_0$.
+The probability that an atom hits the wall is equal to the fraction of the area of the  $l$-sphere that intersects the wall. This area of intersection area depends on the distance $h$ that the $l$-sphere protrudes into the wall.  See Figure (\ref{sphereintersect}).
+
+%\begin{center}
+%\begin{tikzpicture}
+%
+%\fill[color=gray] (0,-4.5) rectangle ++(3,9.5);
+%\draw[dashed] (2.5,0) -- ++(-7,0);
+%\draw[dotted] (-4,-4.5) -- ++(0,9.5);
+%\draw[<->] (0,-1.8) -- node[above]{$l$} ++(-4,0);
+%
+%%\draw[thick] (2,0) arc (0:130:4cm);
+%\draw[thick] (-2,0) circle (4cm);
+%\draw (-2,0) -- node[left]{$l$} (0,3.5);
+%\draw (-1.6,0) arc  (0:60:0.4cm);
+%\draw[<->] (0,0) --  node[above]{$h$} (2,0);
+%
+%\draw[<->] (-4,-0.2) --  node[below]{$h$} (-2,-0.2);
+%\end{tikzpicture}
+%\end{center}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\fill[yellow] (0,-4) rectangle ++(3,8);
+\draw[dotted] (-3,-3.5) -- ++(0,6);
+\draw[<->] (0,-2) -- node[above]{Layer Width $l$} ++(-3,0);
+\node at (1.5,-3) {Solid Wall};
+
+\coordinate (atom) at (-1.5,0);
+\draw[very thick,blue] (atom) circle (3cm);
+\fill[cyan] (atom) circle (1.5 mm);
+\node at (-1.5,-0.4) {Atom};
+\draw[dashed] (atom) -- ++(1.5,0);
+\draw[<->] (atom) -- node[above]{$h$} ++(-1.5,0);
+\draw[<->] (1.5,0) -- node[above]{$h$} ++(-1.5,0);
+\draw[->] (atom) -- node[left]{$l$} ++(60:3);
+
+\draw[->] (-4,2.6) -- ++(-60:5mm);
+\renewcommand{\baselinestretch}{1.00}
+\node at (-4,3.1) [align=left] {Possible positions\\ after time $t_0$};
+
+\end{tikzpicture}
+\caption{Some fraction of the $l$-sphere intersects the wall.}\label{sphereintersect}
+\end{figure}
+
+\begin{align*}
+\text{Area of sphere:} \quad 4 \pi l^2 \\
+\text{Area of spherical cap:} \quad 2 \pi l h
+\end{align*}
+
+$\therefore$ fraction of spherical surface inside solid is:
+\begin{equation}
+\phi(h) = \frac{2 \pi l h}{4 \pi l^{2}} = \frac{h}{2l}
+\end{equation}
+
+The distance $h$ that the sphere penetrates into the wall is equal to the distance from the layer boundary to the atom's starting position.  So, $h$ varies from 0 to $l$, as the starting position of the atom may be anywhere between the layer boundary and the solid wall.
+
+For a group of atoms with starting position a distance $h$ inside the layer, we know what fraction of them hit the wall.
+To find the fraction for \emph{all} atoms in the layer, we \emph{average} over all positions in the layer. That is, we integrate $\phi(h)$ over the layer, and divide by domain size $l$:
+
+\begin{equation}
+\phi = \frac{1}{l}\int_{0}^{l} \frac{h}{2l} \; dh = \frac{1}{2l^{2}} \int_{0}^{l} h \;dh = 
+\frac{1}{2l^{2}} [\frac{1}{2} h^{2}]_{0}^{l} =
+\frac{1}{4l^{2}}[l^{2} - 0] = \frac{1}{4}
+\end{equation}
+
+
+So, in time interval $t_{0}$, 1/4 of ensemble atoms within the layer hit the wall.
+
+\vspace{1em}
+Recall that the number of \emph{ensemble} atoms in the layer is $ C A l P(\vens) $,
+thus, the number hitting area $A$ per second is:
+\begin{equation}
+\frac{\frac{1}{4} C A l P(\vens)  }{t_0} 
+ = \frac{ \frac{1}{4} C A l P(\vens)}{ \frac{l}{\vens} } =
+ \frac{1}{4} C A P(\vens) \vens
+\end{equation}
+
+Note that layer width $l$ has cancelled out.
+
+\vspace{1em}
+Define the `ensemble flux' as the number of particles with given speed $\vens$ hitting the wall per second per unit area:
+\begin{equation}
+F(\vens) = \frac{1}{4} C P(\vens) \vens
+\end{equation}
+
+\vspace{1em}
+To find the \emph{total} number of atoms hitting of \emph{all} speeds, we simply need to integrate over all speeds.  In other words, sum over all possible ensembles:
+\begin{equation}
+F = \int_{0}^{\infty} F(v) \; dv = \int_{0}^{\infty} \frac{1}{4} C P(\vens) \vens \; dv = \frac{C}{4} \int_{0}^{\infty} P(\vens) \vens \; dv
+\end{equation}
+
+Now -- here's the cunning bit -- the construction $ \int P(\vens) \vens \; dv$ is just the \emph{average} of $v$, denoted $\bar{v}$. Hence:
+\begin{equation}
+F = \frac{1}{4} C \bar{v}
+\end{equation}
+
+
+Note that we did \emph{not} need to know the specific statistical mechanical probability distribution for the particle speeds.
+
+\vspace*{1em}
+In the next section, we deal with the momentum of gas particles, so it is expedient to express concentration as $C = \rho/m$, where $m$ is the mass of a gas particle.  Then the flux is:
+\begin{equation}
+F = \frac{\rho \bar{v}}{4 m}
+\end{equation}
+
+\section{Lateral Momentum Transfer = Shear Stress}
+
+Consider a bulk of water separated from a solid surface by a very thin gas layer of thickness $l$.  Assume $l$ is less than the mean free path in the gas, so that the previous analysis is valid.
+
+Assume that the water bulk is moving, and that the bottom surface (facing the gas) has a constant tangential velocity $v_{s}$.
+
+The gas is a vapour of liquid molecules, detaching and reattaching from the bulk liquid.  Each molecule detaches from the liquid in a random direction, with an \emph{average} tangential velocity of $v_{s}$.  Each atom has mass $m$, so has average lateral momentum $mv_{s}$. Each atom subsequently hits the solid surface, and sticks to the surface  -- an inelastic collision that transfers all of momentum $mv_{s}$ to the surface. See Figure (\ref{atommomentum})
+% After some time, the gas molecule may separate from the surface, in a random %direction, with an \emph{average} tangential velocity of $0$.
+
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+
+\fill[color=cyan] (0,3) rectangle (10,5);
+\fill (0,0) rectangle (10,-1);
+
+\node at (5,4) {Liquid};
+
+\draw[->] (3.5,3) -- (4.5,3);
+\node at (4.2,3.3) [left] {Surface Velocity $v_{s}$};
+
+\fill[color=cyan] (1,2) circle (3mm);
+\node at (1.3,2)[right] {Mass $m$};
+
+\fill[color=cyan] (3.5,1.5) circle (3mm);
+\draw[->] (3.5,1.5) -- (4.5,0.5);
+\draw[->,dashed] (3.5,1.5) -- (4.5,1.5);
+\renewcommand{\baselinestretch}{1.00}
+\node at (4.5,1.5) [right,align=left] {Average\\ horizontal\\ velocity $v_{s}$}; 
+
+\fill[color=cyan] (8.5,0.3) circle (3mm);
+\node at (8.5,0.7) [above,align=left] {Atom sticks,\\ transferring all\\ momentum $mv_{s}$};
+
+\end{tikzpicture}
+\caption{Each incident atom transfers average momentum $mv_s$ to the solid surface.}\label{atommomentum}
+\end{figure}
+
+\vspace{1em}
+Recall, the number of particles hitting the solid surface is $ \rho \bar{v} / 4 m$ per second per area.
+
+Thus, momentum transferred to the surface per second per area:
+\begin{equation}
+\frac{1}{A} \frac{dP}{dt} = \frac{\rho \bar{v}}{4 m} m v_{s} 
+= \frac{1}{4} \rho \bar{v} v_{s}
+\end{equation}
+
+This force per unit area is a \emph{shear stress:}
+\begin{equation}
+ \sigma = \frac{1}{4} \rho \bar{v} v_{s}
+\end{equation}
+
+Now, a velocity gradient in the bulk of a \emph{viscous} fluid of viscosity $\eta$ causes a shear stress:
+\begin{equation}
+\sigma = \eta \left| \frac{dv(z)}{dz} \right|
+\end{equation}
+
+At the surface, however, $dv/dz$ may be infinite, so surface shear stress may be better conceptualized --- by analogy with solid-solid friction --- with a friction coefficient $k$:
+\begin{equation}
+ \sigma = k v_{s}
+\end{equation}
+Equating the gas kinetic shear stress with the frictive shear stress:
+\begin{gather}
+\sigma = k v_{s} = \frac{1}{4} \rho \bar{v} v_{s} \quad \Rightarrow \quad
+ k = \frac{1}{4} \rho \bar{v}
+\end{gather}
+
+Alternatively, since $dv/dz$ is defined \emph{above} the surface, we may extrapolate $dv/dz$ down into the surface, getting the Navier slip condition:
+\begin{equation}
+v_{s} = b \left| \frac{dv(z)}{dz} \right|
+\end{equation}
+
+Equating frictive and viscous shear stresses, and substituting $v_{s}$:
+\begin{equation}
+\sigma = k v_{s} = k b \left| \frac{dv(z)}{dz} \right| = \eta \left| \frac{dv(z)}{dz} \right|
+\end{equation}
+
+Therefore, quite generally:
+\begin{equation}
+ b = \frac{\eta}{k}
+\end{equation}
+
+And for our de Gennes-inspired gas kinetic theory:
+\begin{equation}
+b = \frac{4 \eta}{\rho \bar{v}}
+\end{equation}
+
+This is the slip length in the Navier slip boundary condition as experienced by the fluid at the \textbf{bottom of the liquid.}  If we consider the slip length to be a parameter of the \textbf{solid} surface, then we must subtract the gas layer thickness $l$:
+\begin{equation}
+b = -l + \frac{4 \eta}{\rho \bar{v}}
+\end{equation}
+If the gas layer is only a few atom diameters thick, then $l < 1$ nm, and is therefore negligible.
+
+de Gennes himself says:
+\begin{equation}
+b = -l + \frac{\eta}{\rho \bar{v}_{z}} \simeq  \frac{\eta}{\rho \bar{v}_{z}}
+\end{equation}
+--- Note that I have corrected what I think are typos; his original paper says:
+\begin{equation}
+ b = -l + \frac{\eta}{\rho \bar{v}_{x}} \simeq  \frac{\eta}{\rho v_{z}}
+\end{equation}
+
+
+\section{Reconciling with de Gennes}
+
+We use average speed (in any direction) $\bar{v}$. De Gennes used average speed \emph{in the z direction}, $\bar{v}_{z}$.
+\begin{equation}
+\text{We have shown:} \quad b \simeq \frac{4 \eta}{\rho \bar{v}}, \quad \text{de Gennes claims:} \quad
+b \simeq \frac{\eta}{\rho \bar{v}_{z}}
+\end{equation}
+
+If 
+\begin{equation}
+\bar{v} = 4 \bar{v}_{z} 
+\end{equation}
+then our analyses are in perfect agreement.
+\vspace*{1em}
+
+De Gennes defines $\bar{v}_{z}$ like this:
+\begin{equation}
+\bar{v}_{z} = \int_{0}^{\infty} \frac{1}{(2 \pi)^{1/2} v_{\mathrm{th}} }
+v_{z} \mathrm{e}^{-v_{z}^{2} / 2v_{\mathrm{th}}^{2}}  \; \mathrm{d} v_{z} = v_{\mathrm{th}} / (2 \pi)^{1/2}
+\end{equation}
+where $v_{\mathrm{th}}^{2} =  kT/m $.
+
+That is:
+\begin{equation}
+\bar{v}_{z} = \int_{0}^{\infty} \sqrt{\frac{m}{2 \pi k T}} v_{z} 
+   \mathrm{e}^{\frac{- \frac{1}{2} m v_{z}^{2}}{kT}} \; dv_{z} = 
+   \sqrt{\frac{kT}{2 \pi m}}
+\end{equation}
+   
+Now, in the Maxwell-Boltzmann statistics for an ideal gas, the distribution of a given \emph{component} of velocity is:
+\begin{equation}
+f_{v}(v_{z}) = \sqrt{\frac{m}{2 \pi k T}} \exp
+  \left[ \frac{-m v_{z}^{2}}{2 k T} \right]
+\end{equation}
+which is clearly what de Gennes is playing with.
+
+
+This is a Gaussian distribution, therefore the average of $v_{z}$, given by
+$ \int_{- \infty}^{\infty} f_{v}(v_{z}) v_{z} \; dv_{z}  $ is \textbf{zero.}
+
+Hence, de Gennes's definition $\bar{v}_{z} = \int_{0}^{\infty} f_{v}(v_{z}) v_{z} \; dv_{z} $ is the average of the \textbf{absolute value} of $v_{z}$.
+
+\vspace{1em}
+So to reconcile.  The Maxwell-Boltzmann statistics yield an average value of the particle speed:
+\begin{equation}
+\bar{v} = \sqrt{\frac{8 k T}{\pi m}}
+\end{equation}
+which is:
+\begin{equation}
+\bar{v} = \sqrt{\frac{8 k T}{\pi m}} = \sqrt{\frac{16 k T}{2 \pi m}}
+   = \sqrt{16} \sqrt{\frac{k T}{2 \pi m}} = 4 \sqrt{\frac{k T}{2 \pi m}}
+   = 4 \bar{v}_{z}
+\end{equation}
+   
+So we have found that $ \bar{v} = 4 \bar{v}_{z} $, hence our analysis and that of de Gennes reconcile perfectly.
+Therefore
+\begin{equation}
+b \simeq \frac{4 \eta}{\rho \bar{v}} = \frac{\eta}{\rho \bar{v}_{z}}
+\end{equation}
+
+\iftoggle{compilealone}
+    {
+    \bibliography{Lund_Thesis.bib}
+    \bibliographystyle{plain}
+    }
+
+\end{document}
+
+

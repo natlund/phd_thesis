@@ -1,0 +1,11 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {chapter}{\numberline {2}The front pages}{3}
+\contentsline {chapter}{\numberline {3}Library requirements}{5}
+\contentsline {section}{\numberline {3.1}Font size}{5}
+\contentsline {section}{\numberline {3.2}Single or double sided}{5}
+\contentsline {section}{\numberline {3.3}Line spacing}{5}
+\contentsline {section}{\numberline {3.4}Margins}{6}
+\contentsline {section}{\numberline {3.5}Paper size}{6}
+\contentsline {chapter}{\numberline {4}Binding}{7}
+\contentsline {chapter}{\numberline {A}Replicating John Philip 1972}{9}
+\contentsline {chapter}{\numberline {B}Conclusions}{13}

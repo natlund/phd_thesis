@@ -1,0 +1,64 @@
+\documentclass[a4paper]{report}
+
+\usepackage{amssymb, amsmath}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+%\usepackage{marvosym}
+
+\newcommand{\beff}{\ensuremath{b_{\mathrm{eff}}}}
+\newcommand{\bhom}{\ensuremath{b_{\mathrm{hom}}}}
+
+\title{Chapter 3: The Homogenized Slip Length: Dead Ends.}
+\author{Nat Lund}
+
+
+\begin{document}
+
+
+%%  Old Rubber Membrane Example -- Not Quite Right.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Faulty Example: Energy Balance}
+
+For example, consider an elastic membrane fixed at its perimeter, such as a drum.  At equilibrium, the membrane lies flat in the $x,y$ plane.  Let $u(x,y)$ be the height of the membrane (at point $(x,y)$ ) above the $x,y$ plane.  Assume some force $f(x,y)$ on one side of the membrane distorts it.  The distorting force does work on the membrane, equal to the force times the distance moved. That is, the work done moving an infinitesimal area $dA$ away from the equilibrium position is $fu \,ds$.  Thus the total work done on the membrane by force field $f(x,y)$ is:
+\begin{equation}
+W = \int_{\Omega} f u \,dA
+\end{equation} 
+
+The work done on the membrane is stored as elastic potential energy.  The elastic membrane has no resistance to bending, it has only a surface tension that acts \emph{along} the surface.  
+A one-dimensional slice of the membrane behaves like a simple spring, subject to Hooke's law $F = kx$, where $k$ is the spring constant and $x$ is the \emph{length} of the spring. The work required to infinitesimally stretch a simple spring from $x$ to $ x + dx$ is $ dW = F \, dx = kx \,dx$, and the work required to stretch a spring from $x_1$ to $x_2$ is $W = \int_{x_1}^{x_2} F \,dx = \int_{x_1}^{x_2} k x \,dx = k \int_{x_1}^{x_2} x \,dx = k(x_2 - x_1)$. That is, the work is proportional to the change in length. 
+\textbf{WRONG! Failed integration! Proportional to length SQUARED!}
+
+A spring need not be straight.  Hooke's law still holds, but care must be taken to correctly calculate the length.
+Suppose a spring is pinned at both ends, and is initially straight.
+Identify the shape of the spring with a function $h(x)$ on the unit interval, so that the end points are $h(0) = h(1) = 0$, and the length is initially one.  Suppose that the spring is deformed somehow.  Then by Pythagoras, an infinitesimal length of spring is $dl = \sqrt{1 + (h')^2} \,dx$, and the arc length of the spring is $ \int_a^b \sqrt{1 + (h')^2} \, dx$.  Subtracting the original length gives the \emph{change} in length; multiplying that change by $k$ gives the work required to deform the spring.
+
+This concept generalizes to the two-dimensional elastic membrane. 
+The area of an infinitesimal tangent plane above $dA$ is $\sqrt{1 + (\partial_x)^2 u + (\partial_y u)^2}   \,dA$.  The gradient $\nabla u$ has norm $|\nabla u| = \sqrt{\nabla u \cdot \nabla u} = \sqrt{(\partial_x u)^2 + (\partial_y u)^2} $ so that $(\partial_x u)^2 + (\partial_y u)^2 = |\nabla u|^2  $. 
+ Thus the the arc length generalizes to the surface area $ \int_{\Omega} \sqrt{1 + |\nabla u| ^2} \, dA$, where $dA = dxdy$.  Furthermore, the work required to deform the membrane is proportional to the change in area:
+\begin{equation}
+W = k \left(  \int_{\Omega} \sqrt{1 + |\nabla u| ^2} \, dA    - \int_{\Omega} dA  \right)
+\end{equation}
+
+Now, if the deformation is not too large compared to the dimensions of the membrane, the Taylor expansion
+\begin{equation}
+ \sqrt{1 + |\nabla u| ^2}  = 1 + \frac{1}{2}|\nabla u|^2 + \cdots
+\end{equation}
+will be accurate enough to first order.  Thus
+\begin{equation}
+\int_{\Omega} \sqrt{1 + |\nabla u| ^2} \, dA = \int_{\Omega} dA + \frac{1}{2} \int_{\Omega} |\nabla u|^2 \,dA
+\end{equation}
+so that the work required to deform the elastic membrane is:
+\begin{equation}
+W = k \frac{1}{2} \int_{\Omega} |\nabla u|^2 \,dA
+\end{equation}
+
+Finally, the work done on the elastic membrane by the force field must equal the work required to deform the membrane to its new shape.
+\begin{equation}
+k \frac{1}{2} \int_{\Omega} |\nabla u|^2 \,dA = \int_{\Omega} f u \,dA
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

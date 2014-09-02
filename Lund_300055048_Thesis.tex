@@ -1,0 +1,165 @@
+\documentclass[12pt, a4paper, twoside, openright]{book}
+
+\usepackage{vuwthesis} % sets up some local things, mostly the front page
+% And sets up 1.5 line spacing for 12 pt font.  To reset, use the following:
+%\renewcommand{\baselinestretch}{1.00}
+
+\setlength{\intextsep}{12pt} % set space above and below in-line float
+\setlength{\abovecaptionskip}{0pt} % set space between figure and caption.
+
+%\usepackage{palatino} % sets palatino as the default font
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Superset of Preambles
+%%%%  The set union of the preambles of all included files.
+
+\usepackage{url} % for typesetting urls
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    Maths and Diagrams
+
+% These 3 must go before next 3, otherwise `undefined color' error occurs!
+\usepackage{float}
+\usepackage[usenames,dvipsnames]{xcolor}
+\definecolor{litegrey}{rgb}{0.9,0.9,0.9}
+
+\usepackage{amssymb, amsmath}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\usepackage{adjustbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Formula abbreviations.
+
+\newcommand{\beff}{\ensuremath{b_{\mathrm{eff}}}}
+\newcommand{\ewf}{\ensuremath{\epsilon_{\mathrm{wf}}}}
+\newcommand{\vslip}{\ensuremath{v_{\mathrm{slip}}}}
+
+\newcommand{\paper}[1]
+         {\colorbox[gray]{0.8}{ \textsc{#1}}
+         
+         }
+\newcommand{\bhigh}{\ensuremath{b_{\mathrm{high}}}}
+\newcommand{\blow}{\ensuremath{b_{\mathrm{low}}}}
+\newcommand{\phislip}{\ensuremath{\phi_{\mathrm{slip}}}}
+\newcommand{\phisol}{\ensuremath{\phi_{\mathrm{solid}}}}
+\newcommand{\sigsol}{\ensuremath{\sigma_{\mathrm{solid}}}}
+\newcommand{\gamsol}{\ensuremath{ \dot{\gamma}_{\mathrm{solid}} }} 
+
+\newcommand{\sep}{\begin{equation*} \star \end{equation*}}
+\newcommand{\bmean}{\ensuremath{ \left< b \right> }}
+
+\newcommand{\bmin}{\ensuremath{b_{\mathrm{min}}}}
+\newcommand{\bmax}{\ensuremath{b_{\mathrm{max}}}}
+\newcommand{\bslip}{\ensuremath{b_{\mathrm{slip}}}}
+\newcommand{\bcu}{\ensuremath{b_{\mathrm{cu.}}}}
+\newcommand{\ucu}{\ensuremath{u_{\mathrm{cu.}}}}
+
+\newcommand{\bhom}{\ensuremath{b_{\mathrm{hom}}}}
+\newcommand{\bfar}{\ensuremath{b_{\mathrm{far}}}}
+
+\newcommand{\beffh}{\ensuremath{b_{\mathrm{eff}}} = \left< \frac{1}{b} \right>^{-1} }
+\newcommand{\beffhf}{\ensuremath{b_{\mathrm{eff (flat)}}} = \left< \frac{1}{b} \right>^{-1} }
+\newcommand{\beffha}{\ensuremath{b_{\mathrm{eff}}} = \left< \sqrt{1 + |\nabla h|^2} / {b} \right>^{-1} }
+\newcommand{\beffm}{\ensuremath{b_{\mathrm{eff}}} = \left< b \right> }
+
+
+\newcommand{\Tr}{\ensuremath{T_{\mathrm{room}}}}
+
+\newcommand{\Finc}{\ensuremath{F_{\mathrm{inc}}}}
+\newcommand{\Fads}{\ensuremath{F_{\mathrm{ads}}}}
+\newcommand{\Fdes}{\ensuremath{F_{\mathrm{des}}}}
+\newcommand{\Fcat}{\ensuremath{F_{\mathrm{cat}}}}
+
+\newcommand{\kcat}{\ensuremath{k_{\mathrm{cat}}}}
+\newcommand{\kads}{\ensuremath{k_{\mathrm{ads}}}}
+\newcommand{\kadscat}{\ensuremath{k_{\mathrm{ads \to cat}}}}
+
+%\newcommand{\blo}{\ensuremath{b_{\mathrm{low}}}}
+%\newcommand{\bhi}{\ensuremath{b_{\mathrm{high}}}}
+
+\newcommand{\vens}{\ensuremath{v_{\mathrm{ens}}}}
+%\usepackage{marvosym}
+
+\usepackage{docmute}  % Discards header of `included' files:  
+% Only content between \begin{document} and \end{document} of included file is used.
+% This allows `included' files to be compiled standalone.
+
+% The following lets each chapter have its own bibliography if compiled alone.
+% (Essentially a modern version of the if/then statement.)
+\usepackage{etoolbox}
+\newtoggle{compilealone}
+\togglefalse{compilealone}
+% \toggletrue{compilealone} appears in each chapter.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\frontmatter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Effective Slip Lengths for Stokes Flow over Rough, Mixed-Slip Surfaces}
+
+\author{Nathaniel Joseph Lund}
+
+\subject{Physics}
+
+\abstract{In this thesis, homogenization and perturbation methods are used to derive analytic expressions for effective slip lengths for Stokes flow over rough, mixed-slip surfaces, where the roughness is periodic, and the variation in slip length has the same period.
+If the classical no-slip boundary condition of fluid mechanics is relaxed, the slip velocity of the fluid at the surface is non-zero.  For simple shear flow, the slip velocity is proportional to the shear rate.  The constant of proportionality has dimensions of length and is known as the slip length.  Any variation in the slip length over the surface will cause a perturbation to the flow adjacent to the surface. Due to the diffusion of momentum, at sufficient height above the surface, the flow perturbations have diminished, and flow is smooth and uniform.  The velocity and shear rate at this height imply an effective slip length of the surface.  The purpose of this thesis is to predict that effective slip length.
+
+Homogenization is a technique for finding approximate solutions to partial differential equations.  The essence of homogenization is to construct a mathematical model of a physical problem featuring some periodic heterogeneity, then generate a sequence of models such that the period in question reduces with each increment in the sequence.  If the sequence is appropriately defined, it has a limit model in the limit of vanishing period, for which a solution can be found.  The solution to the limit system is an approximation to the solutions of systems with a finite period.
+
+We use homogenization to find the effective slip length of a system of Stokes flow over a periodically rough surface, described by periodic function $h(x,y)$, with a local slip length $b(x,y)$ varying with the same period.  For systems where the period $L$ is smaller than  both the domain height $P$ and typical slip lengths, the effective slip length $\beff$ is well-approximated by the harmonic mean of local slip lengths, weighted by area of contact between liquid and surface:
+\begin{equation}
+\beff = \left<  \frac{ \sqrt{1 + |\nabla h|^2} }{b(x,y)} \right>^{-1}
+\end{equation}
+
+We further use a perturbation technique to verify the above expression in the special case of a flat surface, and to derive another effective slip length expression:  For a flat surface with local slip lengths much smaller than the period and domain height, the effective slip length $\beff$ is well-approximated by the area-weighted average of local slip lengths:
+\begin{equation}
+\beff = \left< b(x,y) \right>
+\end{equation}
+}
+% Books don't normally have abstracts, and this is a bit of a hack
+
+\phd
+
+\maketitle
+
+\include{Lund_Acknowledge}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mainmatter
+% individual chapters included here
+
+\include{Lund_Chap_1_Intro}
+\include{Lund_Chap_2_Slip}
+\include{Lund_Chap_3_MixedSlip}
+\include{Lund_Chap_4_EffSlip}
+\include{Lund_Chap_5_Model}
+\include{Lund_Chap_6_Homog}
+\include{Lund_Chap_7_Perturb_P_and_b}
+\include{Lund_Chap_8_Numerics}
+\include{Lund_Chap_9_Analogs}
+\include{Lund_Chap_10_Conclusion}
+
+\appendix
+\include{Lund_App_A_deGennes}
+\include{Lund_App_B_JRPhilip}
+\include{Lund_App_C_Dimension}
+\include{Lund_App_D_Variational}
+\include{Lund_App_E_Tensors}
+\include{Lund_App_F_Weak_Convergence}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \backmatter caused problems with appendices :-(
+\backmatter  % Nat says: Dunno, seems to be OK.
+
+%\bibliographystyle{ieeetr}
+\bibliographystyle{acm}
+\bibliography{Lund_Thesis}
+
+\end{document}

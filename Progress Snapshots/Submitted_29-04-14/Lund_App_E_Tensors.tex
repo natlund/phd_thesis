@@ -1,0 +1,257 @@
+% Finished July 18, 2013
+% Put into format of VUW Thesis on March 20, 2014.
+% Cut out of Chapter 6 and formed into Appendix E on Monday, 24 March 2014.
+
+\documentclass[12pt, a4paper, twoside, openright]{book}
+
+\usepackage{vuwthesis} % sets up some local things, mostly the front page
+
+\setlength{\intextsep}{12pt} % set space above and below in-line float
+\setlength{\abovecaptionskip}{0pt} % set space between figure and caption.
+
+
+\usepackage{amssymb, amsmath}
+%\usepackage{mathtools}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\newcommand{\beff}{\ensuremath{b_{\mathrm{eff}}}}
+\newcommand{\bhom}{\ensuremath{b_{\mathrm{hom}}}}
+
+%\usepackage{marvosym}
+
+\usepackage{etoolbox}
+\newtoggle{compilealone}
+\toggletrue{compilealone}
+
+\title{Appendix E: Tensor Identities}
+\author{Nat Lund}
+
+\begin{document}
+\chapter{Tensor Identities}\label{C:tensors}
+
+In this Appendix, we introduce the double dot product of two tensors, and work with the velocity gradient tensor to ultimately derive the tensor identity
+\begin{equation*}
+\nabla^2 \vec{u} \cdot \vec{g} = 
+\nabla \cdot ( (\nabla \vec{u} + \nabla \vec{u}^T) \cdot \vec{g})
+- 2 \mathbf{E}(\vec{u}):\mathbf{E}(\vec{g})
+\end{equation*}
+for use in Chapter 6.
+
+
+\subsection{Tensor Double Dot Product}
+
+The double dot product of two tensors, also known as the Frobenius inner product, is a generalization of the vector inner product:
+
+\begin{equation}
+A = 
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+, \quad Z = 
+\begin{bmatrix}
+x & y \\
+z & w
+\end{bmatrix}
+, \quad
+A:Z = ax + by + cz + dw
+\end{equation}
+
+As expected, addition distributes over this form of multiplication:
+\begin{equation}
+(A + B):(Z + W) = A:Z + A:W + B:Z + B:W
+\end{equation}
+
+\clearpage
+\subsection{Tensor Vector Divergence Identity}
+
+For a tensor $T$ and vector $\vec{g}$:
+
+\begin{equation}
+T:\nabla \vec{g} = T_{11}\partial_x g_x + T_{12}\partial_x g_y + T_{21}\partial_y g_x
++ T_{22} \partial_y g_y
+\end{equation}
+and
+\begin{equation}
+\nabla \cdot T = 
+\begin{bmatrix}
+\partial_x & , & \partial_y
+\end{bmatrix}
+\begin{bmatrix}
+T_{11} & T_{12} \\
+T_{21} & T_{22}
+\end{bmatrix} =
+\begin{bmatrix}
+\partial_x T_{11} + \partial_y T_{21} &,& \partial_x T_{12} + \partial_y T_{22}
+\end{bmatrix}
+\end{equation}
+so that
+\begin{equation}
+(\nabla \cdot T) \cdot \vec{g} = 
+g_x \partial_x T_{11} + g_x \partial_y T_{21} + g_y \partial_x T_{12}
+ + g_y \partial_y T_{22}
+\end{equation}
+ Furthermore
+\begin{equation}
+T \cdot \vec{g} = 
+\begin{bmatrix}
+T_{11} & T_{12} \\
+T_{21} & T_{22}
+\end{bmatrix}
+\begin{bmatrix}
+g_x \\
+g_y
+\end{bmatrix} = 
+\begin{bmatrix}
+T_{11} g_x + T_{12} g_y \\
+T_{21} g_x + T_{22} g_y
+\end{bmatrix}
+\end{equation}
+Therefore
+% "What do the underbraces mean?".   Easier to just rearrange terms into groups inside square brackets.
+%\begin{align*}
+%\nabla \cdot (T \cdot \vec{g}) & = 
+%\partial_x (T_{11} g_x) + \partial_x (T_{12} g_y) +
+%\partial_y (T_{21} g_x) + \partial_y (T_{22} g_y) \\
+% & = g_x \partial_x T_{11} + \underbrace{T_{11} \partial_x g_x} +
+%     g_y \partial_x T_{12} + \underbrace{T_{12} \partial_x g_y} +
+%     g_x \partial_y T_{21} + \underbrace{T_{21} \partial_y g_x} +
+%     g_y \partial_y T_{22} + \underbrace{T_{22} \partial_y g_y} \\
+% & = T:\nabla \vec{g} + (\nabla \cdot T) \cdot \vec{g}
+%\end{align*}
+\begin{align}
+\nabla \cdot (T \cdot \vec{g}) & = 
+\partial_x (T_{11} g_x) + \partial_x (T_{12} g_y) +
+\partial_y (T_{21} g_x) + \partial_y (T_{22} g_y) \\
+ & = g_x \partial_x T_{11} + T_{11} \partial_x g_x +
+     g_y \partial_x T_{12} + T_{12} \partial_x g_y \\
+ & \quad +    g_x \partial_y T_{21} + T_{21} \partial_y g_x +
+     g_y \partial_y T_{22} + T_{22} \partial_y g_y \\
+ & =\left[ T_{11} \partial_x g_x  +  T_{12} \partial_x g_y +
+           T_{21} \partial_y g_x  +  T_{22} \partial_y g_y \right] \\
+ & \quad + \left[ g_x \partial_x T_{11}  +  g_x \partial_y T_{21} +
+           g_y \partial_x T_{12}  +  g_y \partial_y T_{22} \right] \\
+ & = T:\nabla \vec{g} + (\nabla \cdot T) \cdot \vec{g}
+\end{align}
+
+
+We have shown:
+\begin{equation}
+\nabla \cdot (T \cdot \vec{g}) =  T:\nabla \vec{g} + (\nabla \cdot T) \cdot \vec{g}
+\end{equation}
+
+\clearpage
+\subsection{Application to Velocity Gradient Tensor}
+
+Substituting $T = \nabla \vec{u}$ in the identity gives:
+\begin{equation}
+\nabla \cdot (\nabla \vec{u} \cdot \vec{g}) = 
+\nabla \vec{u}:\nabla \vec{g} + (\nabla \cdot \nabla \vec{u}) \cdot \vec{g}
+\end{equation}
+and the `vector Laplacian' is defined:
+\begin{equation}
+\nabla \cdot \nabla \vec{u} =
+\begin{bmatrix}
+\partial_x \partial_x u + \partial_y \partial_y u &,& \partial_x \partial_x v + \partial_y \partial_y v
+\end{bmatrix} =
+\begin{bmatrix}
+\nabla^2 u &,& \nabla^2 v
+\end{bmatrix}
+= \nabla^2 \vec{u}
+\end{equation}
+So
+\begin{equation}
+\nabla \cdot (\nabla \vec{u} \cdot \vec{g}) = 
+\nabla \vec{u}:\nabla \vec{g} + \nabla^2 \vec{u} \cdot \vec{g}
+\end{equation}
+
+Similarly for the transpose of the velocity gradient tensor:
+\begin{equation}
+\nabla \cdot (\nabla \vec{u}^T \cdot \vec{g}) = 
+\nabla \vec{u}^T:\nabla \vec{g} + (\nabla \cdot \nabla \vec{u}^T) \cdot \vec{g}
+\end{equation}
+Now, however, the last term vanishes:
+\begin{align}
+\nabla \cdot \nabla \vec{u}^T & =
+\begin{bmatrix}
+\partial_x \partial_x u + \partial_x \partial_y v &,&
+ \partial_y \partial_x u + \partial_y \partial_y v
+\end{bmatrix} \\
+ & =
+\begin{bmatrix}
+\partial_x ( \partial_x u + \partial_y v ) &,&
+\partial_y ( \partial_x u + \partial_y v )
+\end{bmatrix} \\
+ & = 
+\begin{bmatrix}
+\partial_x ( \nabla \cdot \vec{u}) &,&
+\partial_y ( \nabla \cdot \vec{u})
+\end{bmatrix} \\
+ & = 
+ \begin{bmatrix}
+ 0 &,& 0
+ \end{bmatrix}
+\end{align}
+since we assume the fluid is \textbf{incompressible}, so $\nabla \cdot \vec{u} = 0$ everywhere.
+
+Thus
+\begin{equation}
+\nabla \cdot (\nabla \vec{u}^T \cdot \vec{g}) = \nabla \vec{u}^T:\nabla \vec{g}
+\end{equation}
+
+\clearpage
+\subsection{Deformation Rate Tensor Identity}
+
+Extending our notation slightly to include vector fields other than $\vec{u}$, recall that the deformation rate tensor is:
+\begin{equation}
+\mathbf{E}(\vec{u}) = \frac{\nabla \vec{u} + \nabla \vec{u}^T }{2}
+\end{equation}
+so that:
+\begin{equation}
+2 \mathbf{E}(\vec{g}) = \nabla \vec{g} + \nabla \vec{g}^T
+\end{equation}
+
+Then the double dot product of two such tensors is:
+\begin{align}
+2 \mathbf{E}(\vec{u}):2 \mathbf{E}(\vec{g}) & =
+(\nabla \vec{u} + \nabla \vec{u}^T ):(\nabla \vec{g} + \nabla \vec{g}^T ) \\
+4 \mathbf{E}(\vec{u}): \mathbf{E}(\vec{g}) & =
+   \nabla \vec{u}:\nabla \vec{g} + \nabla \vec{u}:\nabla \vec{g}^T
+ + \nabla \vec{u}^T:\nabla \vec{g} + \nabla \vec{u}^T: \nabla \vec{g}^T
+\end{align}
+Now, transposition affects the double dot product such that \\
+ $\nabla \vec{u}:\nabla \vec{g} =\nabla \vec{u}^T: \nabla \vec{g}^T$ 
+ and $ \nabla \vec{u}^T:\nabla \vec{g} = \nabla \vec{u}:\nabla \vec{g}^T $ , so
+\begin{align}
+4 \mathbf{E}(\vec{u}): \mathbf{E}(\vec{g}) & =
+   2 \nabla \vec{u}:\nabla \vec{g} + 2 \nabla \vec{u}^T:\nabla \vec{g} \\
+2 \mathbf{E}(\vec{u}): \mathbf{E}(\vec{g}) & =
+   \nabla \vec{u}:\nabla \vec{g} + \nabla \vec{u}^T:\nabla \vec{g}   
+\end{align}
+
+\vspace{1em}
+Finally,
+\begin{align}
+\nabla \cdot ( (\nabla \vec{u} + \nabla \vec{u}^T) \cdot \vec{g}) & =
+\nabla \cdot ( \nabla \vec{u} \cdot \vec{g} + \nabla \vec{u}^T \cdot \vec{g}) \\
+  & = \nabla \cdot ( \nabla \vec{u} \cdot \vec{g}) +
+      \nabla \cdot ( \nabla \vec{u}^T \cdot \vec{g}) \\
+  & = \nabla^2 \vec{u} \cdot \vec{g} + \nabla \vec{u}:\nabla \vec{g}
+      + \nabla \vec{u}^T:\nabla \vec{g} \\
+  & = \nabla^2 \vec{u} \cdot \vec{g} + 2 \mathbf{E}(\vec{u}):\mathbf{E}(\vec{g})
+\end{align}
+Therefore:
+\begin{equation}
+\nabla^2 \vec{u} \cdot \vec{g} = 
+\nabla \cdot ( (\nabla \vec{u} + \nabla \vec{u}^T) \cdot \vec{g})
+- 2 \mathbf{E}(\vec{u}):\mathbf{E}(\vec{g})
+\end{equation}
+
+\iftoggle{compilealone}
+    {
+    \bibliography{Lund_Thesis.bib}
+    \bibliographystyle{plain}
+    }
+
+\end{document}

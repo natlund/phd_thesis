@@ -1,0 +1,17 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {chapter}{\numberline {2}The front pages}{3}
+\contentsline {chapter}{\numberline {3}Library requirements}{5}
+\contentsline {section}{\numberline {3.1}Font size}{5}
+\contentsline {section}{\numberline {3.2}Single or double sided}{5}
+\contentsline {section}{\numberline {3.3}Line spacing}{5}
+\contentsline {section}{\numberline {3.4}Margins}{6}
+\contentsline {section}{\numberline {3.5}Paper size}{6}
+\contentsline {chapter}{\numberline {4}Binding}{7}
+\contentsline {chapter}{\numberline {5}Lorem ipsum}{9}
+\contentsline {section}{\numberline {5.1}The standard Lorem Ipsum passage, used since the 1500s}{9}
+\contentsline {section}{\numberline {5.2}Section 1.10.32 of ``de Finibus Bonorum et Malorum'', written by Cicero in 45 BC}{9}
+\contentsline {section}{\numberline {5.3}1914 translation by H. Rackham}{10}
+\contentsline {section}{\numberline {5.4}Section 1.10.33 of ``de Finibus Bonorum et Malorum'', written by Cicero in 45 BC}{10}
+\contentsline {section}{\numberline {5.5}1914 translation by H. Rackham}{11}
+\contentsline {chapter}{\numberline {6}Replicating John Philip 1972}{13}
+\contentsline {chapter}{\numberline {7}Conclusions}{17}

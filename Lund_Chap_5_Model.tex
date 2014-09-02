@@ -1,0 +1,1377 @@
+%Finished July 19, 2013
+% Put into VUW Thesis format Friday 21 Feb 2014
+
+\documentclass[12pt, a4paper, twoside, openright]{book}
+
+\usepackage{vuwthesis} % sets up some local things, mostly the front page
+
+\setlength{\intextsep}{12pt} % set space above and below in-line float
+\setlength{\abovecaptionskip}{0pt} % set space between figure and caption.
+
+%\usepackage{adjustbox}
+
+\usepackage{amssymb, amsmath}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\newcommand{\beff}{\ensuremath{b_{\mathrm{eff}}}}
+\newcommand{\bhigh}{\ensuremath{b_{\mathrm{high}}}}
+\newcommand{\blow}{\ensuremath{b_{\mathrm{low}}}}
+\newcommand{\phislip}{\ensuremath{\phi_{\mathrm{slip}}}}
+\newcommand{\phisol}{\ensuremath{\phi_{\mathrm{solid}}}}
+\newcommand{\sigsol}{\ensuremath{\sigma_{\mathrm{solid}}}}
+\newcommand{\gamsol}{\ensuremath{ \dot{\gamma}_{\mathrm{solid}} }} 
+
+\newcommand{\sep}{\begin{equation*} \star \end{equation*}}
+
+%\usepackage{marvosym}
+
+\usepackage{etoolbox}
+\newtoggle{compilealone}
+\toggletrue{compilealone}
+
+\title{Chapter 5: The Mathematical Model}
+\author{Nat Lund}
+
+\begin{document}
+\chapter{The Mathematical Model}\label{C:model}
+
+We are preparing to derive an expression for the effective slip length of a rough, mixed-slip surface.  To begin, we translate the physical problem into the precise language of mathematics.  That is, we construct a mathematical model that maps to the essential features of physical reality.  The construction of the mathematical model is the focus of this chapter.
+
+%A mathematical object that figures prominently in the model is the Fr\'{e}chet derivative.  To avoid cluttering the exposition later, we recall its features here.
+
+
+\subsection{Mathematical Preliminaries}
+
+
+The differing needs of the maths, physics and engineering communities can cause irritating inconsistencies in notation and nomenclature.  Being at the intersection of maths, physics and engineering, fluid mechanics is particularly prone to this.  Thus, it is necessary to define terms before ploughing into the derivation.  Disclaimer: the following language and notation may not be `standard', but they follow the conventions of the (rigorous) textbooks of C. Pozrikidis \cite{Pozrikidis1997, Pozrikidis2001}.
+
+%Disclaimer: the following language and notation are not necessarily `standard' in any sense; they %reflect the ad hoc nature of my own education in mathematical physics, and their expediency for solving %a specific problem in this thesis.
+
+We begin by defining the Fr\'{e}chet derivative --  this is important, because more than one definition is in use.  This makes it easy to then define the velocity gradient tensor, which behaves in a manner very similar to the Fr\'{e}chet derivative.
+
+\clearpage
+\subsubsection{The Fr\'{e}chet Derivative}
+The Fr\'{e}chet derivative is a generalization of the familiar derivative of a function of one real variable, to the more abstract `functions on Banach spaces'.  Happily, for finite-dimensional spaces, it is in fact the Jacobian matrix.
+
+Consider a vector field in $\mathbb{R}^2$, with Cartesian coordinates.  At each point $x,y$ in space there is a vector $\vec{u} = (u,v)$, with $u$ and $v$ depending on $x$ and $y$ so that $\vec{u} = (u(x,y),v(x,y))$.  Then $\vec{u}$ can be considered a vector valued function on $\mathbb{R}^2$, with Jacobian matrix:
+
+\begin{equation}
+D \vec{u} = 
+\begin{bmatrix}
+\frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\
+\frac{\partial v}{\partial x} & \frac{\partial v}{\partial y}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\partial_x u & \partial_y u \\
+\partial_x v & \partial_y v
+\end{bmatrix}
+\end{equation}
+
+
+The Fr\'{e}chet derivative is a \emph{spatial} derivative of a vector.  It gives the change in a vector field as one moves from point $\vec{x_0} = (x_0,y_0)$ in the direction $\vec{a}$.
+The vector at point $\vec{x}_0$ is $\vec{u}(\vec{x}_0)$.  What is the vector at a point a short distance $\vec{a}$ away?  It is approximately $\vec{u}(\vec{x}_0)$ plus a correction $ D \vec{u} \cdot \vec{a}$ that depends on $\vec{a}$:
+
+\begin{equation}
+\vec{u}(\vec{x}_0 + \vec{a}) \simeq \vec{u}(\vec{x}_0) + D \vec{u} \cdot \vec{a}
+\end{equation}
+
+See Figure (\ref{frechet}). The approximation becomes exact as the magnitude of $\vec{a}$ tends to zero.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\draw[->,ultra thick] (0,0) -- node[left]{$\vec{u}(\vec{x}_0)$} (1,2.5);
+
+\fill (2,0) circle (1mm);
+\node at (2,-0.1) [below] {$\vec{x}_0 + \vec{a} $};
+\draw[->,ultra thick,color=blue] (0,0) -- node[above]{$\vec{a}$} (2,0);
+\fill (0,0) circle (1mm);
+\node at (0,-0.1) [below] {$\vec{x}_0 $};
+
+\draw[->,ultra thick,dashed] (2,0) -- node[left]{$\vec{u}(\vec{x}_0)$} +(1,2.5);
+\draw[->,ultra thick,color=red] (2,0) ++(1,2.5) -- ++(1,0.5);
+\node at (3,3) {$D \vec{u} \cdot \vec{a}$};
+
+\draw[->,ultra thick] (2,0) -- node[right]{$\vec{u}(\vec{x}_0 + \vec{a})$} ++(2.2,3.1);
+
+\end{tikzpicture}
+\caption{The action of the Fr\'{e}chet derivative in $\mathbb{R}^2$.}\label{frechet}
+\end{figure}
+
+The correction vector $ D\vec{u} \cdot \vec{a}$ is the tensor dot product of the Fr\'{e}chet derivative with the vector $\vec{a}$. The tensor dot product is defined as
+\begin{equation}
+\vec{b} = T \cdot \vec{a} ,\quad b_i = T_{ij} a_j
+\end{equation}
+which is the same as the familiar matrix multiplication of a vector:
+\begin{equation}
+D \vec{u} \cdot \vec{a} =
+\begin{bmatrix}
+\partial_x u & \partial_y u \\
+\partial_x v & \partial_y v
+\end{bmatrix}
+\begin{bmatrix}
+a_x \\ a_y
+\end{bmatrix}
+=
+\begin{bmatrix}
+(\partial_x u) a_x + (\partial_y u) a_y \\
+(\partial_x v) a_x + (\partial_y v) a_y
+\end{bmatrix}
+\end{equation}
+
+$ D\vec{u} \cdot \vec{a}$ is known as the directional derivative of $\vec{u}$ in the direction $\vec{a}$.
+
+\subsubsection{The Velocity Gradient Tensor}
+If the vector field is a \emph{velocity} vector field $\vec{u}$, then it is convenient to work with the \textbf{velocity gradient tensor}, denoted $\nabla \vec{u}$.  This is the transpose of the Fr\'{e}chet derivative of the velocity field:
+\begin{equation}
+\nabla \vec{u} = D\vec{u}^T = 
+\begin{bmatrix}
+\partial_x u & \partial_x v \\
+\partial_y u & \partial_y v
+\end{bmatrix}
+\end{equation}
+
+This provides a linear approximation to the flow field in the vicinity of $\vec{x}_0$ via:
+\begin{equation}
+\vec{u}(\vec{x}) \simeq \vec{u}(\vec{x}_0) + (\vec{x} - \vec{x}_0)\cdot \nabla \vec{u}
+\end{equation}
+
+This is illustrated in Figure (\ref{velgradtensor}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\draw[->,ultra thick] (0,0) -- node[left]{$\vec{u}(\vec{x}_0)$} (1,2.5);
+
+\fill (3,0) circle (1mm);
+\node at (3,-0.1) [below] {$\vec{x}$};
+\draw[->,ultra thick,color=blue] (0,0) -- node[above]{$(\vec{x} - \vec{x}_0)$} (3,0);
+\fill (0,0) circle (1mm);
+\node at (0,-0.1) [below] {$\vec{x}_0 $};
+
+\draw[->,ultra thick,dashed] (3,0) -- node[left]{$\vec{u}(\vec{x}_0)$} +(1,2.5);
+\draw[->,ultra thick,color=red] (3,0) ++(1,2.5) -- ++(1,0.5);
+\node at (3.4,3) {$ (\vec{x} - \vec{x}_0) \cdot \nabla \vec{u}$};
+
+\draw[->,ultra thick] (3,0) -- node[right]{$\vec{u}(\vec{x})$} ++(2.2,3.1);
+
+\end{tikzpicture}
+\caption{The action of the velocity gradient tensor.}\label{velgradtensor}
+\end{figure}
+
+
+An advantage of this convention is that the tensor dot product
+\begin{equation}
+\vec{b} = \vec{a} \cdot T = T^{T} \cdot \vec{a}, \quad b_i = a_j T_{ji}
+\end{equation}
+allows the notation to follow the form of the familiar one-dimensional case:
+\begin{equation*}
+f(x) \simeq f(x_0) + (x - x_0) \frac{df}{dx}
+\end{equation*}
+
+
+\vspace*{2em}
+An interesting question: how does a vector change in the direction of \emph{the vector itself?} This vector `self gradient' looks like:
+
+\begin{equation}
+\vec{u} \cdot \nabla \vec{u}
+=
+\begin{bmatrix}
+u & v
+\end{bmatrix}
+\begin{bmatrix}
+\partial_x u & \partial_x v \\
+\partial_y u & \partial_y v
+\end{bmatrix}
+=
+\begin{bmatrix}
+u \partial_x u + v \partial_y u \\
+u \partial_x v + v \partial_y v
+\end{bmatrix}
+\end{equation}
+
+
+Compare this with the \textbf{advection operator}  $(\vec{u} \cdot \nabla ) = u \partial_x + v \partial_y $, operating on vector $\vec{u}$:
+\begin{equation}
+(\vec{u} \cdot \nabla ) \vec{u} = ( u \partial_x + v \partial_y )
+\begin{bmatrix}
+u \\ v
+\end{bmatrix}
+=
+\begin{bmatrix}
+u \partial_x u + v \partial_y u \\
+u \partial_x v + v \partial_y v
+\end{bmatrix}
+\end{equation}
+
+We see that they are the same.  The advection operator usually appears in the derivation of the `material derivative'.  This alternative derivation via the velocity gradient tensor provides the useful intuition that the advection operator simply gives the change in a vector as one travels in \emph{the direction of the vector itself.} 
+
+
+
+\clearpage
+\section{Modeling the Bulk Fluid: Navier Stokes}
+
+Fluid is composed of molecules, and the macroscopically observable properties of fluid emerge from the statistical mechanics of \emph{ensembles} of molecules.  Various properties of fluids are described by \emph{continuous} mathematical functions.  Thus, the value of the function at point $\vec{x}$ in a fluid is to be thought of as the statistical mechanical quantity emergent from the ensemble of molecules contained in an infinitesimal \emph{fluid element} located at point $\vec{x}$.
+The element -- for clarity, consider it a cube -- is large enough to provide satisfactory statistics for the emergent quantity, but small enough that the continuum approximation is still sound.
+
+\subsubsection{Density}
+
+The density $\rho$ of a fluid is the mass per unit volume of an infinitesimal fluid element.  
+It is a scalar quantity that may vary if the fluid is compressible.
+
+\subsubsection{Velocity}
+
+The velocities of the ensemble of molecules in an infinitesimal element can be averaged to define the fluid velocity at that point.  This is true of any point, so the fluid velocity field is a continuous vector-valued function on the fluid. An example is shown in Figure (\ref{bulkfluid}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+
+\fill[color=cyan] (0,0) rectangle (10,5);
+\foreach \x in {1,2,3,4,5,6,7,8,9}
+    \foreach \y in {1,2,3,4}
+         \draw[->,thick](\x,\y) -- +(\y/5,0);
+
+\end{tikzpicture}
+\caption{A bulk of fluid with a velocity vector field.}\label{bulkfluid}
+\end{figure}
+
+
+\subsection{Incompressible Liquid}
+
+For a vector field, a \textbf{flux} can be defined.  If the fluid is an incompressible liquid, then the flux into a volume element will exactly equal the flux out of the volume element.  This is expressed in the mathematical model by stating that the  divergence of the velocity vector field is zero everywhere:
+\begin{equation}
+\nabla \cdot \vec{u} = 0
+\end{equation}
+Incompressibility is a good approximation for liquids, and also turns out to be very mathematically convenient.
+
+
+\subsubsection{Pressure}
+
+The pressure $p$ is a scalar function defined as the force per unit area acting 
+on an arbitrarily oriented plane moving with the fluid.
+A pressure gradient in the fluid means that the pressure on one side of a fluid element is higher than on the other side.  This may cause a net force on the fluid element which tends to accelerate it, as suggested in Figure (\ref{pressure}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+
+\draw[fill=cyan] (0,0) rectangle (3,3);
+\draw[<->] (0,-0.3) -- node[below]{$a$} ++(3,0);
+
+\draw[<-,ultra thick] (0,1.5) -- ++(-1,0);
+\draw[<-,ultra thick] (3,1.5) -- ++(0.5,0);
+\draw[->,ultra thick] (1.5,1.5) -- ++(0.5,0);
+
+\node at (-1,1.5)[left] {$p_1$};
+\node at (3.5,1.5)[right] {$p_2 \simeq p_1 + a \nabla p  $};
+
+\node at (1.5,1.1){Net Force};
+\node at (1.5,0.5) {$\propto \nabla p $};
+
+\end{tikzpicture}
+\caption{A pressure gradient tends to accelerate a fluid element.}\label{pressure}
+\end{figure}
+
+
+\clearpage
+\subsection{Incompressible Viscous Newtonian Fluid}
+
+Interesting fluids have a \emph{viscosity}, $\mu$, an internal friction that allows velocity to propagate through the fluid.  At a molecular level, molecules from a fast fluid element diffuse into an adjacent slower fluid element, and vice versa.  This diffusion of momentum tends to equalise the velocities of adjacent elements.  Thus, viscosity acts with velocity gradients to cause \emph{stresses} on a fluid element caused by the differing velocities of adjacent fluid elements.  If the stresses are balanced, the element will not tend to accelerate, as suggested in Figure (\ref{viscbalance}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+
+\draw[fill=cyan] (0,0) rectangle ++(2,2);
+\draw[fill=cyan] (-0.5,-2) rectangle ++(2,2);
+\draw[fill=cyan] (0.5,2) rectangle ++(2,2);
+\draw[<->] (2.3,0) -- node [right] {$a$} ++(0,2);
+
+\draw[dashed] (3,4) -- ++(0,-6) -- ++(2,6);
+\draw[->,ultra thick] (3,3) -- ++(1.667,0);
+\draw[->,ultra thick] (3,1) -- ++(1,0);
+\draw[->,ultra thick] (3,-1) -- ++(0.333,0);
+
+\node at (5,3) [right] {$u_2 \simeq a \nabla u $};
+\node at (4.333,1) [right] {$u_1$};
+\node at (3.667,-1) [right] {$u_0 \simeq - a \nabla u $};
+
+\draw[->,ultra thick, red] (0.5,2) -- ++(1,0);
+\draw[<-,ultra thick, red] (0.5,0) -- ++(1,0);
+
+\node at (-0.7,2)[left]{Stress $\simeq a^2 \mu a \nabla u $};
+\node at (-0.7,0)[left]{Stress $\simeq - a^2 \mu a \nabla u $};
+
+\renewcommand{\baselinestretch}{1.00}
+\node at (1,1)[align=center]{Stresses\\ Balance};
+
+\end{tikzpicture}
+\caption{Fluid element at equilibrium with viscous stresses balanced.}\label{viscbalance}
+\end{figure}
+
+The velocity gradient gives a linear approximation to the local flow field;
+the linearity means that the velocity differences on opposite sides of a fluid element will be equal and opposite.  However, the next level of accuracy is a quadratic approximation using the second derivative of velocity, the Laplacian $\nabla^2 u$.  With the quadratic approximation, there can be a net viscous stress on the fluid element, tending to accelerate it.  This is shown in Figure (\ref{viscacc}). 
+
+
+\clearpage
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+
+\draw[fill=cyan] (0,0) rectangle ++(2,2);
+\draw[fill=cyan] (-0.25,-2) rectangle ++(2,2);
+\draw[fill=cyan] (0.5,2) rectangle ++(2,2);
+\draw[<->] (2.3,0) -- node [right] {$a$} ++(0,2);
+
+\draw[dashed] (3,4) -- ++(0,-6) -- ++(2,6);
+\draw[->,ultra thick] (3,3) -- ++(2,0);
+\draw[->,ultra thick] (3,1) -- ++(1,0);
+\draw[->,ultra thick] (3,-1) -- ++(0.667,0);
+
+\node at (5.333,3) [right] {$u_2 \simeq a \nabla u + \frac{1}{2}a^2 \nabla^2 u $};
+\node at (4.333,1) [right] {$u_1$};
+\node at (4,-1) [right] {$u_0 \simeq - a \nabla u + \frac{1}{2}a^2 \nabla^2 u $};
+
+%Bezier curve forced to be quadratic...
+\draw[dashed,thick] (3.667,-1) .. controls (3.667,0.333) and (4.111,1.667) .. (5,3);
+
+\draw[->,ultra thick, red] (0.5,2) -- ++(1,0);
+\draw[<-,ultra thick, red] (0.5,0) -- ++(0.5,0);
+
+%\node at (-0.7,2)[left]{Stress $\simeq a^2 \mu a \nabla v $};
+%\node at (-0.7,0)[left]{Stress $\simeq - a^2 \mu a \nabla v $};
+
+%\renewcommand{\baselinestretch}{1.00}
+\draw[->,ultra thick, red](1,1) -- ++(0.5,0);
+%\node at (1,1)[align=center]{Net\\ Force};
+
+\node at (-0.3,1)[left]{Net Force $\propto \mu \nabla^2 u$};
+
+
+\end{tikzpicture}
+\caption{Net force on fluid element proportional to $\mu \nabla^2 u$.}\label{viscacc}
+\end{figure}
+
+We have seen that a fluid element may be subjected to a net pressure force caused by the pressure gradient $\nabla p$, and a net viscous force caused by the viscosity and velocity laplacian $\nabla^2 u$.  The fluid element has a mass, and the total net force may accelerate the fluid element in accordance with Newton's second law.  This law is embodied in the Navier-Stokes equation.
+
+If no body forces (eg. gravity) are relevant, and the fluid is \textbf{incompressible}, the Navier-Stokes equation is:
+
+\begin{equation}
+\rho \left( \frac{\partial \vec{u}}{\partial t} + (\vec{u}\cdot \nabla)\vec{u} \right) = -\nabla p +  \mu \nabla^2 \vec{u}
+\end{equation}
+
+If the equation is multiplied by the volume of the infinitesimal fluid element, then
+the left-hand side is the acceleration, and the right-hand side is the force due to the pressure gradient and viscous shear.  The `advection operator'
+ $(\vec{u} \cdot \nabla ) = u \partial_x + v \partial_y $
+ gives the `inertial' term  $ (\vec{u}\cdot \nabla)\vec{u} $.
+
+
+\clearpage
+\section{Microfluidics: Stokes or `creeping' flow}
+
+
+The Navier-Stokes equations are an excellent description of much fluid flow.  However, the advection terms like $u \partial_x u$ in the differential equation are not linear, in the sense
+that they cannot be put in the form $\dotsb + a_0 u + a_1 \partial_x u + \dotsb$.  Nonlinear partial differential equations are notoriously difficult to solve.  But there is hope.  In some physical cases, the nonlinear terms may be much smaller than the rest, and contribute only a negligible amount to the solution.  In that case, the nonlinear terms can be discarded, and the solution of the resulting linear equation is a very good approximation.  We will now show that this is true for the microfluidic case where slip effects are noticeable.
+
+One way to compare the relative magnitudes of the terms is to first non-dimensionalise the terms. The idea is this: express the fundamental physical quantities as fractions of a `characteristic' value. The fraction forms a new, dimensionless variable. Then typical values of the dimensionless variables have a magnitude on the order of one.  For example, consider Poiseuille flow down a straight pipe, where the average velocity is $U$.  The velocity $u$ varies from zero at the wall, to  $\frac{3}{2} U$ in the centre of the pipe.  Now define the dimensionless velocity $\hat{u} = u/U$.  Clearly, the magnitude of $\hat{u}$ will vary from zero at the wall, to $\frac{3}{2}$ in the centre. i.e. for most of the domain, $\hat{u}$ is `about one'.
+
+A non-dimensionalised equation will hopefully have many terms with a magnitude on the order of one, with the magnitude of the remaining terms easily evaluated.  Thus, non-dimensionalising expedites the process of deciding which terms are negligible enough to discard.
+
+
+%Poiseuille flow in pipe ($R$ is pipe radius) to put in somewhere:
+%\begin{equation}
+%u(r) = - \frac{1}{4\eta} \frac{\Delta p}{\Delta x} \left( R^2 - r^2 \right)
+%\end{equation}
+
+\clearpage
+\subsection{Non-dimensionalising and the Reynolds Number}
+\subsubsection{Example for Analysis: 2-D Poiseuille Flow}
+This thesis analyses microfluidic flow experiments that reveal slip effects.  The canonical flow experiment is flow down a capillary --- a very thin pipe or channel.  
+We shall use this type of flow to analyse our non-dimensionalisation.  For clarity, we shall stick to two dimensions; this models pressure-driven flow between two infinite flat planes separated by distance $L$.
+% This avoids messing about with cylindrical coordinates.
+This is known as plane Poiseuille flow.  The solution is a parabolic velocity profile, the same as for Poiseuille flow as found in a straight, circular pipe:
+
+\begin{equation}
+u(y) = \frac{1}{2 \mu} \left( \frac{dp}{dx} \right) \left( y^2 - yL \right)
+\end{equation}
+
+The standard way to non-dimensionalise pipe flow is to choose the pipe diameter $L$ as the characteristic length.  Likewise, we choose channnel width $L$, and average velocity $U$ as the characteristic velocity.
+
+
+Then the non-dimensional variables are:
+\begin{equation}
+\hat{x} = \frac{x}{L}, \quad \hat{y} = \frac{y}{L}, \quad
+ \hat{u} = \frac{u}{U}, \quad \hat{v} = \frac{v}{U}
+\end{equation}
+
+The other variables are and pressure and time.  We would like to express them in terms of existing quantities.
+It turns out that $ \mu U / L $ has units of pressure, and the ratio $L /U$ has units of time, so define characteristic pressure and time:
+\begin{equation}
+P = \frac{\mu U}{L}, \quad T = \frac{L}{U}
+\end{equation}
+giving dimensionless variables $\hat{p} = p/P$ and $\hat{t}=t/T$:
+\begin{equation}
+\hat{p} = \frac{L}{\mu U} p, \quad \hat{t} = \frac{U}{L}t
+\end{equation}
+
+Thus we can substitute
+\begin{equation}
+x = L\hat{x}, \quad y = L\hat{y}, \quad u = U \hat{u}, \quad v = U \hat{v}, 
+\quad p = \frac{\mu U}{L}\hat{p}, \quad t = \frac{L}{U}\hat{t}
+\end{equation}
+into the Navier-Stokes equation.  For clarity, we focus on just the $x$ component:
+\begin{equation}
+\rho \left( \frac{\partial u}{\partial t} +
+ u \frac{\partial u}{\partial x} + v\frac{\partial u}{\partial y} \right) =
+ - \frac{\partial p}{\partial x} + 
+\mu \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \right)
+\end{equation}
+
+Substitute:
+\begin{equation}
+\rho \left( \frac{\partial U\hat{u}}{\partial \frac{L}{U}\hat{t}} +
+U\hat{u} \frac{\partial U\hat{u}}{\partial L\hat{x}} +
+U\hat{v} \frac{\partial U\hat{u}}{\partial L\hat{y}} \right) =
+ - \frac{\partial \frac{\mu U}{L} \hat{p}}{\partial L\hat{x}} + 
+\mu \left( \frac{\partial^2 U\hat{u}}{\partial (L\hat{x})^2} + 
+\frac{\partial^2 U\hat{u}}{\partial (L\hat{y})^2} \right)
+\end{equation}
+
+\begin{equation}
+\rho \frac{U^2}{L} \left( \frac{\partial \hat{u}}{\partial \hat{t}} +
+\hat{u} \frac{\partial \hat{u}}{\partial \hat{x}} +
+\hat{v} \frac{\partial \hat{u}}{\partial \hat{y}} \right) =
+ - \frac{\mu U}{L^2} \frac{\partial \hat{p}}{\partial \hat{x}} + 
+\frac{\mu U}{L^2} \left( \frac{\partial^2 \hat{u}}{\partial \hat{x}^2} + 
+\frac{\partial^2 \hat{u}}{\partial \hat{y}^2} \right)
+\end{equation}
+
+%\begin{equation}
+%\text{Now multiply both sides by} \quad \frac{L^2}{\mu U}
+%\end{equation}
+
+\begin{equation}
+\frac{\rho L U}{\mu} \left( \frac{\partial \hat{u}}{\partial \hat{t}} +
+\hat{u} \frac{\partial \hat{u}}{\partial \hat{x}} +
+\hat{v} \frac{\partial \hat{u}}{\partial \hat{y}} \right) =
+ -  \frac{\partial \hat{p}}{\partial \hat{x}} + 
+\left( \frac{\partial^2 \hat{u}}{\partial \hat{x}^2} + 
+\frac{\partial^2 \hat{u}}{\partial \hat{y}^2} \right)
+\end{equation}
+
+
+\vspace{1em}
+Define Kinematic Viscosity
+\begin{equation}
+\nu = \frac{\mu}{\rho}
+\end{equation}
+Then define the \textbf{Reynolds Number:}
+\begin{equation}
+\mathrm{Re} = \frac{L U}{\nu}
+\end{equation}
+
+Thus the $x$ component of the Navier-Stokes equations are:
+\begin{equation}
+\mathrm{Re} \left( \frac{\partial \hat{u}}{\partial \hat{t}} +
+\hat{u} \frac{\partial \hat{u}}{\partial \hat{x}} +
+\hat{v} \frac{\partial \hat{u}}{\partial \hat{y}} \right) =
+ -  \frac{\partial \hat{p}}{\partial \hat{x}} + 
+\left( \frac{\partial^2 \hat{u}}{\partial \hat{x}^2} + 
+\frac{\partial^2 \hat{u}}{\partial \hat{y}^2} \right)
+\end{equation}
+
+
+\vspace{1em}
+We are now in a position to look at the relative magnitudes of the terms.
+
+\clearpage
+\subsubsection{Magnitudes of Velocity Terms}
+
+
+
+We have chosen Poiseuille flow to illustrate our non-dimensionalisation.  Since it has an exact solution, we know exactly what the velocity and its derivatives are.
+%  With average velocity scaled to unity, and channel width also scaled to unity, 
+The parabolic velocity profile looks as shown in Figure (\ref{poise}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\fill [color=yellow] (0,0) rectangle node [color=black] {Wall}(-4,3.5);
+
+\draw[->] (0,0) -- (0,4.5);
+\draw[->] (0,0) -- (4.5,0);
+\node at (0,4.5)[left]{$ \hat{u} $};
+\node at (4.5,0)[right]{$\hat{y}$};
+
+\node at(0,0) [below] {0};
+\draw [dotted] (3,0) -- ++(0,3);
+\node at (3,0)[below] {$\frac{1}{2}$};
+\draw [dotted] (0,2) -- ++ (2,0);
+\node at (0,2)[left] {1};
+\draw [dotted] (0,3) -- ++(3.5,0);
+\node at (0,3) [left] {$\frac{3}{2}$};
+
+\draw[thick] plot [domain = 0:3.5](\x, {3 - 0.3333*((\x - 3)^2)}  );
+
+\draw[ultra thick,->] (1.266,0) -- node[right]{Mean $\hat{u}$} ++(0,2);
+\node at (1.266,0) [below] {0.211};
+
+\renewcommand{\baselinestretch}{1.00}
+\draw [->](4.5,1.5) -- node[right,align=left]{Direction\\ Of Flow} ++(0,3);
+
+\end{tikzpicture}
+\caption{Dimensionless parabolic flow profile of plane Poiseuille flow.}\label{poise}
+\end{figure}
+
+
+By construction, the $\hat{u}$ term ranges from zero to $\frac{3}{2}$. Hence, $\hat{u}$ is of order one.
+
+For \emph{strict} Poiseuille flow, the walls are perfectly flat, and the velocity perpendicular to the wall is zero everywhere.  That is, $\hat{v} = 0$ always. 
+
+But we may consider a channel with roughness on the walls, with the amplitude of the roughness \emph{small} compared to the channel width, so that the flow is Poiseuille-like.  Then, near the wall, the transverse velocity $\hat{v}$ may approach the magnitude of $\hat{u}$.  The magnitude of $\hat{u}$ near the wall is small compared to the average, so we would expect perhaps $\hat{v} < 0.1$.  That is, for rough-walled Poiseuille-like flow, $\hat{v}$ is of order 0.1, at most.
+
+
+\subsubsection{Magnitudes of Velocity Derivative Terms}
+
+A typical capillary flow experiment is carried out with flow rates held constant, and at low enough flow velocities that the flow is laminar.
+For the purposes of our analysis, we shall assume steady non-turbulent flow,
+so the time-dependent velocity term vanishes.
+\begin{equation}
+\frac{\partial \hat{u}}{\partial \hat{t}} = 0
+\end{equation}
+
+
+For the parabolic flow profile of Poiseuille flow, the derivative of velocity is linear, as shown in Figure (\ref{poisedrv1}).
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\fill [color=yellow] (0,0) rectangle node [color=black] {Wall}(-3,3.5);
+
+\draw[->] (0,0) -- (0,4.5);
+\draw[->] (0,0) -- (4.5,0);
+\node at (0,4.5)[left]{$ \frac{\partial \hat{u}}{\partial \hat{y}} $};
+\node at (4.5,0)[right]{$\hat{y}$};
+
+\node at(0,0) [below] {0};
+\node at (3,0)[below] {$\frac{1}{2}$};
+\draw [dotted] (3,0) -- ++(0,3);
+
+\node at (0,3) [left] {6};
+
+\draw [very thick] (0,3) -- (3,0);
+\node at (1.8,1.8) {$\frac{\partial \hat{u}}{\partial \hat{y}} $};
+
+\end{tikzpicture}
+\caption{Velocity first derivative of plane Poiseuille flow.}\label{poisedrv1}
+\end{figure}
+
+The average \emph{value} of $\partial_y \hat{u}$ over the channel width is zero.  But the average \emph{magnitude} is 3.  
+%In the tradition of theoretical physics,
+So $\partial_{\hat{y}} \hat{u}$ is `of order one'.
+
+For strict Poiseuille flow, $\hat{u}$ has no $x$-dependence, so $\partial_{\hat{x}} \hat{u} = 0$ everywhere.
+
+%For rough-walled Poiseuille-like flow, the wall corrugations will cause the $x$ velocity to change in the $x$ direction, over the period of the corrugation.
+% The $x$ velocity in the vicinity of the wall is on the order of 0.1, and varies by perhaps 10\% over the roughness period. 
+%  The roughness period must very small compared with the channel width for the flow to remain Poiseuille-like. 
+% Thus, in the vicinity of the wall, $\partial_{\hat{x}} \hat{u} \sim (0.1 \times 0.1) / 0.01 = 1$.  But for the rest of the domain, the $x$ velocity will have vanishing $x$ dependence.  So \emph{average} $\partial_{\hat{x}} \hat{u}$ is more like 0.1.  Hence, $\partial_{\hat{x}} \hat{u}$ is of order 0.1.
+
+But for rough-walled Poiseuille flow, the wall corrugations will cause velocity $\hat{u}$ near the wall to change in the $x$ direction, over the period of the corrugation.  Near the wall, $\hat{u}$ is on the order of 0.1 or less, so $\Delta \hat{u}$ over the period can be no more than 0.1.  For the flow to remain Poiseuille-like, the roughness period must be small compared to the channel width, i.\ e.\ on the order of 0.1 or less. Thus, in the vicinity of the wall, $\partial_{\hat{x}} \hat{u} \sim 0.1 / 0.1 = 1$.  Away from the wall, $\partial_{\hat{x}} \hat{u}$ becomes smaller as flow converges on strict Poiseuille flow.  Thus, $\partial_{\hat{x}} \hat{u}$ is of order one, at most.
+
+
+\subsubsection{Magnitudes of Advection Terms}
+
+%With $\hat{u}$ of order one and $\partial_{\hat{x}} \hat{u}$ of order 0.1, and $\hat{v}$ of order 0.1 and $\partial_{\hat{y}} \hat{u}$ of order one, the advection terms $\hat{u} \partial_{\hat{x}} \hat{u}$ and $\hat{v} \partial_{\hat{y}} \hat{u}$ are both of order 0.1.
+
+$\partial_{\hat{x}} \hat{u}$ vanishes over the middle part of the domain (where $\hat{u}$ is at most $3/2$) and reaches a maximum of about 1 near the wall, where $\hat{u}$ is of order 0.1.  Therefore, $\hat{u} \partial_{\hat{x}} \hat{u}$ is at most 0.1.
+
+Near the wall, both $\hat{v}$ and $\partial_{\hat{y}} \hat{u}$ are at their maxima: $\hat{v} \sim 0.1$ and $\partial_{\hat{y}} \hat{u} \sim 5 $. Their product is about 0.5, or order 1.  Thus, $\hat{v} \partial_{\hat{y}} \hat{u}$ is of order one, at most.
+
+\subsubsection{Magnitudes of Second Derivatives of Velocity}
+
+The second spatial derivative of the parabolic velocity profile is a constant, as illustrated in Figure (\ref{poiselap}).
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\fill [color=yellow] (0,0) rectangle node [color=black] {Wall}(-3,3.5);
+
+\draw[->] (0,0) -- ++(0,4.5);
+\draw[->] (0,3) -- ++(4.5,0);
+
+\node at (0,4.5)[left]{$ \frac{\partial^2 \hat{u}}{\partial \hat{y}^2} $};
+\node at (4.5,3)[right]{$\hat{y}$};
+
+\node at (3,3)[above] {$\frac{1}{2}$};
+\draw [dotted] (3,0) -- ++(0,3);
+
+\node at (0,3) [left] {0};
+
+\node at (0,0.5) [left] {-12};
+\draw [very thick] (0,0.5) -- ++(4,0);
+\node at (1.5,1) {$\frac{\partial^2 \hat{u}}{\partial \hat{y}^2} $};
+
+\end{tikzpicture}
+\caption{Velocity Laplacian of plane Poiseuille flow.}\label{poiselap}
+\end{figure}
+
+For Poiseuille flow nondimensionalized in the standard way, $ \frac{\partial^2 \hat{u}}{\partial \hat{y}^2} = -12$.  That is, the magnitude is of order ten.
+
+For strictly Poiseuille flow, the $x$ velocity has no $x$ dependence, so $\partial_{\hat{x}} \hat{u} = 0 $, and $ \partial^2_{\hat{x}} \hat{u} = 0 $.
+
+For rough-walled Poiseuille-like flow, we have allowed that $\partial_{\hat{x}} \hat{u} \sim 1$ for the 10\% of the domain near the wall.  This reduces to near zero for the rest of the domain.  Therefore, $\partial_{\hat{x}} \hat{u}$ reduces from order one to zero in distance 0.1, hence average $ \partial^2_{\hat{x}} \hat{u}$ \emph{near the wall} is of order ten.  
+%But it is zero over the rest of the domain, so the average over the channel is one.
+Hence, $ \partial^2_{\hat{x}} \hat{u}$ is of order ten at most.
+
+%\vspace{1em}
+%And now to the pressure term:  The characteristic pressure $P$ was chosen for dimensional convenience, not because it is necessarily a typical pressure.  So it is impossible to know the magnitude of $\hat{p}$ or $\partial_{\hat{x}} \hat{p}$.  But this doesn't matter; we have enough information to simplify, as we shall see.
+
+\subsubsection{Summary of Magnitudes of Terms}
+
+At this point, we can summarize what we know about the relative magnitudes of the terms in the Navier-Stokes equation.  For steady strict Poiseuille flow nondimensionalized in the standard way, the velocity $\hat{u}(x,y)$ in the direction of the flow obeys:
+\begin{equation}
+\mathrm{Re} \left( 
+\underbrace{ \frac{\partial \hat{u}}{\partial \hat{t}} }_{\text{= 0}} +
+\underbrace{ \hat{u} \frac{\partial \hat{u}}{\partial \hat{x}} }_{\text{= 0}} +
+\underbrace{ \hat{v} \frac{\partial \hat{u}}{\partial \hat{y}} }_{\text{= 0}} 
+\right) = 
+\underbrace{ - \frac{\partial \hat{p}}{\partial \hat{x}} }_{\text{unknown}}
+  + \left( 
+\underbrace{ \frac{\partial^2 \hat{u}}{\partial \hat{x}^2} }_{\text{= 0}} + 
+\underbrace{ \frac{\partial^2 \hat{u}}{\partial \hat{y}^2} }_{\sim 10} 
+\right)
+\end{equation}
+Which simplifies considerably to:
+\begin{equation}
+0 = -  \frac{\partial \hat{p}}{\partial \hat{x}} + 
+%\left( \frac{\partial^2 \hat{u}}{\partial \hat{x}^2} + 
+\frac{\partial^2 \hat{u}}{\partial \hat{y}^2} % \right)
+\end{equation}
+
+But for rough-walled Poiseuille-like flow, things are not quite so simple:
+\begin{equation}
+\mathrm{Re} \left( 
+\underbrace{ \frac{\partial \hat{u}}{\partial \hat{t}} }_{\text{= 0}} +
+\underbrace{ \hat{u} \frac{\partial \hat{u}}{\partial \hat{x}} }_{\sim 0.1} +
+\underbrace{ \hat{v} \frac{\partial \hat{u}}{\partial \hat{y}} }_{\sim 1} 
+\right) = 
+\underbrace{ - \frac{\partial \hat{p}}{\partial \hat{x}} }_{\text{unknown}}
+  + \left( 
+\underbrace{ \frac{\partial^2 \hat{u}}{\partial \hat{x}^2} }_{\sim 10} + 
+\underbrace{ \frac{\partial^2 \hat{u}}{\partial \hat{y}^2} }_{\sim 10} 
+\right)
+\end{equation}
+
+That is:
+\begin{equation}
+\mathrm{Re} \left( 
+\underbrace{ \frac{\partial \hat{u}}{\partial \hat{t}}  +
+     \hat{u} \frac{\partial \hat{u}}{\partial \hat{x}}  +
+     \hat{v} \frac{\partial \hat{u}}{\partial \hat{y}} }_{\text{order 1}} 
+\right) = 
+\underbrace{ - \frac{\partial \hat{p}}{\partial \hat{x}} }_{\text{unknown}}
+  + \left( 
+\underbrace{ \frac{\partial^2 \hat{u}}{\partial \hat{x}^2} }_{\sim 10} + 
+\underbrace{ \frac{\partial^2 \hat{u}}{\partial \hat{y}^2} }_{\sim 10} 
+\right)
+\end{equation}
+
+%\begin{equation}
+%\mathrm{Re} \left( 
+%\underbrace{ \frac{\partial \hat{u}}{\partial \hat{t}}  +
+%     \hat{u} \frac{\partial \hat{u}}{\partial \hat{x}}  +
+%     \hat{v} \frac{\partial \hat{u}}{\partial \hat{y}} }_{\text{order 0.1}} 
+%\right) = 
+%\underbrace{ - \frac{\partial \hat{p}}{\partial \hat{x}}
+% + \left( 
+%          \frac{\partial^2 \hat{u}}{\partial \hat{x}^2}  + 
+%          \frac{\partial^2 \hat{u}}{\partial \hat{y}^2}
+%  \right) }_{\text{order at least 10}}
+%\end{equation}
+
+Importantly, we have discovered the relative magnitudes of the terms that \emph{do not depend on the physical situation.}  The above relation holds for Poiseuille flow of \emph{any} fluid at \emph{any} scale.  The parameters pertaining to the specific physical system are wrapped up into the Reynolds number.
+
+Now is a good time, then, to evaluate the Reynolds number for the kind of microfluidic slip experiments we are considering.
+
+\subsubsection{Reynolds number for microfluidic channels}
+
+A recent Poiseuille-type microfluidic slip experiment appears in the 2006 paper by Huang \emph{et al} in the Journal of Fluid Mechanics \cite{Huang2006}.  They looked at steady flow in channels 50 $\mu$m deep and 250 $\mu$m wide.  Particle velocimetry techniques showed a velocity distribution with a maximum velocity of about 600 $\mu$m s$^{-1}$.
+When defining the Reynolds number for flow in a rectangular duct, the standard characteristic length to use is the \textbf{hydraulic diameter}, which is four times the cross-sectional area divided by the perimeter.  In this case it is 83.33 $\mu$m.
+%$(4 \times 50 \times 250) / (50 + 250 + 50 + 250)$ which is 83.33 $\mu$m.
+
+The viscosity of water at room temperatures is very close to $\mu = 0.001$ kgs$^{-1}$m$^{-1}$.  The density of water is $\rho = 1000$ kgm$^{-3}$.  We shall choose $L = 100 \mu$m and $U = 400 \mu$m s$^{-1}$ as conservative characteristic length and velocity scales.
+Hence the Reynolds number evaluates to:
+\begin{equation}
+\mathrm{Re} = \frac{\rho L U}{\mu} = \frac{1000 \times 0.0001 \times 0.004}{0.001} = 0.4
+\end{equation}
+%In the tradition of theoretical physics, this may be described as `of order 0.1'.
+%Thus the magnitudes of the two sides of the Navier-Stokes equation are:
+%\begin{equation}
+%\underbrace{
+%\mathrm{Re} \left( 
+%             \frac{\partial \hat{u}}{\partial \hat{t}}  +
+%     \hat{u} \frac{\partial \hat{u}}{\partial \hat{x}}  +
+%     \hat{v} \frac{\partial \hat{u}}{\partial \hat{y}} 
+%           \right)
+%}_{\text{order 0.04}}   = 
+%\underbrace{ - \frac{\partial \hat{p}}{\partial \hat{x}}
+% + \left( 
+%          \frac{\partial^2 \hat{u}}{\partial \hat{x}^2}  + 
+%          \frac{\partial^2 \hat{u}}{\partial \hat{y}^2}
+%  \right) }_{\text{order at least 10}}
+%\end{equation}
+%
+%So the right-hand side of the equation is \emph{at least} 250 times bigger than the left-hand side.  We have achieved our goal of finding which terms are negligible enough to discard.  We boldly make the tactical decision to throw away the left hand side, and solve instead the much simpler equation:
+Thus the magnitudes of terms in the Navier-Stokes equation are:
+\begin{equation}
+\underbrace{
+\mathrm{Re} \left( 
+             \frac{\partial \hat{u}}{\partial \hat{t}}  +
+     \hat{u} \frac{\partial \hat{u}}{\partial \hat{x}}  +
+     \hat{v} \frac{\partial \hat{u}}{\partial \hat{y}} 
+           \right)
+}_{\text{order 0.4}}   = 
+\underbrace{ - \frac{\partial \hat{p}}{\partial \hat{x}} }_{\text{unknown}}
+  + \left( 
+\underbrace{ \frac{\partial^2 \hat{u}}{\partial \hat{x}^2} }_{\sim 10} + 
+\underbrace{ \frac{\partial^2 \hat{u}}{\partial \hat{y}^2} }_{\sim 10} 
+\right)
+\end{equation}
+
+%The entire left-hand side evaluates to something with a magnitude less than one.  On the right-hand side, there is a term with a magnitude always greater than 10, a term  whose magnitude is at most 10, and a term of unknown magnitude.
+The three terms on the right-hand side sum up to something with a magnitude at least 25 times smaller than the largest term on the right.
+That is, the equation is `close to' the similar equation in which the the right-hand side terms sum to \emph{zero.}  Thus, we choose to solve the much simpler equation: 
+\begin{equation}
+0 = -  \frac{\partial \hat{p}}{\partial \hat{x}} + 
+\left( \frac{\partial^2 \hat{u}}{\partial \hat{x}^2} + 
+\frac{\partial^2 \hat{u}}{\partial \hat{y}^2} \right)
+\end{equation}
+
+The $y$ component of the Navier-Stokes is:
+\begin{equation}
+\mathrm{Re} \left( 
+\frac{\partial \hat{v}}{\partial \hat{t}} +
+\hat{u} \frac{\partial \hat{v}}{\partial \hat{x}} +
+\hat{v} \frac{\partial \hat{v}}{\partial \hat{y}}
+ \right) =
+    -  \frac{\partial \hat{p}}{\partial \hat{y}} + 
+\left( \frac{\partial^2 \hat{v}}{\partial \hat{x}^2} + 
+       \frac{\partial^2 \hat{v}}{\partial \hat{y}^2} 
+\right)
+\end{equation}
+For pure Poiseuille flow, this reduces to 0 = 0.  For rough-walled Poiseuille-like flow, we expect $\hat{v}$ to be nonzero but very small compared to $\hat{u}$.  
+So we anticipate no significant loss of information if we discard the left-hand side of the $y$ velocity equation.  If we do this, then we have simplified the Navier-Stokes vector equation to:
+\begin{equation}
+0 = -\hat{\nabla} \hat{p} + \hat{\nabla}^2 \hat{\vec{u}}
+\end{equation}
+or
+\begin{equation}
+\hat{\nabla}^2 \hat{\vec{u}} = \hat{\nabla} \hat{p}
+\end{equation}
+This is known as the Stokes equation, and describes very slow-moving flow described as `creeping' flow or Stokes flow.  Stokes flow is associated with Reynolds numbers Re $ \ll 1$.  Some perspective: for flow in a pipe, flows with Reynolds numbers below about 2,300 are always laminar, while flows with Reynolds numbers above about 4,000 are always turbulent.
+
+In Stokes flow, the time-dependent and inertial terms are deemed to be negligible compared to the pressure and viscosity terms.  Thus, the Stokes equation describes the force balance between pressure and viscous stresses.
+
+\subsection{Redimensionalize back to Physical Units}
+
+We will convert back into physical units. Substituting the definitions of the dimensionless variables back into the Stokes equation:
+\begin{equation}
+\left( \frac{\partial^2  \frac{u}{U}}{\partial (\frac{x}{L})^2} + 
+\frac{\partial^2 \frac{u}{U}}{\partial (\frac{y}{L})^2} \right) =
+\frac{\partial \frac{L}{\mu U} p}{\partial \frac{x}{L}}
+\end{equation}
+
+\begin{equation}
+ \frac{L^2}{\mu U} \left( \frac{\partial^2 u}{\partial x^2} + 
+\frac{\partial^2 u}{\partial y^2} \right) =
+\frac{L^2}{\mu U}  \frac{\partial p}{\partial x}
+\end{equation}
+
+%\begin{equation}
+%\text{Multiply both sides by} \quad \frac{\mu U}{L^2}
+%\end{equation}
+
+\begin{equation}
+\mu \left( \frac{\partial^2 u}{\partial x^2} + 
+\frac{\partial^2 u}{\partial y^2} \right) =
+\frac{\partial p}{\partial x}
+\end{equation}
+
+Similarly for the other vector components of the Stokes equation.
+
+\vspace*{1em}
+Thus, for microfluidic flow down a capillary, the bulk fluid obeys the Stokes equation:
+\begin{equation}
+\mu \nabla^2 \vec{u} = \nabla p
+\end{equation}
+
+In the field of microfluidics, it is customary to assume Stokes flow in all cases. However, we note that for example, the capillary slip experiment of Vinogradova 2009 \cite{Vinogradova2009} had velocities of up to 5 cm per second down a channel 100 $\mu$m wide, yielding a Reynolds number Re $\sim$ 1.
+%  This makes the pressure and shear force terms only ten times larger than the inertial terms, so some error may be noticeable.
+%But, we shall follow the custom of microfluidics, and assume Stokes flow holds in the bulk.
+
+
+%Vinogradova PRL 2009 had velocities up to 5 cm per second. Then Re = 1.  Too big.  Stokes %flow only sensible if Re $\ll$ 1.  Eg. Re $<$ 0.1.
+
+
+
+\section{Modeling the Boundary: Generalized Slip}
+
+%After establishing that the Stokes equation holds in the bulk fluid, we turn now to the boundary.  The first order of business is to define \emph{where} the boundary is.  As the discussion in Chapter 2 showed, there is some ambiguity about the location of the nominal boundary.  For a true physical surface, there may be a \emph{region} of finite width that could be labelled the `boundary'.  At the top of the region, the bulk fluid behaviour obtains, and at the bottom of the boundary, it is unambiguously solid.  
+
+%We are constructing a mathematical model of a physical system; in the model there will be a boundary that is a purely geometric surface (of zero width), and at any arbitrary distance above the boundary, the bulk fluid conditions will hold.  We need to decide exactly which part of the physical boundary region maps to our model boundary.  The sensible choice is: the top.
+
+%Here is why: As we descend down through the fluid towards the physical boundary, there will be a point at which the local conditions begin to deviate from that of the bulk.  Perhaps the density changes --- we are entering a `depletion region' with correspondingly lower viscosity.  In the mathematical model, there is a perfect distinction between `bulk' and `boundary'.  Thus we must identify the mathematical boundary with the very top of the physical boundary region.
+
+After establishing that the Stokes equation and incompressibility condition hold in the bulk region (domain) of our model, we now turn to the boundary.  There may be some subtlety as to \emph{where} the boundary is, in the following sense: In the mathematical model we are constructing, the distinction between bulk and boundary has the perfect discontinuity of a geometric object.  However, as noted earlier, in a physical system, there may be some ambiguity as to what constitutes the boundary; there may be a \emph{region} of finite depth that could reasonably be called the boundary region.  The question then is: what part of the boundary region of the physical system corresponds to the boundary surface in the mathematical model?
+
+The justifiable choice is for the mathematical boundary to map to the \emph{top} of the physical boundary region.  In the physical system, certain conditions hold that are homogeneous through the bulk of the fluid.  However, near the surface, there may be some deviation from these conditions (caused perhaps by a depletion layer).  This is not allowed in the mathematical model (since in the model, the domain is homogeneous), so the mathematical boundary must map to the lowest part of the homogeneous physical bulk region.  This is illustrated in Figure (\ref{boundarymap}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\fill[color=cyan] (0,0) rectangle (4,3);
+\shade[top color=cyan](0,0) rectangle (4,-1.2);
+
+\node at (2,1) {Bulk};
+\node at (2,-0.5){Boundary Region};
+
+\fill [color=olive,domain=0:4,samples=50] plot (\x,{ 0.2 * sin(7*\x r) - 1} ) -- (4,-2) -- ++(-4,0);
+\draw [domain=0:4,samples=50] plot (\x,{ 0.2 * sin(7*\x r) - 1} );
+
+
+\fill[color=yellow](8,0) rectangle ++(4,-2);
+\draw(8,0) -- ++(4,0);
+\node at (10,1) {Domain};
+\node at (10,-1) {Boundary};
+\draw[->,thick] (9.8,-0.7) -- (10.2,0);
+
+\node at (2,3.5) {\textsc{physical}};
+\node at (10,3.5) {\textsc{model}};
+
+\node at (6,1.5) {Bulk conditions hold};
+\draw[dashed] (4.5,0) -- ++(3,0);
+\renewcommand{\baselinestretch}{1.00}
+\node at (6,-0.7) [align=left]{Bulk conditions\\ do not hold};
+
+\end{tikzpicture}
+\caption{Model boundary maps to \emph{top} of physical boundary region.}\label{boundarymap}
+\end{figure}
+
+\clearpage
+\subsection{Simple Shear with Navier Slip}
+
+As explained in the introductory chapters, the classical boundary condition is `no slip', and the simplest extension to that is Navier slip, where the boundary velocity is proportional to the velocity gradient:
+\begin{equation}
+u_{\text{boundary}} = b \frac{\partial u}{\partial z} \bigg|_{\text{boundary}}
+\end{equation}
+
+This holds for a system exhibiting \textbf{simple shear:} a flat surface with laminar flow above it, with each lamina parallel to the boundary surface.  There is no velocity component normal to the surface.  See Figure (\ref{simpleshear}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\fill[color=cyan] (-3,0) rectangle (5,3);
+\fill [color=yellow] (-3,0) rectangle (5,-1.5);
+\draw (-3,0) -- (5,0);
+\foreach  \z in {0.5,1,...,2.5}
+        {\draw[dashed] (-3,\z) -- ++(8,0);
+         \draw[->, very thick](0,\z) -- ++(\z+1,0); };
+\draw (0,3) -- (0,-1) -- ++(4,4);
+\node at (0,-0.5)[left] {$b$};
+\draw[->] (6,0) -- node[left] {$z$} ++(0,1.5);
+\draw[->] (6,0) -- node[below] {$x$} ++(1.5,0);
+
+\node at (5,-0.7)[right] {Flat Surface};
+\renewcommand{\baselinestretch}{1.00}
+\node at (5,2.3)[right,align=left]{Laminar flow, streamlines \\ parallel to surface};
+%\node at (5,2.3) [right,align=left] {Laminar Flow,\\ with Streamlines\\Parallel to Surface};
+
+\end{tikzpicture}
+\caption{Simple shear.}\label{simpleshear}
+\end{figure}
+
+The laminae \emph{shear} past each other, giving rise to the viscous force.  The \emph{shear rate} is simply the velocity gradient: the rate of change of (parallel) velocity as we move in the normal direction.
+
+The shear rate has an intuitive physical meaning.  Consider the action of simple shear on an infinitesimal cube of fluid: the cube starts with all sides at right angles, and is deformed into a parallelipiped.  The internal angle $\theta$ starts at $90^{\circ}$ and gets smaller.  In timeslice $\Delta t$ the change in angle $\Delta \theta$ causes the deformation shown in Figure (\ref{sheardeform}).
+
+\clearpage
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+
+\fill[color=yellow] (-1,0) rectangle ++(4,-1.5);
+\draw (-1,0) -- ++(4,0);
+\draw[fill=cyan] (0,0) rectangle ++(2,2);
+\draw (0.2,0) -- ++(0,0.2) -- ++(-0.2,0);
+\node at (0.4,0.4) {$\theta $};
+
+
+\fill[color=yellow] (3.5,0) rectangle ++(5.5,-1.5);
+\draw (3.5,0) -- ++(5.5,0);
+\draw[fill=cyan] (5,0) -- ++(1.4,2) -- ++(2,0) -- ++(-1.4,-2) -- ++(-2,0);
+
+\draw[dashed] (5,0) -- node[left]{$r$} ++(0,2) -- node [above]{$\Delta t \; r \frac{\partial u}{\partial z}$} ++(1.4,0);
+\draw[dashed] (5,2) arc (90:55:2cm);
+\node at (5.6,1.6) {$s$};
+
+\draw (5.2,0) arc (0:55:0.2cm);
+\node at (5.6,0.3) {$ \theta$};
+
+\end{tikzpicture}
+\caption{Simple shear deforms an infinitesimal cube of fluid.}\label{sheardeform}
+\end{figure}
+
+
+In timeslice $\Delta t$, the top of the cube moves distance $\Delta t \, r \partial_z u$, and the angle changes by $\Delta \theta = s/r$.  For sufficiently small $\Delta t$, $s$ is much smaller than $r$, and $s \simeq \Delta t \, r \partial_y u$, so that $\Delta \theta \simeq \Delta t \, \partial_z u$.  In the limit $\Delta t \rightarrow 0$:
+
+\begin{equation}
+\text{shear rate} = \frac{d \theta}{d t} = \frac{\partial u}{\partial z}
+\end{equation}
+
+
+\subsection{Oblique Shear and the Velocity Gradient Tensor}
+If the surface is still flat, but \textbf{not} oriented such that the surface maps nicely to the plane $z=0$, as in Figure (\ref{obliqueshear}), then the shear rate must be defined with vector derivatives.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\fill[color=cyan] (-3,-1.5) rectangle (5,3);
+\fill [color=yellow] (-3,-1.5) -- (-3,1) -- (4.5,-1.5);
+\draw (-3,1) -- (4.5,-1.5);
+
+\draw[->] (6,-1) -- node[left] {$z$} ++(0,1.5);
+\draw[->] (6,-1) -- node[below] {$x$} ++(1.5,0);
+
+%\node at (5,-0.7)[right] {Flat Surface};
+%\node at (5.2,1.8) [right,align=left] {Laminar Flow,\\ with Streamlines\\Parallel to Surface,\\but oblique to\\coordinates};
+
+
+\clip (-2.9,-1.6) rectangle ++(13,4.5);
+\foreach  \z in {0.5,1,...,2.5}
+        {\draw[dashed] (-3,\z*1.054 + 1) -- ++(8,-2.66);
+         \draw[->, very thick](0.316*\z, 0.949* \z) --
+          ++(0.949*\z + 0.949,- 0.316*\z - 0.316); };
+\draw (1,3) -- (-.316,-0.949) -- ++(5,2.5);
+\node at (-0.158,-0.4)[left] {$b$};
+
+\renewcommand{\baselinestretch}{1.00}
+\node at (5.2,1.8)[right,align=left] {Laminar flow, streamlines \\ parallel to surface but \\ oblique to coordinates};
+
+
+\end{tikzpicture}
+\caption{Oblique shear.}\label{obliqueshear}
+\end{figure}
+
+We introduce the unit vectors normal and tangent to the surface, $\vec{n}$ and $\vec{t}$. Then the tangential component of velocity is $ \vec{u} \cdot \vec{t}$.  
+Because the streamlines are parallel to the flat surface, $\vec{u}$ is parallel to $\vec{t}$, so that $\vec{u} \cdot \vec{t}$ is in fact the \emph{magnitude} of $\vec{u}$.
+
+We can define the shear rate as the rate of change of the tangential velocity in the normal direction. That is, the tangential component of the directional derivative of velocity in the normal direction.
+The directional derivative of the velocity in the normal direction is $ \vec{n} \cdot \nabla \vec{u} $, and its tangential component is $ \vec{n} \cdot \nabla \vec{u} \cdot \vec{t}$.  See the schematic of Figure (\ref{flatshearrate}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\fill[color=white] (-3,-1.5) rectangle (5,3);
+\fill [color=yellow] (-3,-1.5) -- (-3,1) -- (4.5,-1.5);
+\draw (-3,1) -- (4.5,-1.5);
+
+%\draw[->] (6,-1) -- node[left] {$z$} ++(0,1.5);
+%\draw[->] (6,-1) -- node[below] {$x$} ++(1.5,0);
+
+\draw[ultra thick, ->] (0,0) -- node[left]{$\vec{n}$} (0.667,2);
+\draw[ultra thick, ->] (0,0) -- node[below]{$\vec{t}$} (2,-0.667);
+
+\draw[ultra thick, ->] (0.667,2) --  +(1.5,-0.5);
+\node at (1.7,2.1) {$\vec{n} \cdot \nabla \vec{u}$};
+\draw[dashed] (0,0) -- (2.167,1.5);
+
+\draw (4,0) -- node[left]{1} ++(0,2.108) -- node[above]{$\vec{n} \cdot \nabla \vec{u} \cdot \vec{t}$} +(1.581,0);
+\draw[dashed] (4,0) -- ++(1.581,2.108);
+
+\node at (4.8,2.9) {Magnitudes:};
+\node at (5.5,0.5)[right,align=left] {Shear Rate\\ = $\frac{\vec{n} \cdot \nabla \vec{u} \cdot \vec{t}}{1}$\\ = $ \vec{n} \cdot \nabla \vec{u} \cdot \vec{t}$};
+\end{tikzpicture}
+\caption{The shear rate at a flat surface of arbitrary orientation.}\label{flatshearrate}
+\end{figure}
+
+Thus for a \emph{flat} surface, with arbitrary coordinates, the shear rate is
+\begin{equation}
+\vec{n} \cdot \nabla \vec{u} \cdot \vec{t}
+\end{equation}
+
+%\clearpage Arbitrary 
+\subsection{Curved Surface and Deformation Rate Tensor}
+
+
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\clip (-4,-1.5) rectangle (4,3);
+\fill[color=cyan] (-4,-1.5) rectangle (4,3);
+\draw[fill=yellow] (0,-4) circle (4cm);
+
+\foreach \k in {0.5cm,1cm,1.5cm,2cm,2.5cm}
+           {
+           \draw[dashed] (0,-4) circle (4cm + \k);
+           \draw[ultra thick, ->] (0,\k) -- ++( 1.5 + \k,0);
+           }
+
+
+
+%\draw[fill=cyan] (0,0) rectangle ++(2,2);
+
+\end{tikzpicture}
+\caption{Laminar flow over a non-flat surface.}\label{nonflat}
+\end{figure}
+
+But what if the surface is not flat?  (Like Figure (\ref{nonflat}).)
+
+It is tempting to assume the shear rate is the same as in the case of the generalized flat surface, as shown in the schematic of Figure (\ref{sameshear}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\clip (-4,-1.5) rectangle (6,3);
+
+\draw[fill=yellow] (0,-4) circle (4cm);
+
+\draw (0,0) -- node[left]{1}  ++(0,2) -- node[above] {$ \vec{n} \cdot \nabla \vec{u} \cdot \vec{t}$} ++(1.7,0);
+\draw[dashed] (0,0) -- ++(1.7,2);
+
+\node at (1,1)[right] {shear rate = $ \vec{n} \cdot \nabla \vec{u} \cdot \vec{t}$ ?};
+
+\end{tikzpicture}
+\caption{Is the shear rate the same as for a flat surface?}\label{sameshear}
+\end{figure}
+
+But consider the \emph{possible} action on an infinitesimal cube of fluid shown in Figure (\ref{cuberotates}).
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{scope}
+    \clip (-2.5,-1.5) rectangle (2.5,3);
+
+    \foreach \k in {0.5cm, 1cm, 1.5cm,2cm,2.5cm}
+              {
+              \draw[dashed] (0,-2.5) circle (2.5cm + \k);
+              }
+    \draw[fill=yellow] (0,-2.5) circle (2.5cm);
+\end{scope}
+
+\draw[fill=cyan] (0,0) rectangle ++(2,2);
+\draw (0.2,0) |- (0,0.2);
+
+\node at (0.2,0.4)[right] {$\theta = 90^{\circ}$};
+
+
+\clip (3.2,-1.5) rectangle (8.5,3);
+
+\foreach \k in {0.5cm, 1cm, 1.5cm,2cm,2.5cm}
+              {
+              \draw[dashed] (5.5,-2.5) circle (2.5cm + \k);
+              }
+
+\draw[fill=yellow] (5.5,-2.5) circle (2.5cm);
+\draw[fill=cyan] (5.8,0) -- ++(0.5,2)-- ++(2,-0.5) --++(-0.5,-2) -- ++(-2,0.5);
+\draw (5.8,0) -- ++(0.05,0.2) -- ++(0.2,-0.05) -- ++(-0.05,-0.2) -- ++(-0.2,0.05);
+
+\node at (5.9,0.4)[right] {$\theta$ still $90^{\circ}$!};
+
+\end{tikzpicture}
+\caption{An infinitesimal cube may rotate without deforming.}\label{cuberotates}
+\end{figure}
+
+The infinitesimal cubical element has \emph{rotated} (and perhaps translated) but \emph{not deformed.}
+The laminae have \emph{not} slid past each other, and the cube has not been subjected to shear.  There will be no viscous stress operating within the cube.
+
+In this case, $ \vec{n} \cdot \nabla \vec{u} \cdot \vec{t}$ is not the shear rate of the cube, but the rate of rotation (angular velocity).  To get the true shear rate, we need to somehow remove the rotation.
+
+The velocity gradient tensor (and Fr\'{e}chet derivative) \emph{linearize} the flow field. $\nabla \vec{u}$ is a linear transformation of a direction vector (the result being the correction vector).  Geometrically, a linear transformation can be decomposed into a rotation, an area-preserving deformation, and an expansion.  Following the exposition in the textbook \cite{Pozrikidis1997} of C. Pozrikidis:
+
+\begin{equation}
+\nabla \vec{u} = \mathbf{\Xi} + \mathbf{E} + \frac{1}{2} (\nabla \cdot \vec{u})  \mathbf{I}
+\end{equation}
+
+The rotation is represented in the \textbf{vorticity tensor}, $\mathbf{\Xi}$, the deformation in the \textbf{deformation rate tensor}, $\mathbf{E}$, and the expansion in $ \frac{1}{2} (\nabla \cdot \vec{u}) \mathbf{I}$
+
+Working, for clarity, with 2-dimensional flow only, the vorticity tensor is:
+\begin{equation}
+\mathbf{\Xi} = \frac{1}{2}(\nabla \vec{u} - \nabla \vec{u}^T) = 
+\frac{1}{2}
+\begin{bmatrix}
+0  & \partial_x v - \partial_y u \\
+\partial_y u - \partial_x v  & 0
+\end{bmatrix}
+\end{equation}
+
+The deformation rate tensor is:
+\begin{equation}
+\mathbf{E} = \frac{1}{2}(\nabla \vec{u} + \nabla \vec{u}^T) - \frac{1}{2}(\nabla \cdot \vec{u}) \mathbf{I} = 
+\frac{1}{2} 
+\begin{bmatrix}
+\partial_x u - \partial_y v  & \partial_x v + \partial_y u  \\
+\partial_y u + \partial_x v  & \partial_y v - \partial_x u
+\end{bmatrix}
+\end{equation}
+
+The expansion rate tensor is:
+\begin{equation}
+\frac{1}{2}(\nabla \cdot \vec{u}) \mathbf{I} =
+\frac{1}{2}
+\begin{bmatrix}
+\partial_x u + \partial_y v  &  0  \\
+0  &  \partial_x u + \partial_y v
+\end{bmatrix}
+\end{equation}
+
+We will deal with liquids, which we assume to be incompressible.  Thus the divergence vanishes:
+\begin{equation}
+\nabla \cdot \vec{u} = 0
+\end{equation}
+Therefore, the expansion term vanishes, and the deformation rate tensor simplifies to:
+\begin{equation}
+\mathbf{E} = \frac{1}{2}(\nabla \vec{u} + \nabla \vec{u}^T) = 
+\frac{1}{2}
+\begin{bmatrix}
+2 \partial_x u   & \partial_x v + \partial_y u  \\
+\partial_y u + \partial_x v  &  2 \partial_y v
+\end{bmatrix}
+\end{equation}
+
+So for incompressible fluids, the linearized flow field is fully described by two terms, the \emph{antisymmetric} and \emph{symmetric} parts of the velocity gradient tensor:
+\begin{equation}
+\nabla \vec{u} =
+\frac{1}{2}(\nabla \vec{u} - \nabla \vec{u}^T) +
+\frac{1}{2}(\nabla \vec{u} + \nabla \vec{u}^T) 
+ = \mathbf{\Xi} + \mathbf{E}
+\end{equation}
+
+We have solved our problem: removing the rotational transforms from the velocity gradient tensor is as simple as $\nabla \vec{u} - \mathbf{\Xi} = \mathbf{E}$.  So the deformation rate tensor $\mathbf{E}$ contains all transformations of the velocity gradient tensor \emph{other} than rotation.  Specifically, it must describe all shear.
+
+We illustrate this in a simple example of 2-dimensional flow, where the normal and tangent vectors happen to align with the coordinate axes, as shown in Figure (\ref{shearrate}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\everymath{\displaystyle}
+
+\begin{scope}
+    \clip (-2.5,-1.5) rectangle (2.5,1);
+    \draw[fill=yellow] (0,-2.5) circle (2.5cm);
+\end{scope}
+
+
+\draw (0,0) -- node[left] {1} ++(0,2) -- node[above]{$\partial_y u $} ++(1,0);
+\draw (0,0) -- node[below]{1} ++(2,0) -- node[right]{$\partial_x v$} ++(0,0.5);
+
+\draw[color=red,ultra thick] (1,2)-- (0,0) -- (2,0.5);
+\draw[dashed] (1,2) -- (0,0) -- (2,0.5);
+
+\draw (0.4,0.1) arc (10:60:0.4cm);
+\node at (0.5,0.4) {$\theta$};
+
+\node at (2.2,1.7) [right] {$\frac{d\theta}{dt} = \partial_y u + \partial_x v$};
+
+\draw[->] (-4,0) -- node[left] {$y$} ++(0,1.5);
+\draw[->] (-4,0) -- node[below] {$x$} ++(1.5,0);
+
+\end{tikzpicture}
+\caption{The true shear rate at a point where the normal and tangent vectors align with the coordinate axes.}\label{shearrate}
+\end{figure}
+
+We see that the true shear rate at this point is $\partial_y u + \partial_x v$. The normal and tangent vectors at this point are:
+\begin{equation}
+\vec{n} = 
+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}
+, \quad
+\vec{t} =
+\begin{bmatrix}
+1 \\ 0
+\end{bmatrix}
+, \quad
+\end{equation}
+ What is $\vec{n} \cdot 2 \mathbf{E} \cdot \vec{t}$ ?
+\begin{equation}
+\vec{n} \cdot 2 \mathbf{E} \cdot \vec{t} = 
+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+2 \partial_x u   & \partial_x v + \partial_y u  \\
+\partial_y u + \partial_x v  &  2 \partial_y v
+\end{bmatrix}
+\begin{bmatrix}
+1 \\ 0
+\end{bmatrix}
+=
+\partial_y u + \partial_x v
+\end{equation}
+
+
+We have intuitively confirmed that for a general fluid flow, the shear rate associated with an infinitesimal plane is:
+\begin{equation}
+\text{shear rate} = \frac{d\theta}{dt} = \vec{n} \cdot 2 \mathbf{E} \cdot \vec{t}
+\end{equation}
+where $\vec{n}$ and $\vec{t}$ are the unit normal and tangent vectors to the plane.
+
+\subsection{Generalized Slip Condition}
+
+We have discovered the generalized shear rate: the rate of shear of an infinitesimal plane sliding over another infinitesimal plane.  If the plane is on the solid surface, then we can now write down a generalized Navier-type slip condition: the tangential velocity on the plane is proportional to the shear rate at the plane.  The constant of proportionality is of course the slip length $b$.
+
+\begin{equation}
+\vec{u} \cdot \vec{t} = b \; \vec{n} \cdot 2 \mathbf{E} \cdot \vec{t}
+\end{equation}
+
+Now $\mathbf{E}$ is symmetric, so $\vec{n} \cdot \mathbf{E} = \mathbf{E} \cdot \vec{n}$.  Furthermore, both sides of the equation are a dot product with $\vec{t}$, so we may simplify to:
+\begin{equation}
+\vec{u} = b \; 2 \mathbf{E} \cdot \vec{n}
+\end{equation}
+
+Or,
+\begin{equation}
+\vec{u} = b \, (\nabla \vec{u} + \nabla \vec{u}^T) \cdot \vec{n}
+\label{eq:genslip}
+\end{equation}
+
+
+\vspace{1em}
+
+It remains only to note that the slip length could be a \emph{function} of position on the boundary, and the boundary on which Equation (\ref{eq:genslip}) holds may also be described by a function. The boundary function will typically be a surface -- a `height' function $h(x,y)$ on the $x,y$ plane.
+
+
+\subsection{Top Boundary Condition}
+
+The simplest type of flow where an effective slip length is meaningful is Couette-like flow, driven by a constant velocity condition at the top of the bulk of fluid.  In a physical system, the constant velocity is provided by plate moving at a constant velocity in the $x$ direction only, located at some height $P$ above the slip surface.  The classic no-slip condition holds on the plate, so fluid at the top of the bulk has the same constant velocity.
+
+In our model, at some height $P$ above the slip surface, there is a constant velocity $u_P$ in the $x$ direction only:
+\begin{equation}
+\vec{u}(x,y,P) = (u_P,0,0)
+\end{equation}
+
+(Incidentally, the homogenization procedure does not actually need this top boundary condition, though the perturbation method does.  This is a strength of the homogenization technique.)
+
+\section{Complete Mathematical Model}
+
+Our mathematical model can now be formally stated.  An bulk of fluid is situated above a boundary surface.  
+The boundary surface is a function on the $x,y$ plane, and the $z$ direction is in general perpendicular to the boundary.
+
+The fluid is an incompressible liquid, so the divergence is zero everywhere in the bulk:
+\begin{equation}
+\nabla \cdot \vec{u} = 0
+\end{equation}
+
+The liquid is Newtonian and the flow has a low Reynolds number, so flow at each point in the bulk obeys Stokes equation:
+\begin{equation}
+\mu \nabla^2 \vec{u} = \nabla p
+\end{equation}
+The velocity of the fluid at each point on the boundary satisfies the generalized slip boundary condition:
+\begin{equation}
+\vec{u} = b \, (\nabla \vec{u} + \nabla \vec{u}^T) \cdot \vec{n}
+\end{equation}
+At some height $P$ above the slip surface, there is a constant velocity $u_P$ in the $x$ direction only:
+\begin{equation}
+\vec{u}(x,y,P) = (u_P,0,0)
+\end{equation}
+
+\vspace*{3em}
+In the next chapter we shall find an expression for the effective slip by finding a \textbf{homogenized} solution to these partial differential equations.
+
+%\begin{center} \vspace{3em} \Coffeecup \end{center}
+
+\iftoggle{compilealone}
+    {
+    \bibliography{Lund_Thesis.bib}
+    \bibliographystyle{plain}
+    }
+
+\end{document}
+
+TODO: clean up headings. Perhaps mention `directional derivative' and linearizing flow field in beginning.  Could also mention `vector gradient' and `tensor derivative' as meanings of $\nabla \vec{u}$, and `covariant derivative' as interpretation of $\nabla$.  But this seems unnecessary clutter.
+
+ Maybe think about shear vector.  On second thoughts, no.  There is NO intuitive explanation of shear vector; I remember struggling with this 3 years ago.  Stress vector almost as bad.  Stress tensor is good for completeness, but unnecessary for this thesis. KISS.
+
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%   Old section introducing Navier Stokes equation.
+
+\clearpage
+\section*{Modeling the Bulk Fluid: Navier Stokes (Old)}
+
+A fluid mechanics problem starts with a bulk of fluid.  At each point in the fluid, the fluid has a velocity, thus, the fluid bulk is modeled as a vector field in 3-D space, as shown in Figure (\ref{bulkfluid}).
+%  In diagrams, representative vectors appear as arrows, with the length of the arrow proportional to the magnitude of the vector.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+
+\fill[color=cyan] (0,0) rectangle (10,5);
+\foreach \x in {1,2,3,4,5,6,7,8,9}
+    \foreach \y in {1,2,3,4}
+         \draw[->,thick](\x,\y) -- +(\y/5,0);
+
+\end{tikzpicture}
+\caption{A bulk of fluid with a velocity vector field.}\label{bulkfluidold}
+\end{figure}
+
+
+\subsection*{Incompressible Liquid}
+
+For a vector field, a \textbf{flux} can be defined.  If the fluid is an incompressible liquid, then the flux into a volume element will exactly equal the flux out of the volume element.  This is expressed in the mathematical model by stating that the  divergence of the velocity vector field is zero everywhere:
+\begin{equation}
+\nabla \cdot \vec{u} = 0
+\end{equation}
+Incompressibility is a good approximation for liquids, and also turns out to be very mathematically convenient.
+%This identity turns out to be extremely useful in making the ensuing mathematics tractable.
+
+
+
+\subsection*{Viscous Newtonian Liquid, Old. Rewrite Below.}
+
+An interesting fluid will also have other properties that hold at each point in the fluid: density $\rho$, pressure $p$, temperature.  Finally, fluids may have a \emph{viscosity} at each point, an `internal friction' that enables velocity to propagate through the fluid.  Viscosity is in fact the diffusion of momentum at the molecular level.
+If the viscosity is constant throughout the fluid, and does not depend on velocity or velocity gradients, then the fluid is termed `Newtonian'. 
+
+Viscosity acts with velocity gradients to produce \emph{forces} in the fluid. 
+Consider an infinitesimal cubical volume element of fluid with velocity $\vec{u}$; for clarity, assume $\vec{u}$ points left-to-right.  Above the element is another fluid element which may have a different velocity.  The difference in velocities is approximately proportional to $\nabla \vec{u}$.  The viscous drag force on the original element is proportional to $\mu \nabla \vec{u}$, where $\mu$ is the coefficient of viscosity.   There is another fluid element below the original element, also causing a viscous drag force.   The \emph{net} viscous drag force on the original element is proportional to the rate of change of the velocity gradient, i.\ e.\ $ \mu \nabla^2 \vec{u}$.
+
+The pressure $p$ is the force per unit area.  It acts on all faces of the fluid element and the \emph{net} force is proportional to the pressure gradient across the volume element, $\nabla p$.  The net pressure force combines with the net viscous force to form the net force on the fluid element.  The net force may cause the mass of the fluid element to accelerate in accordance with Newton's second law.  This law is embodied in the Navier-Stokes equation.
+
+
+% An infinitesimal volume element in the fluid thus has a mass (density $\times$ volume) and experiences forces due to pressure and viscosity.  If we expect the laws of physics to hold in the fluid, then the volume element will obey Newton's second law $F= ma$.  This law is expressed as the Navier-Stokes equation.
+
+If no body forces (eg. gravity) are relevant, and the fluid is \textbf{incompressible}, the Navier-Stokes equation is:
+
+\begin{equation}
+\rho \left( \frac{\partial \vec{u}}{\partial t} + (\vec{u}\cdot \nabla)\vec{u} \right) = -\nabla p +  \mu \nabla^2 \vec{u}
+\end{equation}
+
+If the equation is multiplied by the volume of the infinitesimal fluid element, then
+the left-hand side is the acceleration, and the right-hand side is the force due to the pressure gradient and viscous shear.  The `advection operator'
+ $(\vec{u} \cdot \nabla ) = u \partial_x + v \partial_y $
+ gives the `inertial' term  $ (\vec{u}\cdot \nabla)\vec{u} $.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cut out of section on magnitude of time-dependent velocity term.
+
+%The characteristic time $T = L/U$ was chosen for dimensional convenience, not because it is a typical time scale.  It evaluates to
+%\begin{equation}
+%T = \frac{L}{U} = \frac{0.0001}{0.01} = 0.01 \;\; \text{seconds}
+%\end{equation}
+%
+%Typically, for capillary flow experiments, velocity is constant, once equilibrium is reached. Thus, in general
+%\begin{equation}
+%\frac{\partial \hat{u}}{\partial \hat{t}} = 0
+%\end{equation}
+%In any case,  we can investigate how rapidly the velocity must change for this term to become significant:  If the characteristic velocity \emph{doubles}, and takes \emph{at least} 0.01 seconds to do so, then
+%\begin{equation}
+%\frac{\partial \hat{u}}{\partial \hat{t}} = \frac{1}{[\text{time} \geq 1]}\, \leq \, 1
+%\end{equation}
+%So if velocities in a microfluidic experiment change no quicker than doubling in 1/100th of a second, then the time-dependent term is at most of order one.  But typical capillary flow experiments involve steady flow, so this term vanishes.

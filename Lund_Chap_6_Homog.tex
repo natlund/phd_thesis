@@ -372,7 +372,9 @@ u \; \text{minimizing} \;\;\; \frac{1}{2} \int_{\Omega} |\nabla u|^2 \,dA
 \end{equation}
 
 We shall use this alternative derivation as part of our homogenization procedure.
-We bootstrap by building up from simpler cases:  First, we derive the variational form $ - \int_{\Omega} \nabla u \cdot \nabla g = \int_{\Omega} g f $ directly from the Poisson equation $ \nabla^2 u = f$, which we can think of as the $x$ velocity equation of Stokes flow with the pressure gradient given as (scalar) $f$.
+We bootstrap by building up from simpler cases:  First, we derive the variational form $ - \int_{\Omega} \nabla u \cdot \nabla g \,dA = \int_{\Omega} g f \,dA $ directly from the Poisson equation $ \nabla^2 u = f$, which we can think of as the $x$ velocity equation of Stokes flow with the pressure gradient given as (scalar) $f$.
+
+Note on notation:  In an integral such as $ \int_{\Omega} g f \,dA $, the integration measure $dA$ is implied by the subscript $\Omega$ denoting integration over the domain.  Therefore, to improve readability -- without loss of clarity -- we shall usually drop the integration measures (such as $dA$) from the integrals.
 
 \subsection{Variational Form of Poisson Equation inspired by Stokes Flow}
 
@@ -411,6 +413,7 @@ On some domain $\Omega$, as in Figure (\ref{domain}), the Poisson equation holds
 \caption{A domain $\Omega$ with boundary $\Gamma$.}\label{domain}
 \end{figure}
 
+\clearpage
 We introduce a \emph{test function} $g$, from the appropriate Sobolev space:  $g$ and its first derivatives are integrable on $\Omega$, and $g$ is zero on the boundary $\Gamma$:
 \begin{equation}
 g \in H_0^1(\Omega) \qquad (g=0 \; \text{on} \; \Gamma)
@@ -523,7 +526,7 @@ So we substitute this, to get our variational form:
 = \int_{\Omega} g f
 \end{equation}
 
-
+\clearpage
 \section{Variational Form of Stokes Flow with\\ Tensor Slip}
 
 \subsection{Tensor Identities}

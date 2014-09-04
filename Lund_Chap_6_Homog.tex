@@ -445,7 +445,7 @@ then substitute $g \nabla^2 u = \nabla \cdot (g \nabla u) - \nabla u \cdot \nabl
 Therefore the first term of Eq. (\ref{eq:poissint}) is:
 \begin{equation}
 \int_{\Omega} \nabla \cdot (g \nabla u) = 
-\int_{\Gamma} (g \nabla u) \cdot \vec{b} = \int_{\Gamma} g (\nabla u \cdot \vec{n})
+\int_{\Gamma} (g \nabla u) \cdot \vec{n} = \int_{\Gamma} g (\nabla u \cdot \vec{n})
 = \int_{\Gamma} g \frac{\partial u}{\partial n}
 \end{equation}
 Now the test function $g$ was defined to be zero on $\Gamma$, thus
@@ -888,7 +888,7 @@ Define a sequence of surface functions by:
 \begin{equation}
 h_n = \frac{1}{n} h(nx, ny)
 \end{equation}
-As $n\to \infty$, the amplitude $h \to 0$.  This ensures convergence to a plane.
+As $n \to \infty$, the amplitude of $h_n \to 0$.  This ensures convergence to a plane.
 Similarly, define a sequence of slip functions by:
 \begin{equation}
 b_n = b(nx,ny)

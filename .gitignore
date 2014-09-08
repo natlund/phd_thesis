@@ -5,6 +5,7 @@
 *.nav
 *.out
 *.snm
+*.gz
 *~
 /FEM
 /Chapter\ 1\ References

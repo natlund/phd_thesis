@@ -2,6 +2,9 @@
 *.bbl
 *.blg
 *.log
+*.nav
+*.out
+*.snm
 *~
 /FEM
 /Chapter\ 1\ References

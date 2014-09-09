@@ -1,0 +1,38 @@
+
+real periods = 1;
+real amp = 1.0;
+real m = 20;
+
+
+real width = 10.0;
+real height = 2.0*width;
+real quart = width/4.0;
+real bmin = 1.0;    // Minimum slip length.
+
+real k = periods*2*pi/width;
+real h = amp/k;    // so surface height and period reduce together. 
+
+border top(t=width,0)        {x=t;    y=height;}
+border upperleft(t=height,quart)   {x=0;    y=t;}
+border lowerleft(t=quart,0) {x=0;    y=t;}
+border upperright(t=quart,height)  {x=width; y=t;}
+border lowerright(t=0,quart){x=width; y=t;}
+border bottom(t=0,width)     {x=t;    y=0;}
+border slip(t=0,width)       {x=t;    y=h*sin(k*x);}
+
+// The mesh is finegrained at and near the sinusoidal surface.
+// The mesh is adaptive; more triangles are used as the period
+// decreases.  But, can force the use of many triangles even
+// for long period sinewave by passing the parameter m.
+
+int finemesh = periods*(m<periods) + m*(m>=periods);
+int mainmesh = finemesh*(finemesh<100) + 80*(finemesh>=100);
+// mainmesh is limited to 80 mesh points; any more kills FreeFem++
+
+cout << "finemesh: " << finemesh << endl;
+cout << "mainmesh: " << mainmesh << endl << endl;
+
+mesh Th = buildmesh(slip(6*finemesh)+lowerright(finemesh)+upperright(3.0*mainmesh)
+                    +top(1.5*mainmesh)+upperleft(3.0*mainmesh)+lowerleft(finemesh));
+
+plot(Th);

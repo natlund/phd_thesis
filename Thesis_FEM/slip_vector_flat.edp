@@ -1,0 +1,139 @@
+// slip_vector_flat.edp
+
+// Callable from command line (or Python) like this:
+// FreeFem++ Natslip.edp 40 1 5 4
+// Passing parameters 'm' = 40,
+//                   'bmin' = 1, 'bmax' = 5, 'periods' = 4
+// Note:
+// Domain height 'P' is 2000, domain width = 1000
+
+int m;        // number of mesh nodes on top boundary
+real bmin;   // Minimum slip length
+real bmax;   // Maximum slip length
+int periods;   // number of periods in domain.
+
+try { string periodstr = ARGV[ARGV.n-1];
+      string   bmaxstr = ARGV[ARGV.n-2];
+      string   bminstr = ARGV[ARGV.n-3];
+      string      mstr = ARGV[ARGV.n-4];
+
+      periods = atoi(periodstr); // zero if string not a number.
+      bmin = atoi(bminstr);
+      bmax = atoi(bmaxstr);
+      m = atoi(mstr);
+
+      cout << "Parameter passed:       m = " << mstr << endl;
+      cout << "       converted:       m = " << m <<endl;
+      cout << "Parameter passed:    bmin = " << bminstr << endl;
+      cout << "       converted:    bmin = " << bmin <<endl;
+      cout << "Parameter passed:    bmax = " << bmaxstr << endl;
+      cout << "       converted:    bmax = " << bmax <<endl;
+      cout << "Parameter passed: periods = " << periodstr << endl;
+      cout << "       converted: periods = " << periods <<endl;
+      cout << endl;
+
+      if (m == 0) {m = 20;}  // If no m passed, set default m=20.
+      real testifcastsuccessful = 1.0/periods;
+    }
+
+catch (...) { cout << endl;
+              cout << "No valid parameters passed; defaults used.";
+              cout << endl << endl;
+              periods = 1; bmin = 100.0; bmax = 500.0; m = 20;
+            }
+
+// ################################   Boundary
+
+real width = 1000.0;
+real height = 2.0*width;
+real side = width*2.0;   // size of upper sides of domain
+real quart = width/4.0; 
+
+real L = width/periods; // L is length of period
+// Want sin(kx) = sin(2 pi) when x = L.  Hence kL = 2 pi, so k = 2 pi/ L
+real k = 2*pi/L; 
+real h = 0; // Amplitude h = 0 for flat surface.
+
+border top(t=width,0)        {x=t;    y=height;}
+border upperleft(t=height,quart)   {x=0;    y=t;}
+border lowerleft(t=quart,0) {x=0;    y=t;}
+border upperright(t=quart,height)  {x=width; y=t;}
+border lowerright(t=0,quart){x=width; y=t;}
+border bottom(t=0,width)     {x=t;    y=0;}
+
+// ###############################  Triangulated Mesh
+
+// The mesh is finegrained at and near the mixed-slip surface.
+// The mesh is adaptive; more triangles are used as the period
+// decreases.  But, can force the use of many triangles even
+// for long period by passing the parameter m.
+
+int finemesh = periods*(m<periods) + m*(m>=periods);
+int mainmesh = finemesh*(finemesh<100) + 80*(finemesh>=100);
+// mainmesh is limited to 80 mesh points; any more kills FreeFem++
+
+cout << "finemesh: " << finemesh << endl;
+cout << "mainmesh: " << mainmesh << endl << endl;
+
+mesh Th = buildmesh(bottom(6*finemesh)+lowerright(finemesh)+upperright(3.0*mainmesh)
+                    +top(1.5*mainmesh)+upperleft(3.0*mainmesh)+lowerleft(finemesh));
+
+plot(Th);
+
+// #######################################  Finite Element Space
+
+fespace Vh(Th, P2, periodic = [[lowerleft,y],[lowerright,y],
+                               [upperleft,y],[upperright,y]]);
+
+Vh ux, uy, vx, vy;   // unknown and test functions.
+
+// ############################  Boundary Conditions
+
+func farshear = 1.0;    // imposed far-field shear rate.
+
+real bdiff = bmax - bmin;    // Amplitude of slip length variation.
+//func b = bmin+bdiff + bdiff*sin(k*x); //sinusoidal slip.
+func b = bmin + bdiff*(sin(k*x)<0);  // Square wave slip; high slip in valleys of sine.
+// Boolean (a>0) evaluates to 0 or 1
+
+// ########################################################################
+// Full vector Stokes equations with full generalized
+// Navier slip condition using Deformation Rate Tensor.
+
+macro epsilon(u1,u2) [dx(u1), dy(u2), (dy(u1)+dx(u2))/sqrt(2)] // EOM
+// Copied from Philip Zhang's script. Need to understand...
+
+problem sliplaplace([ux,uy],[vx,vy]) = 
+        int2d(Th) ( epsilon(ux,uy) '*epsilon(vx,vy)*2) // Stokes
+      + int1d(Th,top) ( -farshear*vx )    // top shear BC
+      + on(top, uy = 0)                   // x flow only at top.
+      + int1d(Th,bottom) ( ux*vx/b + uy*vy/b )  // slip BC.
+      ;
+
+sliplaplace;   // Solve the problem
+
+//plot([ux,uy]);
+plot(ux);
+
+// Shear rate at top of domain is set to unity.
+// Therefore, if no slip, then top velocity = height.
+// Generally, top velocity = height + b_far.
+// Top velocity will be the maximum of the flow field u.
+real bfar = ux[].max - height;
+
+real bharm = 1/ ( ( 1/bmin + 1/bmax )/2 ) ;
+real bavg = (bmin + bmax)/2;
+
+cout << endl;
+cout << "ux(0.25L,2000): " << ux(0.25*L,2000) << endl;
+cout << "ux(0.75L,2000): " << ux(0.75*L,2000) << endl;
+cout << "      ux[].max: " << ux[].max << endl;
+cout << "     P: " << height << endl;
+cout << "     L: " << L << endl;
+cout << "     h: " << h << endl;
+cout << " b_min: " << bmin << endl;
+cout << "b_harm: " << bharm << endl; //"Harmonic mean slip length: "
+cout << " b_far: " << bfar << endl;
+cout << " b_avg: " << bavg << endl; //"Mean slip length: "
+cout << " b_max: " << bmax << endl;
+cout << endl;

@@ -24,9 +24,10 @@
 
 \begin{frame}
 \begin{itemize}
-\item Elevator speech
-\item Regimes of Applicability, and What Next?
+\item Elevator Speech
+\item Regimes of Applicability -- can we extend?
 \item Limitations of Homogenization
+\item What Next?
 \end{itemize}
 
 \end{frame}
@@ -183,7 +184,8 @@ Single parameter to express the friction of a surface.
 
 \node at (5,-1) {Surface is Function $h(x,y)$};
 
-\draw[<->] (0.68,-0.3) --node[below] {$L$} ++(0.9,0);
+\draw[<->] (0.68,-0.3) -- node[below] {$L$} ++(0.9,0);
+\draw[<->] (-0.3,0) -- node[left] {$P$} ++(0,4);
 
 \end{tikzpicture}
 
@@ -226,7 +228,7 @@ Thought experiment about what happens when the period $L$ becomes infinitely sma
 \node at (5.078,-2.6) {$n+1$};
 \node at (10.35,-2.6) {limit};
 
-%\draw[<->] (7,0) -- node[right]{$P$} ++(0,4);
+\draw[<->] (7,0) -- node[right]{$P$} ++(0,4);
 
 \end{tikzpicture}
 
@@ -294,7 +296,7 @@ L \ll b, P
 (Still good approximation even if $L \sim b \ll P$.)
 
 \vspace{1em}
-Simple mean good approximation when slip lengths $b$ much smaller than other lengths:
+Simple mean is good approximation when slip lengths $b$ much smaller than other lengths:
 \begin{equation}
 \beff = \left< b \right>
 \quad \text{when} \quad
@@ -445,13 +447,14 @@ b \ll L, P
 \end{frame}
 
 
-\begin{frame}{What next?}
+\begin{frame}{Can we homogenize No-slip/Perfect-slip cases?}
 
 No exact results for case of rough surface with $b=0$ and $b \sim L$.
 
 \vspace{1em}
 Can we apply homogenization?
 
+\vspace{1em}
 No.
 
 \end{frame}
@@ -507,12 +510,68 @@ Substitute this, to get variational form:
 $\therefore$ Require $b$ in form $\displaystyle \frac{1}{b}$.
 
 \vspace{1em}
-If $b=0$ anywhere, $\frac{1}{b}$ is undefined.
+If $b=0$ anywhere, $\frac{1}{b}$ is undefined. \phantom{word}Cannot homogenize.
 
 \end{frame}
 
 
+\begin{frame}{Another Subtlety}
 
+Mathematically, expect that  $\beff = \left< \frac{1}{b} \right>^{-1}$ is a good approximation when $L$ smaller than other length scales: $L \ll b, P$.
+
+\vspace{1em}
+But it is still a good approximation when $L \sim b \ll P$.
+
+\vspace{1em}
+Why?
+
+\vspace{1em}
+%Slip $b$ has units of length, but is it an important length scale?
+
+\end{frame}
+
+
+\begin{frame}{What Next?}
+\begin{itemize}
+\item Learn FEM.  Natural step after having learned Variational Formulation.
+\item Apply homogenization to multiscale slip systems.
+\item Apply Homogenization to other physical systems.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Superhydrophobic Surfaces Superseded?}
+
+
+``[Harvard's] SLIPS technology combines a lubricated film on a porous solid..."
+\begin{center}
+\includegraphics[scale=0.5]{slips-1a-250x91.jpg}
+\phantom{word}
+\includegraphics[scale=0.5]{slips-1b-250x78.jpg}
+\end{center}
+
+``...to create low-cost surfaces that exhibit ultra-liquid repellency, self-healing, optical transparency, pressure stability and self-cleaning."
+
+\begin{center}
+\includegraphics[scale=0.5]{slips-2-250x178.jpg}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}{Acknowledgements}
+
+Thanks to supervisor Professor Shaun Hendy.
+
+\vspace{1em}
+Special thanks to Dr Xingyou `Philip' Zhang at Callaghan Innovation,
+for sharing his 10+ years of research into homogenization.
+
+\vspace{1em}
+Thanks to the examiners Dr Michele Governale, Dr Mathieu Sellier, and Dr Troy Farrell, for their hard work and gracious comments.
+
+\end{frame}
 
 
 \end{document}

@@ -33,7 +33,19 @@
 
 \end{frame}
 
-\begin{frame}{Motivation}
+
+\begin{frame}{Inspiration}
+
+\begin{center}
+\includegraphics[scale=0.52]{lotus-leaf.jpg}
+\phantom{gap}
+\includegraphics[scale=0.5]{superhydrophobic.jpg}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}{Real-world Motivation}
 Lab-on-a-chip
 
 \begin{center}
@@ -516,27 +528,14 @@ If $b=0$ anywhere, $\frac{1}{b}$ is undefined. \phantom{word}Cannot homogenize.
 \end{frame}
 
 
-\begin{frame}{Another Subtlety}
-
-Mathematically, expect that  $\beff = \left< \frac{1}{b} \right>^{-1}$ is a good approximation when $L$ smaller than other length scales: $L \ll b, P$.
-
-\vspace{1em}
-But it is still a good approximation when $L \sim b \ll P$.
-
-\vspace{1em}
-Why?
-
-\vspace{1em}
-%Slip $b$ has units of length, but is it an important length scale?
-
-\end{frame}
 
 
-\begin{frame}{What Next?}
+\begin{frame}{What Next In Slip?}
 \begin{itemize}
-\item Learn FEM.  Natural step after having learned Variational Formulation.
+%\item Learn FEM.  Natural step after having learned Variational Formulation.
 \item Apply homogenization to multiscale slip systems.
 \item Apply homogenization to other physical systems.
+\item Look at new SLIPS surfaces.
 \end{itemize}
 
 \end{frame}
@@ -566,7 +565,7 @@ Why?
 \includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_mesh_16.png}
 \includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_streamlines_16.png}
 \end{center}
-
+At least 6 mesh points per period.
 \end{frame}
 
 
@@ -625,5 +624,21 @@ then
 \begin{equation}
 f_n \cdot h_n \rightharpoonup \text{unknown}
 \end{equation}
+
+\end{frame}
+
+
+\begin{frame}{Another Subtlety}
+
+Mathematically, expect that  $\beff = \left< \frac{1}{b} \right>^{-1}$ is a good approximation when $L$ smaller than other length scales: $L \ll b, P$.
+
+\vspace{1em}
+But it is still a good approximation when $L \sim b \ll P$.
+
+\vspace{1em}
+Why?
+
+\vspace{1em}
+%Slip $b$ has units of length, but is it an important length scale?
 
 \end{frame}

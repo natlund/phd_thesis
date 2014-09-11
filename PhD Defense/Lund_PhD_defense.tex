@@ -22,7 +22,8 @@
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}{Outline}
+
 \begin{itemize}
 \item Elevator Speech
 \item Regimes of Applicability -- can we extend?
@@ -34,29 +35,35 @@
 \end{frame}
 
 
-\begin{frame}{Inspiration}
+\begin{frame}{Scientific Inspiration}
 
+Superhydrophobic surfaces.
 \begin{center}
 \includegraphics[scale=0.52]{lotus-leaf.jpg}
 \phantom{gap}
 \includegraphics[scale=0.5]{superhydrophobic.jpg}
 \end{center}
+Lotus leaf
 
 \end{frame}
 
 
-\begin{frame}{Real-world Motivation}
-Lab-on-a-chip
+\begin{frame}{Real-world Motivation: Lab On A Chip}
 
 \begin{center}
-\includegraphics[scale=0.5]{lab-on-chip.jpg}
+\includegraphics[scale=0.5]{lab-schematic.jpg}
+\end{center}
+\begin{center}
+\includegraphics[scale=0.48]{lab-on-chip.jpg}
+\phantom{gap}
+\includegraphics[scale=0.5]{lab-on-chip-2.jpg}
 \end{center}
 
-Very small pipe: friction dominates
-
-\vspace{1em}
+Very small pipe: friction dominates.
+\hspace{2em}
 How to reduce friction?
 \end{frame}
+
 
 \begin{frame}{Slippery Surfaces}
 
@@ -206,6 +213,7 @@ Single parameter to express the friction of a surface.
 
 \end{frame}
 
+
 \begin{frame}{Solving}
 
 \textbf{Homogenization:}
@@ -253,6 +261,7 @@ Think of system as `perturbed' slightly away from a well-known system (with know
 
 \end{frame}
 
+
 \begin{frame}{Homogenized Solution}
 
 \begin{equation}
@@ -282,6 +291,7 @@ Harmonic mean of intrinsic slip lengths, weighted by area of contact:
 
 \end{frame}
 
+
 \begin{frame}{Perturbative Solutions}
 
 Replicates homogenized solution for special case of flat surface:
@@ -296,6 +306,7 @@ Where $b$ is much smaller than other length scales, $\beff$ is simple average:
 \end{equation}
 
 \end{frame}
+
 
 \begin{frame}{Regimes of Applicability}
 
@@ -320,6 +331,7 @@ b \ll L, P
 
 
 \begin{frame}{Regimes and Results}
+
 \begin{adjustbox}{scale=0.55, center}
 
 \begin{tikzpicture}
@@ -450,7 +462,7 @@ b \ll L, P
 
 \node at (roughother3D) [align=left]
 							{
-							This thesis?
+							This thesis.
 							};
 							
 \end{tikzpicture}
@@ -462,7 +474,7 @@ b \ll L, P
 
 \begin{frame}{Can we homogenize No-slip/Perfect-slip cases?}
 
-No exact results for case of rough surface with $b=0$ and $b \sim L$.
+No exact results for 3-D flow over surface with $b=0$.
 
 \vspace{1em}
 Can we apply homogenization?
@@ -491,7 +503,6 @@ No.
 \end{tikzpicture}
 \end{center}
 
-
 Multiply by test function $g$ and integrate over $\Omega$:
 \begin{equation}
 \int_{\Omega} g \nabla^2 u = \int_{\Omega} g f
@@ -506,6 +517,7 @@ Use vector identity and divergence theorem to get:
 
 \end{frame}
 
+
 \begin{frame}{Limitations of Homogenization 2}
 
 The slip condition on $\Gamma_b$ implies:
@@ -519,15 +531,12 @@ Substitute this, to get variational form:
 = \int_{\Omega} g f
 \end{equation}
 
-
 $\therefore$ Require $b$ in form $\displaystyle \frac{1}{b}$.
 
 \vspace{1em}
 If $b=0$ anywhere, $\frac{1}{b}$ is undefined. \phantom{word}Cannot homogenize.
 
 \end{frame}
-
-
 
 
 \begin{frame}{What Next In Slip?}
@@ -541,36 +550,7 @@ If $b=0$ anywhere, $\frac{1}{b}$ is undefined. \phantom{word}Cannot homogenize.
 \end{frame}
 
 
-\begin{frame}{FEM mesh and streamlines: 1 period}
-
-\begin{center}
-\includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_mesh_1.png}
-\includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_streamlines_1.png}
-\end{center}
-
-\end{frame}
-
-\begin{frame}{FEM mesh and streamlines: 4 periods}
-
-\begin{center}
-\includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_mesh_4.png}
-\includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_streamlines_4.png}
-\end{center}
-
-\end{frame}
-
-\begin{frame}{FEM mesh and streamlines: 16 periods}
-
-\begin{center}
-\includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_mesh_16.png}
-\includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_streamlines_16.png}
-\end{center}
-At least 6 mesh points per period.
-\end{frame}
-
-
 \begin{frame}{Superhydrophobic Surfaces Superseded?}
-
 
 ``[Harvard's] SLIPS technology combines a lubricated film on a porous solid..."
 \begin{center}
@@ -585,6 +565,36 @@ At least 6 mesh points per period.
 \includegraphics[scale=0.5]{slips-2-250x178.jpg}
 \end{center}
 
+\end{frame}
+
+
+\begin{frame}{FEM mesh and streamlines: 1 period}
+
+\begin{center}
+\includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_mesh_1.png}
+\includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_streamlines_1.png}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}{FEM mesh and streamlines: 4 periods}
+
+\begin{center}
+\includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_mesh_4.png}
+\includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_streamlines_4.png}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}{FEM mesh and streamlines: 16 periods}
+
+\begin{center}
+\includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_mesh_16.png}
+\includegraphics[scale=0.4, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_streamlines_16.png}
+\end{center}
+At least 6 mesh points per period.
 \end{frame}
 
 

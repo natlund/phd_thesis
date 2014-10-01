@@ -61,9 +61,56 @@ Such experiments are beyond the scope of this thesis.  However, the next best th
 
 Perhaps the most powerful and versatile numerical method for solving partial differential equations is Finite Element Modelling (FEM).  Many industrial-strength implementations are available; we chose the free and open-source package \textbf{FreeFem++}, available from \url{www.freefem.org} \cite{freefem++}.
 
+The input to FEM software is a precise description of the model, including the size and shape of the domain, and the equations that hold on the domain and its boundaries. The output of an FEM simulation is a velocity field on the domain.  
 
-The input to FEM software is a precise description of the model, including the size and shape of the domain, and the equations that hold on the domain and its boundaries. The output of an FEM simulation is a velocity field on the domain.  In our FEM simulations, we used a model with Laplace's equation holding on a rectangular domain of height $P$, with a fixed shear rate at the top of the domain, periodic boundary conditions on the sides of the domain, and the full tensor slip boundary condition at the bottom of the domain.
+In our FEM simulations, we used a model with Laplace's equation holding on a rectangular domain of height $P$, with a fixed shear rate $\dot{\gamma} $ at the top of the domain, periodic boundary conditions on the sides of the domain, and the full tensor slip boundary condition at the bottom of the domain.  See Figure (\ref{FEMdomain}).
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+
+\draw [domain=0:4.5,samples=200] plot (\x,{ 0.2 * sin(7*\x r)} );
+\draw[dashed] (0,0) -- ++(0,2) (4.5,0) -- ++(0,2);
+\draw[dotted] (0,2) -- ++(4.5,0);
+
+\node at (2.25,-0.5) {$\Gamma_b $};
+\node at (5,1) {$\Gamma_0 $};
+\node at (-0.5,1) {$\Gamma_0 $};
+\node at (1.25,2.5) {$\Gamma_{\mathrm{top}} $};
+\node at (2.25,1) {$\Omega $};
+
+\draw[very thick,->] (3,2) -- ++(0,0.5);
+\draw[very thick,->] (3,2.5) -- ++(0.5,0);
+\draw [dotted](3,2) -- ++(0.6,0.6);
+\node at (3.5, 2.3)[right]{shear rate = $\dot{\gamma}$};
+
+\end{tikzpicture}
+\caption{Domain $\Omega$ with rough slip boundary $ \Gamma_b $, top boundary $\Gamma_{\mathrm{top}}$ and periodic side boundaries $\Gamma_0$.}\label{FEMdomain}
+\end{figure}
+
+The top boundary condition can be expressed in terms of the deformation rate tensor:
+\begin{equation}
+ 2 \mathbf{E}(\vec{u}) \cdot \vec{n} = (- \dot{\gamma}, 0)
+\end{equation}
+(The negative sign is due to the fact that the inward-pointing normal vector $\vec{n}$ points \emph{down} at the top boundary.)
+
+Then the derivation of section 6.2.3 can be augmented with the top shear boundary condition to get:
+\begin{equation}
+\int_{\Gamma_b} \frac{1}{b} \vec{u} \cdot \vec{g} +
+\int_{\Gamma_{\mathrm{top}}} (-\dot{\gamma},0) \cdot \vec{g} = 
+2 \int_{\Omega} \mathbf{E}(\vec{u}) : \mathbf{E}(\vec{g}) +
+\frac{1}{\mu} \int_{\Omega}  \nabla p \cdot \vec{g}
+\end{equation}
+However, the pressure is the same on both side boundaries, so there is no pressure drop across the domain, and the integral of the pressure gradient vanishes, leaving:
+\begin{equation}
+\int_{\Gamma_b} \frac{1}{b} \vec{u} \cdot \vec{g} -
+\int_{\Gamma_{\mathrm{top}}} (\dot{\gamma},0) \cdot \vec{g} = 
+2 \int_{\Omega} \mathbf{E}(\vec{u}) : \mathbf{E}(\vec{g})
+\end{equation}
+
+This variational formulation was used for the Freefem++ simulations.  Note that the viscosity has vanished due to the periodic boundary conditions.  The shear rate $\dot{\gamma}$ was set to one.
+
+\vspace{1em}
 The top of the domain, at height $P$ above the slip surface, is known as the far field.  The velocity and shear rate in the far field, together with the height, define an effective slip length, as described in Chapter 1.  We shall denote this FEM far-field effective slip length as $\bfar$.  In \textbf{all of our simulations}, the far-field velocity turned out to be constant and in the $x$ direction only, even when the period was as large $\frac{1}{2}$ of the domain height.  Therefore, $\bfar$ was always a well-defined single value.
 
 

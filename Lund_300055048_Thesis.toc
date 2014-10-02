@@ -6,6 +6,7 @@
 \contentsline {section}{\numberline {1.5}Purpose of Thesis}{10}
 \contentsline {section}{\numberline {1.6}Application of Thesis}{11}
 \contentsline {section}{\numberline {1.7}Structure of Thesis}{12}
+\contentsline {section}{\numberline {1.8}Publications from the Work of this Thesis}{13}
 \contentsline {chapter}{\numberline {2}Does Slip Exist?}{15}
 \contentsline {section}{\numberline {2.1}Types of Slip}{15}
 \contentsline {subsection}{\numberline {2.1.1}Definitions in the Literature}{16}

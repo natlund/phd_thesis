@@ -365,11 +365,11 @@ However, the variational form can be derived by other means.  In fact, there are
 To illustrate:  The functional $ \frac{1}{2} \int_{\Omega} |\nabla u|^2 \,dA $ 
 is known as Dirichlet's energy functional.  A solution $u$ that minimizes the functional is \emph{also} a solution to the Laplace equation $ \nabla^2 u = 0 $.
 This energy functional can be put into the variational form $ \int_{\Omega} \nabla u \cdot \nabla v \,dA $ by using the calculus of variations.  However, the variational form $ \int_{\Omega} \nabla u \cdot \nabla v \,dA $ can also be derived directly from the Laplace equation.
-\begin{equation}
+\begin{equation*}
 u \; \text{minimizing} \;\;\; \frac{1}{2} \int_{\Omega} |\nabla u|^2 \,dA
 \;\;\; \text{also satisfies} \;\; \int_{\Omega} \nabla u \cdot \nabla v \,dA = 0
 \;\;\; \text{iff} \;\;\; \nabla^2 u =0 
-\end{equation}
+\end{equation*}
 
 We shall use this alternative derivation as part of our homogenization procedure.
 We bootstrap by building up from simpler cases:  First, we derive the variational form $ - \int_{\Omega} \nabla u \cdot \nabla g \,dA = \int_{\Omega} g f \,dA $ directly from the Poisson equation $ \nabla^2 u = f$, which we can think of as the $x$ velocity equation of Stokes flow with the pressure gradient given as (scalar) $f$.
@@ -1100,7 +1100,7 @@ For what range of surfaces is the homogenized slip length a good approximation t
 \vspace{1em}
 Equivalently, when is the flow over a rough, heterogeneous surface \textbf{close to} the flow over an effective homogenized surface?  
 
-One approach to answer this is to ask: when is a rough surface close to the limit surface?  A reasonable answer is: when the \textbf{period is small compared to other length scales.}
+One approach to answer this is to ask: when is a rough surface close to the limit surface?  A reasonable answer is: when the \textbf{period} $L$ \textbf{is small compared to other length scales.}
 There are two other length scales, the domain size $P$ and slip length $b$.  Therefore, we expect Equation (\ref{eq:homogharm}) to be a good approximation to measured slip length when:
 \begin{equation}
 L \ll b, P

@@ -103,13 +103,40 @@ Thus, above the warm living space of a house, is a heterogeneous insulator, comp
 \subsection{Mathematical Model}
 
 We are interested in the `net' insulating properties of the heterogeneous insulator comprising wood, insulating material and possibly air gaps.  To that end, we model the heterogeneous insulator as a bulk material
-with: a warm room at the lower boundary, and convection-dominated heat loss on the top boundary.  For consistency with our slip model, we shall invert the vertical dimension, and let $z=0$ denote the top of the bulk and $z=P$ the bottom of the bulk.  The temperature field is $T(x,y,z)$, with boundary conditions at $T(x,y,0)$ and $T(x,y,P)$, denoted $T(0)$ and $T(P)$.
+with: a warm room at the lower boundary, and convection-dominated heat loss on the top boundary.  For consistency with our slip model, we shall invert the vertical dimension, and let $z=0$ denote the top of the bulk and $z=P$ the bottom of the bulk.  The temperature field is $T(x,y,z)$, with boundary conditions at $T(x,y,0)$ and $T(x,y,P)$, denoted $T(0)$ and $T(P)$.  See Figure (\ref{insulationdomain}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+
+\fill[color=brown] (0,0) rectangle ++(1,2);
+\fill[color=pink] (1,0) rectangle ++(5,2);
+\fill[color=brown] (6,0) rectangle ++(1,2);
+\fill[color=pink] (7,0) rectangle ++(1,2);
+
+\draw (0,0) rectangle ++(8,2);
+
+\node at (4,2.5) {Warm room};
+\node at (4,1) {$\Omega$};
+\node at (4,-0.5) {Convective boundary condition};
+
+\draw[<->] (9.5,2.5) -- node[left]{$z$} ++(0,-2.5) -- node[below]{$x$} ++(2,0);
+\draw (9.5,2) -- ++(-0.1,0);
+\node at (9.5,2)[left]{$P$};
+\node at (9.5,0)[left]{0};
+
+\end{tikzpicture}
+\caption{The domain $\Omega$ is the wooden rafters plus any insulating material.
+For consistency with the slip model, the domain is `upside down'.}
+\label{insulationdomain}
+\end{figure}
+
 
 \subsubsection{Dirichlet Condition}
 
 The warm room can be considered to be held at a constant temperature, due to the interventions of its human occupants.  Therefore, on the $z=P$ boundary is the Dirichlet condition
 \begin{equation}
-T(z) = \Tr = \text{constant}
+T(P) = \Tr = \text{constant}
 \end{equation}
 
 \subsubsection{Bulk Condition}
@@ -186,7 +213,7 @@ For such a system, the heat flux is usually considered to have a simple linear r
 
 This is known as Newton's law of cooling. $h$ is the \emph{heat transfer coefficient} of the system, and depends on the fluid and the physical situation.
 
-\clearpage
+%\clearpage
 \subsubsection{Convective Boundary Condition}
 
 The highly-conductive steel roof of a house can be presumed to be at the same low temperature $T_0$ as the outside air. We assume that radiative heat transfer is negligible, and that the only heat transfer is due to convection occurring between the bulk heterogeneous insulator and the cold roof. 
@@ -226,7 +253,7 @@ b(x,y) = \frac{k}{h}
 \end{equation}
 Then $b(x,y)$ is periodic function on the boundary and has dimensions of length.
 
-\clearpage
+%\clearpage
 We now have a system of equations similar to those describing Stokes flow with Navier slip:
 \begin{gather}
 \nabla^2 \tau = 0 \\
@@ -238,6 +265,8 @@ Note that while the boundary condition is heterogeneous -- $b(x,y)$ is a functio
 The function $b(x,y)$ has units of length, and we can now solve to find an effective `insulation length' for the heterogeneous insulation.
 We assume that all heat in the room is ultimately lost by convection above the insulator.  Since the convective heat flux depends on the temperature on the convective boundary,
   to minimize heat loss for a given room temperature, we want the lowest temperature on the convective boundary.  This in turn demands the lowest effective insulation length.  See Figure (\ref{insulationlength}).
+
+\clearpage
 
 \begin{figure}[ht]
 \centering

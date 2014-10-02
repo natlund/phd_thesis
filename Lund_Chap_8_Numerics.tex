@@ -88,27 +88,47 @@ In our FEM simulations, we used a model with Laplace's equation holding on a rec
 \caption{Domain $\Omega$ with rough slip boundary $ \Gamma_b $, top boundary $\Gamma_{\mathrm{top}}$ and periodic side boundaries $\Gamma_0$.}\label{FEMdomain}
 \end{figure}
 
-The top boundary condition can be expressed in terms of the deformation rate tensor:
+The flow is shear-driven only.  The top fixed-shear boundary condition can be expressed terms of the deformation rate tensor:
 \begin{equation}
  2 \mathbf{E}(\vec{u}) \cdot \vec{n} = (- \dot{\gamma}, 0)
 \end{equation}
 (The negative sign is due to the fact that the inward-pointing normal vector $\vec{n}$ points \emph{down} at the top boundary.)
 
-Then the derivation of section 6.2.3 can be augmented with the top shear boundary condition to get:
+Then the derivation of Section 6.2.3 (page 126) can be augmented with the top shear boundary condition to get:
 \begin{equation}
 \int_{\Gamma_b} \frac{1}{b} \vec{u} \cdot \vec{g} +
 \int_{\Gamma_{\mathrm{top}}} (-\dot{\gamma},0) \cdot \vec{g} = 
 2 \int_{\Omega} \mathbf{E}(\vec{u}) : \mathbf{E}(\vec{g}) +
 \frac{1}{\mu} \int_{\Omega}  \nabla p \cdot \vec{g}
 \end{equation}
-However, the side boundaries are periodic, so there is no pressure drop across the domain, and the integral of the pressure gradient vanishes, leaving:
+However, the flow is shear-driven only, with no pressure drop across the domain, so the integral containing the pressure gradient vanishes, leaving:
 \begin{equation}
 \int_{\Gamma_b} \frac{1}{b} \vec{u} \cdot \vec{g} -
 \int_{\Gamma_{\mathrm{top}}} (\dot{\gamma},0) \cdot \vec{g} = 
 2 \int_{\Omega} \mathbf{E}(\vec{u}) : \mathbf{E}(\vec{g})
 \end{equation}
+This variational formulation was used for the Freefem++ simulations.  Note that the viscosity has vanished due to the periodicity of the pressure.  The shear rate $\dot{\gamma}$ was set to one.
 
-This variational formulation was used for the Freefem++ simulations.  Note that the viscosity has vanished due to the periodic boundary conditions.  The shear rate $\dot{\gamma}$ was set to one.
+Several simulations were done, with different period lengths, on both sinusoidal and flat slip boundaries.  An FEM simulation has a mesh defined on the domain, specifying the points at which a velocity solution is found.  An adaptive mesh was used, so that each full sine cycle always had at least six mesh points on it, even for very short period lengths.
+
+The mesh and corresponding velocity streamline plot for a couple of simulations are shown in Figure (\ref{FEMmesh4}).  Notably, within a period length or two of the sinusoidal surface, the velocity has become uniform horizontal flow.
+%but quickly settle down to uniform flow in the $x$ direction only:  Within about a single period length of the surface, the streamlines are almost perfectly flat.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=0.5, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_mesh_1.png}
+\includegraphics[scale=0.5, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_streamlines_1.png}
+\end{center}
+\vspace{1em}
+\begin{center}
+\includegraphics[scale=0.5, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_mesh_4.png}
+\includegraphics[scale=0.5, trim=4cm 0cm 4cm 0cm, clip=true]{FEM_streamlines_4.png}
+\end{center}
+
+\caption{The mesh (left) and velocity streamline plot (right) for FEM simulations on a domain with a rough slip surface with one period (top) and four periods (bottom).}
+\label{FEMmesh4}
+\end{figure}
+
 
 \vspace{1em}
 The top of the domain, at height $P$ above the slip surface, is known as the far field.  The velocity and shear rate in the far field, together with the height, define an effective slip length, as described in Chapter 1.  We shall denote this FEM far-field effective slip length as $\bfar$.  In \textbf{all of our simulations}, the far-field velocity turned out to be constant and in the $x$ direction only, even when the period was as large $\frac{1}{2}$ of the domain height.  Therefore, $\bfar$ was always a well-defined single value.

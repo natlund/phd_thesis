@@ -88,11 +88,13 @@ In our FEM simulations, we used a model with Laplace's equation holding on a rec
 \caption{Domain $\Omega$ with rough slip boundary $ \Gamma_b $, top boundary $\Gamma_{\mathrm{top}}$ and periodic side boundaries $\Gamma_0$.}\label{FEMdomain}
 \end{figure}
 
-The flow is shear-driven only.  The top fixed-shear boundary condition can be expressed terms of the deformation rate tensor:
+For convenience when working with slip boundary conditions, in this thesis we adopted the convention that the unit normal vector $\vec{n}$ on the surface points `up' into the fluid, that is, \emph{into} the domain.  This means that the normal vector $\vec{n}$ on the top boundary points \emph{down.}
+
+The flow is shear-driven only.  The top fixed-shear boundary condition can be expressed in terms of the deformation rate tensor:
 \begin{equation}
  2 \mathbf{E}(\vec{u}) \cdot \vec{n} = (- \dot{\gamma}, 0)
 \end{equation}
-(The negative sign is due to the fact that the inward-pointing normal vector $\vec{n}$ points \emph{down} at the top boundary.)
+(The negative sign is due to the downward-pointing $\vec{n}$ on the top boundary.)
 
 Then the derivation of Section 6.2.3 (page 126) can be augmented with the top shear boundary condition to get:
 \begin{equation}
@@ -107,7 +109,15 @@ However, the flow is shear-driven only, with no pressure drop across the domain,
 \int_{\Gamma_{\mathrm{top}}} (\dot{\gamma},0) \cdot \vec{g} = 
 2 \int_{\Omega} \mathbf{E}(\vec{u}) : \mathbf{E}(\vec{g})
 \end{equation}
-This variational formulation was used for the Freefem++ simulations.  Note that the viscosity has vanished due to the periodicity of the pressure.  The shear rate $\dot{\gamma}$ was set to one.
+Note that the viscosity has vanished due to the periodicity of the pressure.
+
+While our convention of an inward-pointing normal vector $\vec{n}$ was appropriate for studying slip, an \emph{outward-pointing} unit normal is the more common convention in mathematics, including in finite element modelling.  To use this last formula in Freefem++, we must change to the outward-pointing convention; this amounts to multiplying $b$ and $\dot{\gamma}$ by $-1$.  Thus, the variational formula used for the Freefem++ simulations was:
+\begin{equation}
+2 \int_{\Omega} \mathbf{E}(\vec{u}) : \mathbf{E}(\vec{g}) -
+\int_{\Gamma_{\mathrm{top}}} (\dot{\gamma},0) \cdot \vec{g} +
+\int_{\Gamma_b} \frac{1}{b} \vec{u} \cdot \vec{g} = 0
+\end{equation}
+The shear rate $\dot{\gamma}$ was set to one.
 
 Several simulations were done, with different period lengths, on both sinusoidal and flat slip boundaries.  An FEM simulation has a mesh defined on the domain, specifying the points at which a velocity solution is found.  An adaptive mesh was used, so that each full sine cycle always had at least six mesh points on it, even for very short period lengths.
 
@@ -129,6 +139,7 @@ The mesh and corresponding velocity streamline plot for a couple of simulations 
 \label{FEMmesh4}
 \end{figure}
 
+\clearpage
 
 \vspace{1em}
 The top of the domain, at height $P$ above the slip surface, is known as the far field.  The velocity and shear rate in the far field, together with the height, define an effective slip length, as described in Chapter 1.  We shall denote this FEM far-field effective slip length as $\bfar$.  In \textbf{all of our simulations}, the far-field velocity turned out to be constant and in the $x$ direction only, even when the period was as large $\frac{1}{2}$ of the domain height.  Therefore, $\bfar$ was always a well-defined single value.
@@ -257,7 +268,7 @@ A final note about numerical issues:  A close look look at the data plotted in F
 \clearpage
 \section{Finite Difference Numerics}
 
-As an exercise, the same slip problem was also solved numerically using the finite difference method.  The main benefit of this exercise (apart form educational) was that the software employed allowed the easy visualisation of 3-dimensional flow fields.  We employed Python using the Numpy library, which is a front end to various very fast C and Fortran libraries, and the Mayavi library for visualisation.  A curved boundary is difficult to implement in this approach, so the case of the flat slip boundary was studied.
+As an exercise, the same slip problem was also solved numerically using the finite difference method.  The main benefit of this exercise (apart from educational) was that the software employed allowed the easy visualisation of 3-dimensional flow fields.  We employed Python using the Numpy library, which is a front end to various very fast C and Fortran libraries, and the Mayavi library for visualisation.  A curved boundary is difficult to implement in this approach, so the case of the flat slip boundary was studied.
 
 Three-dimensional velocity profiles were generated.  The $x$-velocity $u$ for flow over a mixed-slip surface is shown in Figure (\ref{flow}).
 

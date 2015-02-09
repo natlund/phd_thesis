@@ -88,7 +88,7 @@ In our FEM simulations, we used a model with Laplace's equation holding on a rec
 \caption{Domain $\Omega$ with rough slip boundary $ \Gamma_b $, top boundary $\Gamma_{\mathrm{top}}$ and periodic side boundaries $\Gamma_0$.}\label{FEMdomain}
 \end{figure}
 
-For convenience when working with slip boundary conditions, in this thesis we adopted the convention that the unit normal vector $\vec{n}$ on the surface points `up' into the fluid, that is, \emph{into} the domain.  This means that the normal vector $\vec{n}$ on the top boundary points \emph{down.}
+For convenience when working with slip boundary conditions, in this thesis we adopted the convention that the unit normal vector $\vec{n}$ on the surface points `up' into the fluid, that is, \emph{into} the domain. (An increase in $x$ velocity with increasing $z$ gives a positive velocity gradient $\partial u /\partial z$.  On a flat surface, the convention of the inward-pointing $\vec{n}$ ensures that the velocity gradient in the direction of $\vec{n}$, $\partial u/\partial n$, has the same sign (and magnitude) as $\partial u/ \partial n$.)  A consequence is that the normal vector $\vec{n}$ on the top boundary points \emph{down.}
 
 The flow is shear-driven only.  The top fixed-shear boundary condition can be expressed in terms of the deformation rate tensor:
 \begin{equation}
@@ -108,10 +108,11 @@ However, the flow is shear-driven only, with no pressure drop across the domain,
 \int_{\Gamma_b} \frac{1}{b} \vec{u} \cdot \vec{g} -
 \int_{\Gamma_{\mathrm{top}}} (\dot{\gamma},0) \cdot \vec{g} = 
 2 \int_{\Omega} \mathbf{E}(\vec{u}) : \mathbf{E}(\vec{g})
+\label{eq:FEMformula_inward}
 \end{equation}
 Note that the viscosity has vanished due to the periodicity of the pressure.
 
-While our convention of an inward-pointing normal vector $\vec{n}$ was appropriate for studying slip, an \emph{outward-pointing} unit normal is the more common convention in mathematics, including in finite element modelling.  To use this last formula in Freefem++, we must change to the outward-pointing convention; this amounts to multiplying $b$ and $\dot{\gamma}$ by $-1$.  Thus, the variational formula used for the Freefem++ simulations was:
+While our convention of an inward-pointing normal vector $\vec{n}$ was appropriate for studying slip, an \emph{outward-pointing} unit normal is the more common convention in mathematics, including in finite element modelling.  To use the formula of Equation (\ref{eq:FEMformula_inward}) in Freefem++, we must change to the outward-pointing convention. This alters the boundary conditions by a negative sign to $ 2 \mathbf{E}(\vec{u}) \cdot \vec{n} = -\frac{1}{b} \vec{u} $ and $2 \mathbf{E}(\vec{u}) \cdot \vec{n} = (\dot{\gamma}, 0) $, which amounts to multiplying $b$ and $\dot{\gamma}$ by $-1$ in Equation (\ref{eq:FEMformula_inward}).  Thus, the variational formula used for the Freefem++ simulations was:
 \begin{equation}
 2 \int_{\Omega} \mathbf{E}(\vec{u}) : \mathbf{E}(\vec{g}) -
 \int_{\Gamma_{\mathrm{top}}} (\dot{\gamma},0) \cdot \vec{g} +
@@ -119,10 +120,7 @@ While our convention of an inward-pointing normal vector $\vec{n}$ was appropria
 \end{equation}
 The shear rate $\dot{\gamma}$ was set to one.
 
-Several simulations were done, with different period lengths, on both sinusoidal and flat slip boundaries.  An FEM simulation has a mesh defined on the domain, specifying the points at which a velocity solution is found.  An adaptive mesh was used, so that each full sine cycle always had at least six mesh points on it, even for very short period lengths.
 
-The mesh and corresponding velocity streamline plot for a couple of simulations are shown in Figure (\ref{FEMmesh4}).  Notably, within a period length or two of the sinusoidal surface, the velocity has become uniform horizontal flow.
-%but quickly settle down to uniform flow in the $x$ direction only:  Within about a single period length of the surface, the streamlines are almost perfectly flat.
 
 \begin{figure}[ht]
 \begin{center}
@@ -140,6 +138,11 @@ The mesh and corresponding velocity streamline plot for a couple of simulations 
 \end{figure}
 
 \clearpage
+
+Several simulations were done, with different period lengths, on both sinusoidal and flat slip boundaries.  An FEM simulation has a mesh defined on the domain, specifying the points at which a velocity solution is found.  An adaptive mesh was used, so that each full sine cycle always had at least six mesh points on it, even for very short period lengths.
+
+The mesh and corresponding velocity streamline plot for a couple of simulations are shown in Figure (\ref{FEMmesh4}).  Notably, within a period length or two of the sinusoidal surface, the velocity has become uniform horizontal flow.
+%but quickly settle down to uniform flow in the $x$ direction only:  Within about a single period length of the surface, the streamlines are almost perfectly flat.
 
 \vspace{1em}
 The top of the domain, at height $P$ above the slip surface, is known as the far field.  The velocity and shear rate in the far field, together with the height, define an effective slip length, as described in Chapter 1.  We shall denote this FEM far-field effective slip length as $\bfar$.  In \textbf{all of our simulations}, the far-field velocity turned out to be constant and in the $x$ direction only, even when the period was as large $\frac{1}{2}$ of the domain height.  Therefore, $\bfar$ was always a well-defined single value.
